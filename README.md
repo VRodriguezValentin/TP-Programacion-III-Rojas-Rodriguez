@@ -1,166 +1,140 @@
-🛠️ Programación III - TP Obligatorio
-🧾 Proyecto: Autoservicio
-✅ Condiciones de aprobación
-El Trabajo Integrador está dividido en dos proyectos: un proyecto frontend y un proyecto backend.
-La fecha de entrega del TP es la última semana de cursada.
+# 🛠️ Programación III - TP Obligatorio  
+## 🧾 Proyecto: Autoservicio
 
-La promoción del trabajo depende de:
+---
 
-Cumplir con las consignas individuales de cada proyecto.
+## ✅ Condiciones de aprobación
 
-Lograr una comunicación correcta entre frontend y backend.
+El Trabajo Integrador está dividido en **dos proyectos**: un proyecto **frontend** y un proyecto **backend**.  
+📅 **Fecha de entrega:** última semana de cursada.
 
-Si los alumnos no promocionan pero obtienen una nota suficiente para aprobar, podrán entregar el trabajo como examen final, incluyendo las consignas de cursada + final.
-Si no obtienen la nota suficiente al final del cuatrimestre, recursarán la materia.
+La **promoción** del trabajo depende de:
 
-⚠️ Ambos proyectos deben ser realizados por ambos integrantes del grupo.
-Se revisarán los commits para validar la participación. La falta de compromiso individual afecta la nota de forma personal y puede generar diferentes estados finales entre los integrantes del mismo grupo.
+- Cumplir con las consignas individuales de cada proyecto.
+- Lograr una **comunicación correcta entre frontend y backend**.
 
-📋 Requerimientos Iniciales
-1. Requerimientos funcionales
-Una empresa contrató el desarrollo de un sistema de autoservicio (no e-commerce).
+Si los alumnos **no promocionan** pero tienen nota suficiente, podrán entregar el trabajo como **final**, incluyendo todas las consignas de cursada y final.  
+En caso de no aprobar, deberán **recursar** la materia.
 
-📦 Estructura del sistema
-Frontend (cliente):
-Aplicación donde los usuarios pueden comprar dos tipos de productos del mismo rubro. Al finalizar la compra, el sistema genera un ticket.
+> ⚠️ **Ambos proyectos deben ser realizados por ambos integrantes del grupo.**  
+> Se revisarán los commits para validar la participación. La falta de compromiso individual afectará la nota de forma personal.
 
-Backend (servidor):
+---
 
-Parte API RESTful que gestiona datos desde una base de datos.
+## 📋 Requerimientos Iniciales
 
-Parte de vistas HTML (EJS) como back office para administradores (ABM y más acciones).
+### 1. Requerimientos funcionales
 
-Ambos módulos backend deben estar alojados en el mismo servidor.
+Una empresa contrató el desarrollo de un sistema de **autoservicio** (no e-commerce).
 
-📱 La app debe ser responsive (usable desde PC y móviles).
+#### 📦 Estructura del sistema
 
-❌ No se permiten productos de comida.
-✔️ Los productos pueden ser físicos o virtuales, pero deben pertenecer al mismo rubro o estar lógicamente relacionados.
+- **Frontend (cliente):**  
+  Aplicación donde los usuarios pueden comprar **dos tipos de productos del mismo rubro**. Al finalizar la compra, se genera un **ticket**.
 
-🔁 Las vistas deben permitir navegación mediante botones. No se permite el ingreso de rutas manualmente.
+- **Backend (servidor):**
+  - API RESTful que gestiona datos desde una base de datos.
+  - Vistas HTML (EJS) como **back office** para administradores (ABM y más).
 
-🎨 Tanto el cliente como el back office deben contar con un diseño con criterio. Si el estilo es pobre, se solicitarán mejoras.
+> Ambas partes del backend deben estar en el **mismo servidor**.  
+> La app debe ser **responsive** (PC + móviles).  
+> ❌ **No se permiten productos de comida.**
 
-2. Pantallas de la aplicación
-🧑 Cliente
-Pantalla de bienvenida: Ingreso del nombre.
+#### Navegación y Estilo
 
-Pantalla de productos: Dos categorías, info e imágenes de productos, agregar/quitar del carrito.
+- Navegación mediante botones (no rutas escritas manualmente).
+- Estilo con criterio: si es pobre, se pedirá mejorarlo.
 
-Pantalla de carrito: Listado de productos, modificar cantidades.
+---
 
-Pantalla de ticket: Ticket con resumen de la compra, nombre, fecha y empresa.
+### 2. Pantallas de la aplicación
 
-🛠️ Administrador
-Pantalla login: Usuario y contraseña.
+#### 🧑 Cliente
 
-Dashboard: Listado de productos y acciones.
+- **Bienvenida:** Ingreso del nombre.
+- **Productos:** Categorías, info, imagen, agregar/quitar del carrito.
+- **Carrito:** Listado, modificar cantidades.
+- **Ticket:** Resumen de compra, nombre, fecha y empresa.
 
-Alta de producto: Formulario con imagen.
+#### 🛠️ Administrador
 
-Modificar producto: Reutilizable con el formulario de alta.
+- **Login:** Usuario y contraseña.
+- **Dashboard:** Listado con acciones.
+- **Alta de producto:** Formulario con imagen.
+- **Modificar producto:** Reutiliza el formulario de alta.
 
-Cada pantalla mencionada debe tener su propia ruta, no modales.
+> Cada pantalla debe tener su propia **ruta** (no modales).  
+> Todas deben incluir:
+> - Logo  
+> - Nombre de la app  
+> - Nombre de los alumnos  
+> - Barra de navegación
 
-Todas las vistas deben incluir:
+---
 
-Logo
+### 3. Flujos principales
 
-Nombre de la app
+#### 🧾 Cliente
 
-Nombre de los alumnos
+1. Entra al sitio → Bienvenida
+2. Ingresa nombre → Continuar
+3. Ve productos por categoría
+4. Agrega o quita del carrito
+5. Modifica cantidades
+6. Finaliza compra → Ve ticket
+7. Reinicia sistema
 
-Barra de navegación dinámica
+#### 🛠️ Administrador
 
-3. Flujos de la aplicación
-🧾 Flujo cliente
-Ingreso al sitio → Pantalla de bienvenida
+1. Ingreso → Login
+2. Usuario + contraseña → Dashboard
+3. Agrega producto → Formulario
+4. Elimina (baja lógica)
+5. Edita datos e imagen
+6. Reactiva productos
 
-Ingreso de nombre → Continuar
+---
 
-Visualización de productos por categoría
+### 4. Requerimientos Frontend
 
-Agregado y eliminación de productos al carrito
-
-Visualización y modificación del carrito
-
-Confirmación de compra → Mostrar ticket
-
-Reinicio del sistema
-
-🛠️ Flujo administrador
-Ingreso → Login
-
-Ingreso con usuario y contraseña
-
-Redirección a dashboard
-
-Alta de producto (formulario + imagen)
-
-Baja lógica (producto inactivo)
-
-Edición de producto (incluye cambio de imagen)
-
-Activación de productos inactivos
-
-4. Requerimientos Frontend (cliente)
-Ingreso de nombre obligatorio antes de comprar
-
-Nombre/imágen de empresa + favicon
-
-Productos cargados al inicio (desde API o JSON hardcodeado si no hay backend)
-
-Productos activos únicamente
-
-Responsive y paginado
-
-Persistencia de ventas en DB (nombre, fecha, precio total)
-
-Eliminación y modificación de cantidades del carrito
-
-Confirmación de compra con modal
-
-Visualización y descarga del ticket en PDF
-
-Reinicio del sistema tras la compra
-
-Cambio de tema (modo claro / oscuro) con persistencia
-
-Botón para ingresar al login del administrador
-
-5. Requerimientos Backend
-🖥️ Vistas HTML (EJS)
-Login conectado a base de datos
-
-Botón de acceso rápido con autocompletado (correo y contraseña)
-
-Dashboard con productos y acciones:
-
-Alta
-
-Baja (activo = false)
-
-Modificación
-
-Reactivación (activo = true)
-
-🌐 API JSON
-Estructura RESTful y lógica (MVC)
-
-ORM con tablas de productos, usuarios, ventas, etc.
-
-Relación muchos a muchos entre productos y ventas
-
-Encriptación de contraseñas (no texto plano)
-
-Alta, baja, modificación y listado de productos
-
-Paginación de productos
-
-Validaciones mediante middlewares
-
-Subida de imágenes al servidor
-
-Endpoint para creación de usuario administrador
-
-Listado de ventas con productos asociados
+- Pregunta el nombre al comenzar
+- Nombre / logo de empresa + favicon
+- Muestra productos activos (API o JSON)
+- Estilo responsive y paginado
+- Guarda ventas (nombre, fecha, total)
+- Muestra ticket (descargable en PDF)
+- Permite eliminar y modificar productos en el carrito
+- Modal de confirmación al comprar
+- Reinicio automático tras la compra
+- Cambio de tema (claro / oscuro) con persistencia
+- Botón para login administrador
+
+---
+
+### 5. Requerimientos Backend
+
+#### 🖥️ Vistas HTML (EJS)
+
+- Login con datos desde DB
+- Botón de acceso rápido (autocompleta campos)
+- Dashboard con:
+  - Alta de producto (activo por defecto)
+  - Baja lógica (activo = false)
+  - Reactivación
+  - Edición de datos + imagen
+
+#### 🌐 API JSON
+
+- API RESTful con estructura MVC
+- ORM con relaciones (productos, usuarios, ventas, etc.)
+- Relación muchos a muchos (productos ↔ ventas)
+- Contraseñas **encriptadas**
+- Endpoints para:
+  - Alta / baja / modificación / listado
+  - Creación de usuario administrador
+  - Subida de imágenes
+  - Paginación de productos
+  - Listado de ventas con productos
+- Validación de datos con middlewares
+
+---
