@@ -1,0 +1,109 @@
+body {
+    background-color: #1e1e1e;
+    color: #f0f0f0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Spinner */
+.spinner {
+    width: 60px;
+    height: 60px;
+    border: 6px solid lightgray;
+    border-top: 6px solid #3498db;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+    transform: rotate(360deg);
+    }
+}
+
+#spinner-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    display: none; /* oculto por defecto */
+}
+
+/* Contenedores */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #2c2c2c;
+    border-radius: 10px;
+    margin: 5vh auto;
+    margin-top: 15vh;
+    padding: 30px;
+    max-width: 1200px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.6);
+    width: 30%;
+}
+
+.caja {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #3a3a3a;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    width: 20vw;
+}
+
+/* Botones */
+.button {
+    width: auto;
+    padding: 10px 20px;
+    background: #2c39f3;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.button:hover {
+    background: #3170f8;
+    transform: scale(1.05);
+}
+
+.button-small {
+    width: auto;
+    padding: 5px 10px;
+    background: #2c39f3;
+    color: white;
+    font-size: small;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.button-small:hover {
+    background: #3170f8;
+    transform: scale(1.05);
+}
+
+/* Formulario */
+#divCliente input, select, #divLogin input, select {
+    padding: 10px;
+    border-radius: 6px;
+    border: none;
+    background-color: #f1f1f1;
+    color: #333;
+    font-size: 14px;
+    width: 80%;
+    max-width: 400px;
+    margin: 5px 0;
+}
