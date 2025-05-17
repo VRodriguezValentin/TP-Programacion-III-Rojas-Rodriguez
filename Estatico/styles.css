@@ -1,22 +1,55 @@
 body {
-    background-color: #1e1e1e;
-    color: #f0f0f0;
+    background-color: #2E2E2E; /* Gris oscuro */
+    color: #1E1E1E; /* Negro suave para texto principal */
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 0%;
+    margin: 0%;
 }
+
+.logoLog {
+    width: 50%;
+    height: 50%;
+    margin: -35px;
+}
+
+/* NAVBAR */
+.navbar {
+    display: flex;
+    justify-content: space-evenly;
+    background-color: #007BFF;
+    align-items: center;
+    box-shadow: 0 0 30px rgba(30,30,30,0.4);
+}
+
+.logoNav {
+    width: 200px;
+    height: 200px;
+    margin: -35px;
+    margin-left: -200px;
+}
+
+.carrito {
+    border: solid #1E1E1E 2px;
+    border-radius: 20px;
+    height: 30px;
+    padding: 10px;
+}
+
+
 
 /* Spinner */
 .spinner {
     width: 60px;
     height: 60px;
-    border: 6px solid lightgray;
-    border-top: 6px solid #3498db;
+    border: 6px solid #E5E5E5; /* Gris claro */
+    border-top: 6px solid #007BFF; /* Azul eléctrico */
     border-radius: 50%;
     animation: spin 1s linear infinite;
 }
 
 @keyframes spin {
     to {
-    transform: rotate(360deg);
+        transform: rotate(360deg);
     }
 }
 
@@ -26,7 +59,7 @@ body {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgba(46, 46, 46, 0.7); /* Gris oscuro con opacidad */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -35,17 +68,45 @@ body {
 }
 
 /* Contenedores */
-.container {
+.containerLogin {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: #2c2c2c;
+    background: #E5E5E5; /* Gris claro */
     border-radius: 10px;
     margin: 5vh auto;
     margin-top: 15vh;
     padding: 30px;
     max-width: 1200px;
-    box-shadow: 0 0 20px rgba(0,0,0,0.6);
+    box-shadow: 0 0 20px rgba(30,30,30,0.4); /* Sombra con negro suave */
+    width: 30%;
+}
+
+.containerCarrito {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #E5E5E5; /* Gris claro */
+    border-radius: 10px;
+    margin: 5vh auto;
+    margin-top: 15vh;
+    padding: 30px;
+    max-width: 1200px;
+    box-shadow: 0 0 20px rgba(30,30,30,0.4); /* Sombra con negro suave */
+    width: 30%;
+}
+
+.containerTicket {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #E5E5E5; /* Gris claro */
+    border-radius: 10px;
+    margin: 5vh auto;
+    margin-top: 15vh;
+    padding: 30px;
+    max-width: 1200px;
+    box-shadow: 0 0 20px rgba(30,30,30,0.4); /* Sombra con negro suave */
     width: 30%;
 }
 
@@ -53,19 +114,43 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: #3a3a3a;
+    background: #FFFFFF; /* Blanco puro */
     border-radius: 10px;
     padding: 20px;
     margin-bottom: 20px;
     width: 20vw;
+    border: 1px solid #E5E5E5; /* Gris claro */
+}
+
+/* Pagina Principal */
+.container-principal{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+}
+
+#panel-izquierdo {
+    background-color: #0264ce;
+    width: 35%;
+    height: 100vw;
+}
+
+#panel-derecho {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
 }
 
 /* Botones */
 .button {
     width: auto;
     padding: 10px 20px;
-    background: #2c39f3;
-    color: white;
+    background: #007BFF; /* Azul eléctrico */
+    color: #FFFFFF; /* Blanco puro */
     font-weight: bold;
     border: none;
     border-radius: 8px;
@@ -74,15 +159,15 @@ body {
 }
 
 .button:hover {
-    background: #3170f8;
+    background: #00C4CC; /* Cian suave */
     transform: scale(1.05);
 }
 
 .button-small {
     width: auto;
     padding: 5px 10px;
-    background: #2c39f3;
-    color: white;
+    background: #007BFF; /* Azul eléctrico */
+    color: #FFFFFF; /* Blanco puro */
     font-size: small;
     border: none;
     border-radius: 8px;
@@ -91,7 +176,7 @@ body {
 }
 
 .button-small:hover {
-    background: #3170f8;
+    background: #00C4CC; /* Cian suave */
     transform: scale(1.05);
 }
 
@@ -99,9 +184,9 @@ body {
 #divCliente input, select, #divLogin input, select {
     padding: 10px;
     border-radius: 6px;
-    border: none;
-    background-color: #f1f1f1;
-    color: #333;
+    border: 1px solid #E5E5E5; /* Gris claro */
+    background-color: #FFFFFF; /* Blanco puro */
+    color: #1E1E1E; /* Negro suave */
     font-size: 14px;
     width: 80%;
     max-width: 400px;

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="styles.css">
+        <script src="main.js"></script>
+    </head>
+    <body>
+        <nav class="navbar">
+            <img src="./imagenes/PocketStore.png" alt="Logo de PocketStore" class="logoNav">
+            <h3>Bienvenido Cliente!</h3>
+            <i style="font-weight: 100;">Gabriel Rojas - Valentin Rodriguez</i>
+            <img src="./imagenes/carrito.png" alt="Logo de carrito" class="carrito">
+        </nav>
+
+        <div class="containerTicket">
+            <div>
+                <h2>Recibo de compra</h2>
+                <p>nOMBRE DE USUARIO</p>
+                <p>Fecha: 2023-10-01</p>
+            </div>
+
+            <div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Producto</th>
+                            <th>Descripcion</th>
+                            <th>Precio</th>
+                            <th>Cantidad</th>
+                            <th>Subtotal</th>
+                        </tr>
+                    </thead>
+                    <tbody> <!-- Se arma dinamico en el back leyendo el array-->
+                        <tr>
+                            <td>Celular 1</td>
+                            <td>$1000</td>
+                            <td>1</td>
+                            <td>$1000</td>
+                            <td>$1000</td>
+                        </tr>
+                        <tr>
+                            <td>Celular 2</td>
+                            <td>$1000</td>
+                            <td>1</td>
+                            <td>$1000</td>
+                            <td>$1000</td>
+                        </tr>
+                    </tbody> <!-- Se arma dinamico en el back leyendo el array-->
+                </table>
+            </div>
+
+            <div id="">
+                <p>total: $1000</p>
+                <button type="submit" class="btn-salir">Salir</button>
+            </div>
+        </div>
+
+        
+    </body>
+</html>
