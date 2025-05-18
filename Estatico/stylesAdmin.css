@@ -1,0 +1,126 @@
+body {
+    background-color: #2E2E2E; /* Gris oscuro */
+    color: #1E1E1E; /* Negro suave para texto principal */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 0%;
+    margin: 0%;
+}
+
+.logoLog {
+    width: 50%;
+    height: 50%;
+    margin: -35px;
+}
+
+/* NAVBAR */
+.navbar {
+    display: flex;
+    justify-content: space-evenly;
+    background-color: #007BFF;
+    align-items: center;
+    box-shadow: 0 0 30px rgba(30,30,30,0.4);
+}
+
+.logoNav {
+    width: 200px;
+    height: 200px;
+    margin: -35px;
+    margin-left: -200px;
+}
+
+.button {
+    width: auto;
+    padding: 10px 20px;
+    background: #007BFF; /* Azul eléctrico */
+    color: #FFFFFF; /* Blanco puro */
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.button:hover {
+    background: #00C4CC; /* Cian suave */
+    transform: scale(1.05);
+}
+
+.button-small {
+    width: auto;
+    padding: 5px 10px;
+    background: #007BFF; /* Azul eléctrico */
+    color: #FFFFFF; /* Blanco puro */
+    font-size: small;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.button-small:hover {
+    background: #00C4CC; /* Cian suave */
+    transform: scale(1.05);
+}
+
+/* Pagina Principal */
+.container-principal{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+}
+
+.container-gestion {
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.box-gestion {
+    background-color: whitesmoke;
+    height: 600px;
+    width: 200px;
+    padding: 20px;
+}
+
+#panel-izquierdo {
+    background-color: #0264ce;
+    width: 35%;
+    height: 100vw;
+}
+
+#panel-derecho {
+    margin-left: -350px;
+    padding: 25px;
+    gap: 75px;
+    display: flex;
+}
+
+.btn-caja {
+    display: flex;
+    flex-direction: column;
+}
+
+.floating-icon {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 100px;
+    height: 100px;
+    background-color: #007BFF;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    font-size: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    z-index: 1000;
+}
+
+.floating-icon:hover {
+    background-color: #0056b3;
+}

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="stylesAdmin.css">
+    <script src="main.js"></script>
+</head>
+
+<body>
+    <nav class="navbar">
+        <img src="./imagenes/PocketStore.png" alt="Logo de PocketStore" class="logoNav">
+        <h3>Dashboard</h3>
+        <i style="font-weight: 100;">Gabriel Rojas - Valentin Rodriguez</i>
+        <a href="./login.html">Logout</a>
+    </nav>
+
+    <div class="container-gestion">
+        <div class="box-gestion">
+            <form action="">
+                <!--imagen dinamica-->
+                <label for="idtxt">ID: </label>
+                <input type="text" id="idtxt" disabled>
+
+                <label for="marcatxt">Marca: </label>
+                <input type="text" id="marcatxt">
+
+                <label for="preciotxt">Precio: </label>
+                <input type="number" id="preciotxt">
+
+                <select name="" id="">
+                    <option value="0" disabled selected>Seleccionar</option>
+                    <option value="1">Celular</option>
+                    <option value="2">Accesorio</option>
+                </select>
+
+                <div class="sel-celular">
+                    <label for="modelotxt">Modelo: </label>
+                    <input type="text" id="modelotxt">
+
+                    <label for="colortxt">Color: </label>
+                    <input type="text" id="colortxt">
+
+                    <label for="almacenamientotxt">Almacenamiento: </label>
+                    <input type="number" id="almacenamientotxt">
+
+                    <label for="ramtxt">RAM: </label>
+                    <input type="number" id="ramtxt">
+                </div>
+
+                <div class="sel-accesorio">
+                    <label for="tipotxt">Tipo: </label>
+                    <input type="text" id="tipotxt">
+
+                    <label for="compatibilidadtxt">Compatibilidad: </label>
+                    <input type="text" id="compatibilidadtxt">
+                </div>
+
+                <button>Cancelar</button>
+                <button>Aceptar</button>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
