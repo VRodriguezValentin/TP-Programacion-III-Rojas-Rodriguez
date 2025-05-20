@@ -39,3 +39,10 @@ class Accesorio extends Producto {
         this.compatibilidad = compatibilidad;
     }
 }
+
+class Modelo{
+    Productos; // Array de productos
+    constructor(){}
+}
+
+export { Producto, Celular, Accesorio, Modelo };
