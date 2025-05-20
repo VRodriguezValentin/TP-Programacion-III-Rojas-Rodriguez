@@ -1,6 +1,8 @@
+/* Tema oscuro por defecto */
+
 body {
-    background-color: #2E2E2E; /* Gris oscuro */
-    color: #1E1E1E; /* Negro suave para texto principal */
+    background-color: #18191A; /* Fondo oscuro */
+    color: #E4E6EB; /* Texto claro */
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     padding: 0%;
     margin: 0%;
@@ -10,15 +12,20 @@ body {
     width: 50%;
     height: 50%;
     margin: -35px;
+    margin-top: 5px;
+    background: #ffffffdc;
+    border-radius: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    display: inline-block;
 }
 
 /* NAVBAR */
 .navbar {
     display: flex;
     justify-content: space-evenly;
-    background-color: #007BFF;
+    background-color: #242526; /* Navbar oscuro */
     align-items: center;
-    box-shadow: 0 0 30px rgba(30,30,30,0.4);
+    box-shadow: 0 0 30px rgba(0,0,0,0.7);
 }
 
 .logoNav {
@@ -29,17 +36,18 @@ body {
 }
 
 .carrito {
-    border: solid #1E1E1E 2px;
+    border: solid #E4E6EB 2px;
     border-radius: 20px;
     height: 30px;
     padding: 10px;
+    background: #242526;
 }
 
 /* Spinner */
 .spinner {
     width: 60px;
     height: 60px;
-    border: 6px solid #E5E5E5; /* Gris claro */
+    border: 6px solid #3A3B3C; /* Gris oscuro */
     border-top: 6px solid #007BFF; /* Azul eléctrico */
     border-radius: 50%;
     animation: spin 1s linear infinite;
@@ -57,7 +65,7 @@ body {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(46, 46, 46, 0.7); /* Gris oscuro con opacidad */
+    background-color: rgba(24, 25, 26, 0.7); /* Fondo oscuro con opacidad */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -66,58 +74,34 @@ body {
 }
 
 /* Contenedores */
-.containerLogin {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background: #E5E5E5; /* Gris claro */
-    border-radius: 10px;
-    margin: 5vh auto;
-    margin-top: 15vh;
-    padding: 30px;
-    max-width: 1200px;
-    box-shadow: 0 0 20px rgba(30,30,30,0.4); /* Sombra con negro suave */
-    width: 30%;
-}
-
-.containerCarrito {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background: #E5E5E5; /* Gris claro */
-    border-radius: 10px;
-    margin: 5vh auto;
-    margin-top: 15vh;
-    padding: 30px;
-    max-width: 1200px;
-    box-shadow: 0 0 20px rgba(30,30,30,0.4); /* Sombra con negro suave */
-    width: 30%;
-}
-
+.containerLogin,
+.containerCarrito,
 .containerTicket {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: #E5E5E5; /* Gris claro */
+    background: #242526; /* Fondo oscuro */
     border-radius: 10px;
     margin: 5vh auto;
     margin-top: 15vh;
     padding: 30px;
     max-width: 1200px;
-    box-shadow: 0 0 20px rgba(30,30,30,0.4); /* Sombra con negro suave */
+    box-shadow: 0 0 20px rgba(0,0,0,0.7);
     width: 30%;
+    color: #E4E6EB;
 }
 
 .caja {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: #FFFFFF; /* Blanco puro */
+    background: #3A3B3C; /* Más oscuro */
     border-radius: 10px;
     padding: 20px;
     margin-bottom: 20px;
     width: 20vw;
-    border: 1px solid #E5E5E5; /* Gris claro */
+    border: 1px solid #555; /* Gris oscuro */
+    color: #E4E6EB;
 }
 
 /* Pagina Principal */
@@ -130,7 +114,7 @@ body {
 }
 
 #panel-izquierdo {
-    background-color: #0264ce;
+    background-color: #242526;
     width: 35%;
     height: 100vw;
 }
@@ -144,11 +128,16 @@ body {
 }
 
 /* Botones */
-.button {
+.button,
+.button-small,
+.btn-carrito,
+.btn-cancelar,
+.btn-finalizar,
+.btn-salir {
     width: auto;
     padding: 10px 20px;
     background: #007BFF; /* Azul eléctrico */
-    color: #FFFFFF; /* Blanco puro */
+    color: #E4E6EB; /* Texto claro */
     font-weight: bold;
     border: none;
     border-radius: 8px;
@@ -156,38 +145,74 @@ body {
     transition: all 0.3s ease;
 }
 
-.button:hover {
-    background: #00C4CC; /* Cian suave */
+.button:hover,
+.button-small:hover,
+.btn-carrito:hover,
+.btn-cancelar:hover,
+.btn-finalizar:hover,
+.btn-salir:hover {
+    background: #0056b3; /* Azul más oscuro */
+    color: #FFF;
     transform: scale(1.05);
 }
 
 .button-small {
-    width: auto;
     padding: 5px 10px;
-    background: #007BFF; /* Azul eléctrico */
-    color: #FFFFFF; /* Blanco puro */
     font-size: small;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.button-small:hover {
-    background: #00C4CC; /* Cian suave */
-    transform: scale(1.05);
 }
 
 /* Formulario */
 #divCliente input, select, #divLogin input, select {
     padding: 10px;
     border-radius: 6px;
-    border: 1px solid #E5E5E5; /* Gris claro */
-    background-color: #FFFFFF; /* Blanco puro */
-    color: #1E1E1E; /* Negro suave */
+    border: 1px solid #555; /* Gris oscuro */
+    background-color: #18191A; /* Fondo input oscuro */
+    color: #E4E6EB; /* Texto claro */
     font-size: 14px;
     width: 80%;
     max-width: 400px;
     margin: 5px 0;
 }
 
+.floating-icon {
+    position: fixed;
+    bottom: 20px;
+    right: 40px;
+    width: 50px;
+    height: 50px;
+    background-color: black;
+    color: #E4E6EB;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0px 8px rgba(0, 0, 0, 0.4);
+    font-size: 40px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    z-index: 1000;
+}
+
+.floating-icon:hover {
+    background-color: #E4E6EB;
+    color: black;
+}
+
+/* Tablas */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #242526;
+    color: #E4E6EB;
+}
+
+th, td {
+    border: 1px solid #555;
+    padding: 8px;
+    text-align: center;
+}
+
+th {
+    background: #18191A;
+    color: #FFF;
+}

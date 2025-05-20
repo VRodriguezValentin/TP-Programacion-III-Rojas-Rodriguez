@@ -10,7 +10,7 @@ class ControlLogin{
     registrarControlador(){
         this.VistaLogin.contenedor.btnContinuar.addEventListener("click", (e) => {
             /* Valida que el nombre ingresado no sea cualquier pavada */
-            window.location.href = "index.html";
+            window.location.href='./index.html';
         });
 
     }
