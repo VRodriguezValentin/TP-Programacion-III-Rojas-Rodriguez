@@ -1,6 +1,6 @@
-import { Modelo, Producto, Celular, Accesorio } from "../Modelo/modelo.js";
-import { VistaLogin, VistaPrincipal, VistaCarrito, VistaTicket } from "../Vista/vistaCliente.js";
-import { ControlLogin, ControlPrincipal, ControlCarrito, ControlTicket } from "../Controlador/controladorCliente.js";
+import { Modelo } from "../Modelo/modelo.js";
+import { VistaLogin } from "../Vista/Cliente/vistaLogin.js";
+import { ControlLogin } from "../Controlador/Cliente/controllerLogin.js";
 
 var modelo   = new Modelo();
 var vista    = new VistaLogin();
