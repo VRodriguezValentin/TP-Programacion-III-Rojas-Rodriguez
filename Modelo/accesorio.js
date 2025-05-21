@@ -1,3 +1,5 @@
+import { Producto } from "./producto.js";
+
 class Accesorio extends Producto {
     tipo; // ej: "Funda", "Auricular", "Cargador"
     compatibilidad; // ej: "iPhone 13", "Universal", etc.

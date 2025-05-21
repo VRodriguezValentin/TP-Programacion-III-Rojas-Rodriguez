@@ -1,9 +1,10 @@
 class VistaLogin{
-    login;
+    loginCliente;
     constructor(){}
-        contenedor = {
+        loginCliente = {
             inputNombre:  this.$("inputNombre"),
-            btnContinuar: this.$("btnContinuar")
+            btnContinuar: this.$("btnContinuar"),
+            btnTema:      this.$("btnTema")
         }
 
     $(id){
