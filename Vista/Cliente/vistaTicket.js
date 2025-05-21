@@ -15,7 +15,7 @@ class VistaTicket{
         }
 
         finTicket = {
-            total:        this.$("totalTicket"),
+            total:     this.$("totalTicket"),
             btnSalir:  this.$("btnSalir")
         }
 
