@@ -1,15 +1,17 @@
 class VistaAdminLogin {
     loginAdmin;
-    constructor(){}
-        loginAdmin = {
-            inputName: this.$("inputName"),
-            inputPass: this.$("inputPassword"),
-            btnLogin:  this.$("btnLogin")
+    constructor(){
+        this.loginAdmin = {
+            inputName:  this.$("inputName"),
+            inputPass:  this.$("inputPassword"),
+            newInput:   this.$("newInputContainer"),
+            btnLogin:   this.$("btnLogin"),
+            btnCreate:  this.$("btnCreate")
         }
+    }
 
     $(id){
         return document.getElementById(id);
     }
 }
-
 export { VistaAdminLogin };

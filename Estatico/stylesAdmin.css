@@ -102,6 +102,12 @@ body {
     flex-direction: column;
 }
 
+.botonera-login {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
 .floating-icon {
     position: fixed;
     bottom: 20px;
@@ -123,4 +129,21 @@ body {
 
 .floating-icon:hover {
     background-color: #0056b3;
+}
+
+.new-input-wrapper {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.5s ease-out, opacity 0.5s ease-out;
+    opacity: 0;
+}
+
+.new-input-wrapper.show {
+    max-height: 100px;
+    opacity: 1;
+}
+
+.new-input-wrapper .input-group {
+    margin-top: 15px;
+    margin-bottom: 0;
 }

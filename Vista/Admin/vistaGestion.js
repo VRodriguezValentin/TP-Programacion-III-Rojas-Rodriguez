@@ -1,8 +1,8 @@
 class VistaGestion {
     /*NAVBAR en cliente*/
     editorContainer;
-    constructor(){}
-        editorContainer = {
+    constructor(){
+        this.editorContainer = {
             inputId: this.$("idtxt"),
             inputMarca: this.$("marcatxt"),
             inputPrecio: this.$("preciotxt"),
@@ -17,6 +17,8 @@ class VistaGestion {
             btnAceptar: this.$("btnGestionAceptar")
         }
 
+    }
+        
     $(id){
         return document.getElementById(id);
     }

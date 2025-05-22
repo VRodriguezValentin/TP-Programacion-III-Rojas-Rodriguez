@@ -18,11 +18,16 @@
                 <input id="inputName" type="text" placeholder="Ingrese su nombre de usuario" required>
                 <label for="password">Contraseña:</label>
                 <input id="inputPassword" type="password" placeholder="Ingrese su contraseña" required>
-                <button id="btnLogin" type="submit" class="button">Iniciar Sesion</button>
+                <div id="newInputContainer"></div>
+                
+                <div class="botonera-login">
+                    <button id="btnLogin" type="submit" class="button">Iniciar Sesion</button>
+                    <button id="btnCreate" type="submit" class="button">Crear cuenta</button>
+                </div>
             </div>
 
         </div>
 
-        <script type="module" src="../main.js"></script>
+        <script type="module" src="../Controlador/Admin/controladorLoginAdmin.js"></script>
     </body>
 </html>
