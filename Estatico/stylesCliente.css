@@ -39,6 +39,18 @@ body {
     display: inline-block;
 }
 
+#div-btn {
+    display: flex;
+    gap: 20px;
+}
+
+#div-inputs {
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 /* NAVBAR */
 .navbar {
     display: flex;
