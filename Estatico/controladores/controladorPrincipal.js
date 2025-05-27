@@ -1,10 +1,10 @@
-import { Celular } from "../../Modelo/celular.js";
-import { Accesorio } from "../../Modelo/accesorio.js";
+import { Celular } from "../modelos/celular.js";
+import { Accesorio } from "../modelos/accesorio.js";
 
 class ControlPrincipal{
     Modelo;
     VistaPrincipal;
-    constructor(p_vista, p_modelo, datos_bd_json){
+    constructor(p_modelo, p_vista, datos_bd_json){
         this.Modelo = p_modelo;
         this.VistaPrincipal = p_vista;
         //this.cargaInicial(datos_bd_json);
