@@ -65,6 +65,7 @@ body {
     height: 200px;
     margin: -35px;
     margin-left: -200px;
+    cursor: pointer;
 }
 
 .carrito {
@@ -73,6 +74,7 @@ body {
     height: 30px;
     padding: 10px;
     background: #242526;
+    cursor: pointer;
 }
 
 /* Spinner */

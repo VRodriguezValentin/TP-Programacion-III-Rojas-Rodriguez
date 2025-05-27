@@ -11,7 +11,7 @@ class ControlPrincipal{
         this.registrarControlador();
     }
 
-    /*cargaInicial(array) {
+    cargaInicial(array) {
 
         this.Modelo.Productos = array.map(
             (x)=>{
@@ -22,11 +22,17 @@ class ControlPrincipal{
                 }
             }
         );
-    }*/
+    }
 
     registrarControlador(){
 
-        /*...*/
+        this.VistaPrincipal.navbar.logo.addEventListener("click", (e) =>{
+            window.location.href='./index.html';
+        })
+
+        this.VistaPrincipal.navbar.carrito.addEventListener("click", (e) => {
+            window.location.href='./carrito.html';
+        })
 
         this.VistaPrincipal.panelIzquierdo.imgCelular.addEventListener("click", (e) =>{
 
@@ -53,7 +59,9 @@ class ControlPrincipal{
             //this.Vista.dibujarFilas(arrayAccesorios);
             
         })
+    }
 
+    dibujarFilas(){
         
     }
 

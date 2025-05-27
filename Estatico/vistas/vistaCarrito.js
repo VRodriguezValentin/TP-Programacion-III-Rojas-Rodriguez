@@ -2,24 +2,24 @@ class VistaCarrito{
     navbar;
     productos;
     finCarrito;
-    constructor(){}
-        navbar = {
+    constructor(){
+        this.navbar = {
             nav:     this.$("navbar"),
             logo:    this.$("logoNav"),
             titulo:  this.$("tituloNav"),
             carrito: this.$("carritoNav")
         }
 
-        productos = {
+        this.productos = {
             /* Se arma dinamico con los productos que traiga de la BD */
         }
 
-        finCarrito = {
+        this.finCarrito = {
             total:        this.$("totalCarrito"),
             btnCancelar:  this.$("btnCancelar"),
             btnFinalizar: this.$("btnFinalizar")
         }
-
+    }
     $(id){
         return document.getElementById(id);
     }
