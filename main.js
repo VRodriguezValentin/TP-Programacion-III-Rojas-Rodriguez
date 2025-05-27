@@ -1,20 +1,15 @@
-import { Modelo } from "../Modelo/modelo.js";
-import { VistaLogin } from "../Vista/Cliente/vistaLogin.js";
-import { VistaPrincipal } from "../Vista/Cliente/vistaPrincipal.js";
-import { ControlLogin } from "../Controlador/Cliente/controladorLogin.js";
-import { ControlPrincipal } from "../Controlador/Cliente/controladorPrincipal.js";
+const ejs = require('ejs');
+const path = require('path');
 
-import { ControlLoginAdmin } from "./Borrador/controladorLoginAdmin.js";
-import { VistaAdminLogin } from "./Vista/Admin/vistaAdminLogin.js"
+const express = require('express') 
+const app = express()
 
-/*window.addEventListener("DOMContentLoaded", () => {
-    var modelo   = new Modelo();
-    var vista    = new VistaLogin();
-    var control  = new ControlLogin(vista, modelo);
-});*/
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
-// window.addEventListener("DOMContentLoaded", () => {
-//     var modelo   = new Modelo();
-//     var vista    = new VistaPrincipal();
-//     var control  = new ControlPrincipal(vista, modelo);
-// });
+app.use("/Estatico", express.static(__dirname + "/Estatico"))
+
+const port=3000
+app.listen(port, () => {
+    console.log(`Example app listening on port ${port}`)
+})
