@@ -81,8 +81,8 @@ body {
 .spinner {
     width: 60px;
     height: 60px;
-    border: 6px solid #3A3B3C; /* Gris oscuro */
-    border-top: 6px solid #007BFF; /* Azul eléctrico */
+    border: 6px solid #3A3B3C;
+    border-top: 6px solid #007BFF;
     border-radius: 50%;
     animation: spin 1s linear infinite;
 }
@@ -99,8 +99,7 @@ body {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(24, 25, 26, 0.7); /* Fondo oscuro con opacidad */
-    display: flex;
+    background-color: rgba(24, 25, 26, 0.7);
     align-items: center;
     justify-content: center;
     z-index: 9999;
