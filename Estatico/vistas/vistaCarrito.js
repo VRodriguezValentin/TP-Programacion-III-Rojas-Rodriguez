@@ -1,7 +1,7 @@
 class VistaCarrito{
     navbar;
     productos;
-    finCarrito;
+    carrito;
     constructor(){
         this.navbar = {
             nav:     this.$("navbar"),
@@ -10,14 +10,13 @@ class VistaCarrito{
             carrito: this.$("carritoNav")
         }
 
-        this.productos = {
-            /* Se arma dinamico con los productos que traiga de la BD */
-        }
-
-        this.finCarrito = {
+        this.carrito = {
+            carritoVacio: this.$("carrito-vacio"),
+            finCarrito: {
             total:        this.$("totalCarrito"),
             btnCancelar:  this.$("btnCancelar"),
             btnFinalizar: this.$("btnFinalizar")
+            }
         }
     }
     $(id){

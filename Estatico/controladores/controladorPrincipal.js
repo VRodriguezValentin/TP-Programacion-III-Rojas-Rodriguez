@@ -55,6 +55,9 @@ class ControlPrincipal{
         const panelAccesorios = document.getElementById('panel-derecho-accesorios')
 
         productos.forEach(prod => {
+            panelCelulares.innerHTML = '';
+            panelAccesorios.innerHTML = '';
+
             const div = document.createElement('div');
             div.classList.add('producto');
 
@@ -90,6 +93,19 @@ class ControlPrincipal{
             const btnCarrito = document.createElement('button');
             btnCarrito.textContent = 'Agregar al carrito'
             btnCarrito.classList.add('btn-carrito');
+
+            btnCarrito.addEventListener('click', (e) => {
+                e.preventDefault();
+
+                const productosCarrito = JSON.parse(localStorage.getItem('productosCarrito')) || [];
+
+                productosCarrito.push(prod);
+                localStorage.setItem('productosCarrito', JSON.stringify(productosCarrito));
+
+                console.log(productosCarrito);
+
+                alert(`El producto ha sido guardada.`);
+            });
 
             div.appendChild(img);
             div.appendChild(name);
