@@ -3,31 +3,37 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>PocketStore - Login</title>
+        <title>PocketStore - Crear cuenta</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="/Styles/styles.css">
+        <link rel="stylesheet" href="styles.css">
     </head>
     <body>
         <div class="containerLogin">
             
-            <img src="../Estatico/imagenes/PocketStore.png" alt="Logo de PocketStore" class="logoLog">
+            <img src="imagenes/PocketStore.png" alt="Logo de PocketStore" class="logoLog">
 
             <div id="divLogin" class="caja">
                 <label for="inputNombre">Nombre de usuario:</label>
                 <input id="inputNombre" type="text" placeholder="Ingrese su nombre de usuario" required>
 
+                <label for="inputEmail">Correo electronico:</label>
+                <input id="inputEmail" type="text" placeholder="example@...com" required>
+
                 <label for="inputContrasena">Contraseña:</label>
                 <input id="inputContrasena" type="password" placeholder="Ingrese su contraseña" required>
+
+                <label for="inputContrasena2">Confirmar contraseña:</label>
+                <input id="inputContrasena2" type="password" placeholder="Ingrese su contraseña" required>
                 
                 <div class="botonera-login">
-                    <button id="btnLogin" type="submit" class="button">Iniciar Sesion</button>
-                    <button id="btnCreate" type="submit" class="button">Crear cuenta</button>
+                    <button id="btnAccept" type="submit" class="button">Aceptar</button>
+                    <a href="/" class="button">Cancelar</a>
                 </div>
             </div>
 
         </div>
 
-        <script type="module" src="../main.js"></script>
+        <script type="module" src="/main.js"></script>
     </body>
 </html>

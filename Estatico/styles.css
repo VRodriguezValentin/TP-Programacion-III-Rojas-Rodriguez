@@ -203,10 +203,20 @@ body {
     background: #007BFF; /* Azul eléctrico */
     color: #E4E6EB; /* Texto claro */
     font-weight: bold;
+    font-size: 14px;
     border: none;
     border-radius: 8px;
     cursor: pointer;
     transition: all 0.3s ease;
+    display: inline-block;
+    text-align: center;
+    line-height: normal;
+    box-sizing: border-box;
+    vertical-align: middle;
+}
+
+a.button {
+    text-decoration: none;
 }
 
 .button:hover,
