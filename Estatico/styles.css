@@ -153,6 +153,14 @@ body {
     height: 100vw;
 }
 
+#panel-derecho {
+    height: 100%;
+    width: 90%;
+    padding: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+
 .img-categoria {
     margin: 50px;
     border-radius: 10px;
@@ -236,7 +244,7 @@ a.button {
 }
 
 /* Formulario */
-#divCliente input, select, #divLogin input, select {
+#divCliente input, select, #divLogin input, select, .box-gestion input, select {
     padding: 10px;
     border-radius: 6px;
     border: 1px solid #555; /* Gris oscuro */
@@ -274,8 +282,55 @@ a.button {
 
 .botonera-login {
     width: 100%;
+    margin-top: 15px;
     display: flex;
     justify-content: space-evenly;
+}
+
+/* Gestion */
+.container-gestion {
+    width: 100%;
+    height: 100%;
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.box-gestion {
+    background: #3A3B3C;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    width: 20vw;
+    height: 600px;
+    border: 1px solid #555; /* Gris oscuro */
+    color: #E4E6EB;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    text-align: start;
+}
+
+/* Vista admin prod. */
+.btn-caja {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#btn-habilitar {
+    background: green;
+}
+
+#btn-deshabilitar {
+    background: orange;
 }
 
 /* Tablas */

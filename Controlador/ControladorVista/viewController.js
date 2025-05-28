@@ -4,6 +4,12 @@ const homeController = {
     },
     getCreatePage: (req, res) => {
         res.render('createAccount');
+    },
+    getGestionPage: (req, res) => {
+        res.render('gestion');
+    },
+    getAdminPage: (req, res) => {
+        res.render('admin');
     }
 };
 

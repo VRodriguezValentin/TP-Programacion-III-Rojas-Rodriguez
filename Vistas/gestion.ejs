@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PocketStore - Gestion</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <nav class="navbar">
+        <img src="./imagenes/PocketStore.png" alt="Logo de PocketStore" class="logoNav">
+        <h3>Gestion</h3>
+        <i style="font-weight: 100;">Gabriel Rojas - Valentin Rodriguez</i>
+        <a href="/">Logout</a>
+    </nav>
+
+    <div class="container-gestion">
+        <div class="box-gestion">
+            <form action="">
+                <div class="form-row">
+                    <label for="imagetxt">Importar imagen: </label>
+                    <input type="file" id="imagetxt">
+                </div>
+                
+                <div class="form-row">
+                    <label for="idtxt">ID: </label>
+                    <input type="text" id="idtxt" disabled>
+                </div>
+
+                <div class="form-row">
+                    <label for="marcatxt">Marca: </label>
+                    <input type="text" id="marcatxt">
+                </div>
+
+                <div class="form-row">
+                    <label for="preciotxt">Precio: </label>
+                    <input type="number" id="preciotxt">
+                </div>
+
+                <div class="form-row">
+                    <label for="selectType">Categoria: </label>
+                    <select id="selectType">
+                        <option value="0" disabled selected>Seleccionar</option>
+                        <option value="1">Celular</option>
+                        <option value="2">Accesorio</option>
+                    </select>
+                </div>
+
+                <div class="sel-celular">
+                    <div class="form-row">
+                        <label for="modelotxt">Modelo: </label>
+                        <input type="text" id="modelotxt">
+                    </div>
+                    <div class="form-row">
+                        <label for="colortxt">Color: </label>
+                        <input type="text" id="colortxt">
+                    </div>
+
+                    <div class="form-row">
+                        <label for="almacenamientotxt">Almacenamiento: </label>
+                        <input type="number" id="almacenamientotxt">
+                    </div>
+
+                    <div class="form-row">
+                        <label for="ramtxt">RAM: </label>
+                        <input type="number" id="ramtxt">
+                    </div>
+                </div>
+
+                <div class="sel-accesorio">
+                    <div class="form-row">
+                        <label for="tipotxt">Tipo: </label>
+                        <input type="text" id="tipotxt">
+                    </div>
+
+                    <div class="form-row">
+                        <label for="compatibilidadtxt">Compatibilidad: </label>
+                        <input type="text" id="compatibilidadtxt">
+                    </div>
+                </div>
+
+                <div class="botonera-login">
+                    <button id="btnGestionCancelar" class="button">Cancelar</button>
+                    <button id="btnGestionAceptar" class="button">Aceptar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script type="module" src="/main.js"></script>
+</body>
+
+</html>
