@@ -8,19 +8,19 @@ const cors = require('cors');
 const mysql = require('mysql2/promise');
 
 const app = express();
-const port = 3036;
+const port = 3000;
 
 app.use(express.json());
 app.use(cors());
 
-// Función para obtener conexión a la base de datos
+// Funcion para obtener conexion a la base de datos
 async function conectDbProductos() {
     try {
         const db = await mysql.createConnection({
             host: 'localhost',
             user: 'root',
-            password: '',
-            database: 'productos'
+            password: 'root',
+            database: 'pocket_store'
         });
         return db;
 
@@ -31,7 +31,7 @@ async function conectDbProductos() {
 }
 
 
-// Obtener todos los productos http://localhost:3036/api/productos
+// Obtener todos los productos http://localhost:3000/api/productos
 app.get('/api/productos', async (req, res) => {
     const db = await conectDbProductos();
     try {
@@ -46,7 +46,7 @@ app.get('/api/productos', async (req, res) => {
     }
 });
 
-// Obtener producto por ID http://localhost:3036/api/productos/1
+// Obtener producto por ID http://localhost:3000/api/productos/1
 app.get('/api/productos/:id', async (req, res) => {
     const db = await conectDbProductos();
     const id = req.params.id;
@@ -64,7 +64,7 @@ app.get('/api/productos/:id', async (req, res) => {
     }
 });
 
-// Insertar producto http://localhost:3036/api/productos
+// Insertar producto http://localhost:3000/api/productos
 app.post('/api/productos', async (req, res) => {
     const db = await conectDbProductos();
     const datos = req.body;
@@ -87,7 +87,7 @@ app.post('/api/productos', async (req, res) => {
     }
 });
 
-// Actualizar producto http://localhost:3036/api/productos
+// Actualizar producto http://localhost:3000/api/productos
 app.put('/api/productos', async (req, res) => {
     const db = await conectDbProductos();
     const datos = req.body;
@@ -110,7 +110,7 @@ app.put('/api/productos', async (req, res) => {
     }
 });
 
-// Eliminar producto http://localhost:3036/api/productos
+// Eliminar producto http://localhost:3000/api/productos
 app.delete('/api/productos', async (req, res) => {
     const db = await conectDbProductos();
     const datos = req.body;

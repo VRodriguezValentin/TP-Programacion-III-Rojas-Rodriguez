@@ -16,7 +16,7 @@ class ControlPrincipal{
         const spinner = document.getElementById('spinner-container');
         spinner.style.display = 'flex';
 
-        fetch('http://localhost:3036/api/productos')
+        fetch('http://localhost:3000/api/productos')
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Error en la solicitud: ' + response.status);
