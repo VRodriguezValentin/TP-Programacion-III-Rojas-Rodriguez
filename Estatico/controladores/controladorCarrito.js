@@ -11,17 +11,19 @@ class ControlCarrito{
 
     cargarCarrito(){
         const productosCarrito = JSON.parse(localStorage.getItem('productosCarrito')) || [];
+        const carritoVacio = this.VistaCarrito.carrito.carritoVacio;
+        const carritoFin = this.VistaCarrito.carrito.finCarrito;
 
         if (productosCarrito.length === 0) {
-            this.VistaCarrito.carrito.carritoVacio.style.display = 'flex';
-            this.VistaCarrito.carrito.finCarrito.style.display = 'none';
+            carritoVacio.style.display = 'flex';
+            carritoFin.style.display = 'none';
         } else {
-            this.VistaCarrito.carrito.carritoVacio.style.display = 'none';
-            this.VistaCarrito.carrito.finCarrito.style.display = 'flex';
+            carritoVacio.style.display = 'none';
+            carritoFin.style.display = 'flex';
 
-            mostrarProductosCarrito(productosCarrito);
+            this.mostrarProductosCarrito(productosCarrito);
 
-            this.VistaCarrito.carrito.finCarrito.total.textContent = `Total: $${calcularTotal(productosCarrito)}`;
+            carritoFin.total.textContent = `Total: $${calcularTotal(productosCarrito)}`;
         }
     }
 

@@ -7,7 +7,7 @@ class ControlPrincipal{
     constructor(p_modelo, p_vista){
         this.Modelo = p_modelo;
         this.VistaPrincipal = p_vista;
-        //this.obtenerProductos()
+        this.obtenerProductos()
         this.registrarControlador();
     }
 
@@ -25,8 +25,9 @@ class ControlPrincipal{
             })
             .then(data => {
                 console.log(data);
-                const productos = createProductos(data);
-                dibujarProductos(productos);
+                const productos = this.createProductos(data);
+                console.log(productos);
+                this.dibujarProductos(productos);
             })
             .catch(error => {
                 console.error('Error en la peticion', error);
@@ -38,8 +39,8 @@ class ControlPrincipal{
     }
 
     createProductos(data) {
-
-        this.Modelo.Productos = data.map(
+        var productos = this.Modelo.Productos;
+        productos = data.map(
             (x)=>{
                 if(x.modelo){
                     return new Celular(x.id, x.marca, x.precio, x.imagen, x.activo , x.modelo, x.color, x.almacenamiento, x.ram);
@@ -48,15 +49,20 @@ class ControlPrincipal{
                 }
             }
         );
+
+        return productos;
     }
 
     dibujarProductos(productos){
         const panelCelulares = document.getElementById('panel-derecho-celulares')
         const panelAccesorios = document.getElementById('panel-derecho-accesorios')
 
+        panelCelulares.innerHTML = '';
+        panelAccesorios.innerHTML = '';
+
         productos.forEach(prod => {
-            panelCelulares.innerHTML = '';
-            panelAccesorios.innerHTML = '';
+
+            console.log(prod);
 
             const div = document.createElement('div');
             div.classList.add('producto');
@@ -70,20 +76,20 @@ class ControlPrincipal{
             prod instanceof Celular ? name.textContent = prod.marca + ' ' + prod.modelo : name.textContent = prod.tipo + ' ' + prod.marca
 
             if (prod instanceof Celular){
-                let p_color = document.createElement('p');
+                var p_color = document.createElement('p');
                 p_color.textContent = prod.color;
 
-                let p_almacenamiento = document.createElement('p');
+                var p_almacenamiento = document.createElement('p');
                 p_almacenamiento.textContent = prod.almacenamiento;
 
-                let p_ram = document.createElement('p');
+                var p_ram = document.createElement('p');
                 p_ram.textContent = prod.ram;
 
             } else{
-                let p_tipo = document.createElement('p');
+                var p_tipo = document.createElement('p');
                 p_tipo.textContent = prod.tipo;
 
-                let p_compatibilidad = document.createElement('p');
+                var p_compatibilidad = document.createElement('p');
                 p_compatibilidad.textContent = prod.compatibilidad;
             }
 
