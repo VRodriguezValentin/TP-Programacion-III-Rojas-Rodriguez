@@ -1,6 +1,5 @@
 const express = require('express');
 const cors = require('cors');
-const mysql = require('mysql2/promise');
 
 const app = express();
 const port = 3000;
@@ -8,22 +7,24 @@ const port = 3000;
 app.use(express.json());
 app.use(cors());
 
-// Funcion para obtener conexion a la base de datos
-    async function conectDbProductos() {
-        try {
-            const db = await mysql.createConnection({
-                host: 'localhost',
-                user: 'root',
-                password: 'root',
-                database: 'pocket_store'
-            });
-            return db;
+const mysql = require('mysql2/promise');
 
-        } catch (error) {
-            console.error('Error al conectar a la base de datos:', error.message);
-            throw new Error('No se pudo conectar a la base de datos');
-        }
+// Funcion para obtener conexion a la base de datos
+async function conectDbProductos() {
+    try {
+        const db = await mysql.createConnection({
+            host: 'localhost',
+            user: 'root',
+            password: 'root',
+            database: 'pocket_store'
+        });
+        return db;
+
+    } catch (error) {
+        console.error('Error al conectar a la base de datos:', error.message);
+        throw new Error('No se pudo conectar a la base de datos');
     }
+}
 
 const api = {
     // Obtener todos los productos http://localhost:3000/api/productos
