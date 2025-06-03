@@ -11,14 +11,15 @@ class VistaCarrito{
         }
 
         this.carrito = {
-            carritoVacio: this.$("carrito-vacio"),
-            finCarrito: {
-            total:        this.$("totalCarrito"),
-            btnCancelar:  this.$("btnCancelar"),
-            btnFinalizar: this.$("btnFinalizar")
+            containerCarrito: this.$("containerCarrito"),
+            carritoVacio:     this.$("carrito-vacio"),
+            finCarrito:       this.$("fin-carrito"),
+            total:            this.$("totalCarrito"),
+            btnCancelar:      this.$("btnCancelar"),
+            btnFinalizar:     this.$("btnFinalizar")
             }
         }
-    }
+
     $(id){
         return document.getElementById(id);
     }

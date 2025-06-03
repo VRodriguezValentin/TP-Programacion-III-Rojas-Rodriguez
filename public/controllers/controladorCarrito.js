@@ -23,12 +23,12 @@ class ControlCarrito{
 
             this.mostrarProductosCarrito(productosCarrito);
 
-            carritoFin.total.textContent = `Total: $${calcularTotal(productosCarrito)}`;
+            this.VistaCarrito.carrito.total.textContent = `Total a Pagar: $${this.calcularTotal(productosCarrito)}`;
         }
     }
 
     mostrarProductosCarrito(productosCarrito){
-        const contenedorProductos = this.VistaCarrito.$("contenedor-productos");
+        const contenedorProductos = this.VistaCarrito.carrito.containerCarrito;
         contenedorProductos.innerHTML = ''; // Limpiar el contenedor
 
         productosCarrito.forEach((producto) => {
@@ -37,10 +37,11 @@ class ControlCarrito{
 
             const imgProducto = document.createElement('img');
             imgProducto.src = producto.imagen;
-            imgProducto.alt = producto.nombre;
+            prod instanceof Celular ? imgProducto.alt = 'Imagen de Celular' : imgProducto.alt = 'Imagen de Accesorio'
+            imgProducto.classList.add('img-carrito');
 
             const nombreProducto = document.createElement('h3');
-            nombreProducto.textContent = producto.nombre;
+            producto instanceof Celular ? nombreProducto.textContent = producto.marca + ' ' + producto.modelo : nombreProducto.textContent = producto.tipo + ' ' + producto.marca
 
             const precioProducto = document.createElement('p');
             precioProducto.textContent = `Precio: $${producto.precio}`;
@@ -71,12 +72,12 @@ class ControlCarrito{
             window.location.href='./carrito.html';
         })
 
-        this.VistaCarrito.carrito.finCarrito.btnCancelar.addEventListener("click", (e) =>{
+        this.VistaCarrito.carrito.btnCancelar.addEventListener("click", (e) =>{
             /* Vacia el array del carrito */
             window.location.href='./home.html';
         })
 
-        this.VistaCarrito.carrito.finCarrito.btnFinalizar.addEventListener("click", (e) =>{
+        this.VistaCarrito.carrito.btnFinalizar.addEventListener("click", (e) =>{
             window.location.href='./ticket.html';
         })
     }
