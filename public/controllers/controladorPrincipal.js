@@ -1,5 +1,5 @@
-import { Celular } from "../modelos/celular.js";
-import { Accesorio } from "../modelos/accesorio.js";
+import { Celular } from "../models/celular.js";
+import { Accesorio } from "../models/accesorio.js";
 
 class ControlPrincipal{
     Modelo;
@@ -133,7 +133,7 @@ class ControlPrincipal{
     registrarControlador(){
 
         this.VistaPrincipal.navbar.logo.addEventListener("click", (e) =>{
-            window.location.href='./index.html';
+            window.location.href='./home.html';
         })
 
         this.VistaPrincipal.navbar.carrito.addEventListener("click", (e) => {

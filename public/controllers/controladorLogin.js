@@ -17,7 +17,7 @@ class ControlLogin{
                 nombreCliente.style.border = "";
                 this.mostrarMensaje("");
 
-                window.location.href='./index.html';
+                window.location.href='./home.html';
             }
         });
 
@@ -58,7 +58,7 @@ class ControlLogin{
             this.mostrarMensaje("El nombre no puede exceder los 50 caracteres.");
             return false;
         }
-        // Si es válido, quita el borde rojo y mensaje
+        // Si es vï¿½lido, quita el borde rojo y mensaje
         nombreCliente.style.border = "";
         this.mostrarMensaje("");
         return true;

@@ -1,14 +1,14 @@
-import { Modelo } from "./modelos/modelo.js";
+import { Modelo } from "./models/modelo.js";
 
-import { VistaLogin }     from "./vistas/vistaLogin.js";
-import { VistaPrincipal } from "./vistas/vistaPrincipal.js";
-import { VistaCarrito }   from "./vistas/vistaCarrito.js";
-import { VistaTicket }    from "./vistas/vistaTicket.js";
+import { VistaLogin }     from "./views/vistaLogin.js";
+import { VistaPrincipal } from "./views/vistaPrincipal.js";
+import { VistaCarrito }   from "./views/vistaCarrito.js";
+import { VistaTicket }    from "./views/vistaTicket.js";
 
-import { ControlLogin }     from "./controladores/controladorLogin.js";
-import { ControlPrincipal } from "./controladores/controladorPrincipal.js";
-import { ControlCarrito }   from "./controladores/controladorCarrito.js";
-import { ControlTicket }    from "./controladores/controladorTicket.js";
+import { ControlLogin }     from "./controllers/controladorLogin.js";
+import { ControlPrincipal } from "./controllers/controladorPrincipal.js";
+import { ControlCarrito }   from "./controllers/controladorCarrito.js";
+import { ControlTicket }    from "./controllers/controladorTicket.js";
 
 document.addEventListener("DOMContentLoaded", () => {
    const modelo = new Modelo();
