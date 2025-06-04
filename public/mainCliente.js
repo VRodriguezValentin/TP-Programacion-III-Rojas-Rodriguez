@@ -14,12 +14,12 @@ document.addEventListener("DOMContentLoaded", () => {
    const modelo = new Modelo();
    const path = window.location.pathname;
 
-   if (path.includes("bienvenido.html")) {
+   if (path.includes("index.html")) {
       const vistaLogin = new VistaLogin();
       new ControlLogin(modelo, vistaLogin);
    }
 
-   if (path.includes("index.html")) {
+   if (path.includes("home.html")) {
       const vistaPrincipal = new VistaPrincipal();
       new ControlPrincipal(modelo, vistaPrincipal);
    }

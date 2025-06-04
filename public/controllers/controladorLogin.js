@@ -58,9 +58,11 @@ class ControlLogin{
             this.mostrarMensaje("El nombre no puede exceder los 50 caracteres.");
             return false;
         }
-        // Si es v�lido, quita el borde rojo y mensaje
+
         nombreCliente.style.border = "";
         this.mostrarMensaje("");
+
+        localStorage.setItem('nombreCliente', nombreCliente.value);
         return true;
     }
 }

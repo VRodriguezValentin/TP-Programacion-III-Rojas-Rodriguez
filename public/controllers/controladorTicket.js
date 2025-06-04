@@ -4,12 +4,12 @@ class ControlTicket{
     constructor(p_modelo, p_vista){
         this.Modelo = p_modelo;
         this.VistaTicket = p_vista;
-        //this.cargaArray();
+        //this.cargarTicket();
         this.registrarControlador();
     }
 
 
-    cargaArray(){
+    cargarTicket(){
 
     }
 
@@ -23,10 +23,17 @@ class ControlTicket{
             window.location.href='./carrito.html';
         })
 
-        this.VistaTicket.finTicket.btnSalir.addEventListener("click", (e) =>{
+        this.VistaTicket.ticket.btnSalir.addEventListener("click", (e) =>{
             /* Vacia el array del Ticket */
             window.location.href='./index.html';
         })
+
+        const nombreCliente = localStorage.getItem('nombreCliente');
+        if (nombreCliente) {
+            this.VistaTicket.navbar.titulo.textContent = `Gracias por tu Compra ${nombreCliente}!`;
+        }else {
+            this.VistaTicket.navbar.titulo.textContent = 'Gracias por tu Compra!';
+        }
     }
 
 }

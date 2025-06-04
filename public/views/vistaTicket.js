@@ -1,7 +1,6 @@
 class VistaTicket{
     navbar;
     ticket;
-    finTicket;
     constructor(){
         this.navbar = {
             nav:     this.$("navbar"),
@@ -11,13 +10,12 @@ class VistaTicket{
         }
 
         this.ticket = {
-            /* Se arma dinamico con los productos que traiga de la BD */
+            containerTicket: this.$("containerTicket"),
+            finTicket:       this.$("finTicket"),
+            total:           this.$("totalTicket"),
+            btnSalir:        this.$("btnSalir")
         }
 
-        this.finTicket = {
-            total:     this.$("totalTicket"),
-            btnSalir:  this.$("btnSalir")
-        }
     }
     $(id){
         return document.getElementById(id);

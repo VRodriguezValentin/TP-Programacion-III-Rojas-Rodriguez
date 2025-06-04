@@ -110,7 +110,7 @@ class ControlPrincipal{
 
                 console.log(productosCarrito);
 
-                alert(`El producto ha sido guardada.`);
+                alert('El producto ha sido guardado.');
             });
 
             div.appendChild(img);
@@ -153,6 +153,14 @@ class ControlPrincipal{
             document.getElementById("panel-derecho-accesorios").style.display = "grid";
 
         })
+
+        const nombreCliente = localStorage.getItem('nombreCliente');
+        if (nombreCliente) {
+            this.VistaPrincipal.navbar.titulo.textContent = `Bienvenido ${nombreCliente}!`;
+        }
+        else {
+            this.VistaPrincipal.navbar.titulo.textContent = 'Bienvenido Cliente!';
+        }
     }
 
 }
