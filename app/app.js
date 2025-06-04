@@ -1,30 +1,13 @@
 const express = require('express');
 const cors = require('cors');
+// Importa la función de conexión a la base de datos
+const conectDbProductos = require('../config/db'); // Ajusta la ruta según la ubicación de tu archivo
 
 const app = express();
 const port = 3000;
 
 app.use(express.json());
 app.use(cors());
-
-const mysql = require('mysql2/promise');
-
-// Funcion para obtener conexion a la base de datos
-async function conectDbProductos() {
-    try {
-        const db = await mysql.createConnection({
-            host: 'localhost',
-            user: 'root',
-            password: 'root',
-            database: 'pocket_store'
-        });
-        return db;
-
-    } catch (error) {
-        console.error('Error al conectar a la base de datos:', error.message);
-        throw new Error('No se pudo conectar a la base de datos');
-    }
-}
 
 const api = {
     // Obtener todos los productos http://localhost:3000/api/productos
@@ -33,12 +16,12 @@ const api = {
         try {
             const [rows] = await db.execute('SELECT * FROM productos');
             res.status(200).send(rows);
-            
+
         } catch (error) {
             res.status(500).send({ error: 'Error al obtener productos', detalles: error.message });
 
         } finally {
-            await db.end();
+            if (db) await db.end(); // Asegúrate de cerrar la conexión si se abrió
         }
     }),
 
@@ -56,7 +39,7 @@ const api = {
         } catch (error) {
             res.status(500).send({ error: 'Error al obtener producto', detalles: error.message });
         } finally {
-            await db.end();
+            if (db) await db.end();
         }
     }),
 
@@ -79,7 +62,7 @@ const api = {
             res.status(500).send({ error: 'Error al insertar producto', detalles: error.message });
 
         } finally {
-            await db.end();
+            if (db) await db.end();
         }
     }),
 
@@ -102,7 +85,7 @@ const api = {
             res.status(500).send({ error: 'Error al actualizar producto', detalles: error.message });
 
         } finally {
-            await db.end();
+            if (db) await db.end();
         }
     }),
 
@@ -119,7 +102,7 @@ const api = {
             res.status(500).send({ error: 'Error al eliminar producto', detalles: error.message });
 
         } finally {
-            await db.end();
+            if (db) await db.end();
         }
     })
 }

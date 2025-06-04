@@ -17,7 +17,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', renderRoutes);
 app.use('/', apiRoutes);
-app.use('/users', userRoutes);
+app.use('/', userRoutes);
 
 
 app.get('/', (req, res) => {

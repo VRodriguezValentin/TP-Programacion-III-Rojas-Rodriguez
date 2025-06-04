@@ -11,4 +11,4 @@ class Admin {
     }
 }
 
-export { Admin };
+module.exports = Admin;

@@ -1,8 +1,8 @@
-const Admin = require('../model/Admin');
+const userService = require('../services/userService');
 
 exports.createUser = async (req, res) => {
     //express.urlencoded(), los datos estarán en req.body
-    const { username, email, password, password2 } = req.body;
+    const userData = req.body;
 
     console.log('Datos recibidos del formulario:');
     console.log('Username:', username);
@@ -16,13 +16,10 @@ exports.createUser = async (req, res) => {
 
     try {
         if(password === password2) {
-            const newUser = new Admin({
-                username,
-                email,
-                password
-            });
+            const newUser = await userService.createUser(userData); 
+            res.status(201).json({ message: 'Usuario creado exitosamente', user: newUser });
         }
     } catch (error) {
-        console.error(error);
+        res.status(400).json({ message: error.message });
     }
 }
