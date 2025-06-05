@@ -77,24 +77,21 @@ class ControlPrincipal{
 
             if (prod instanceof Celular){
                 var p_color = document.createElement('p');
-                p_color.textContent = prod.color;
+                p_color.textContent = `Color: ${prod.color}`;
 
                 var p_almacenamiento = document.createElement('p');
-                p_almacenamiento.textContent = prod.almacenamiento;
+                p_almacenamiento.textContent = `Almacenamiento: ${prod.almacenamiento}GB`;
 
                 var p_ram = document.createElement('p');
-                p_ram.textContent = prod.ram;
+                p_ram.textContent = `Memoria RAM: ${prod.ram}GB`;
 
             } else{
-                var p_tipo = document.createElement('p');
-                p_tipo.textContent = prod.tipo;
-
                 var p_compatibilidad = document.createElement('p');
-                p_compatibilidad.textContent = prod.compatibilidad;
+                p_compatibilidad.textContent = `Compatibilidad: ${prod.compatibilidad}`;
             }
 
             const p_precio = document.createElement('p');
-            p_precio.textContent = prod.precio;
+            p_precio.textContent = `$${prod.precio}`;
 
             const btnCarrito = document.createElement('button');
             btnCarrito.textContent = 'Agregar al carrito'
@@ -120,7 +117,6 @@ class ControlPrincipal{
                 div.appendChild(p_almacenamiento);
                 div.appendChild(p_ram);
             } else {
-                div.appendChild(p_tipo);
                 div.appendChild(p_compatibilidad);
             }
             div.appendChild(p_precio);

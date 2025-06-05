@@ -14,7 +14,7 @@ class ControlCarrito{
         const carritoVacio = this.VistaCarrito.carrito.carritoVacio;
         const carritoFin = this.VistaCarrito.carrito.finCarrito;
 
-        /*if (productosCarrito.length === 0) {
+        if (productosCarrito.length === 0) {
             carritoVacio.style.display = 'flex';
             carritoFin.style.display = 'none';
         } else {
@@ -24,7 +24,7 @@ class ControlCarrito{
             this.mostrarProductosCarrito(productosCarrito);
 
             this.VistaCarrito.carrito.total.textContent = `Total a Pagar: $${this.calcularTotal(productosCarrito)}`;
-        }*/
+        }
     }
 
     agruparProductos(productosCarrito) {
@@ -40,7 +40,7 @@ class ControlCarrito{
     }
 
     mostrarProductosCarrito(productosCarrito){
-        const contenedorProductos = this.VistaCarrito.carrito.containerCarrito;
+        const contenedorProductos = this.VistaCarrito.carrito.productosCarrito;
         contenedorProductos.innerHTML = '';
 
         const productosAgrupados = this.agruparProductos(productosCarrito);
@@ -61,11 +61,14 @@ class ControlCarrito{
             cantidadProducto.textContent = `Cantidad: ${producto.cantidad}`;
 
             const precioProducto = document.createElement('p');
-            precioProducto.textContent = `Precio: $${producto.precio}`;
+            precioProducto.textContent = `Precio unitario: $${producto.precio}`;
+
+            const precioTotal = document.createElement('p');
+            precioTotal.textContent = `Precio total: $${producto.precio * producto.cantidad}`;
 
             const btnAgregar = document.createElement('button');
-            btnAgregar.textContent = '+';
-            btnAgregar.classList.add('btn-sub-carrito');
+            btnAgregar.textContent = '➕';
+            btnAgregar.classList.add('button-small');
 
             btnAgregar.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -77,8 +80,8 @@ class ControlCarrito{
             });
 
             const btnRemover = document.createElement('button');
-            btnRemover.textContent = '-';
-            btnRemover.classList.add('btn-sub-carrito');
+            btnRemover.textContent = '➖';
+            btnRemover.classList.add('button-small');
 
             btnRemover.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -94,8 +97,10 @@ class ControlCarrito{
             });
 
             const btnEliminar = document.createElement('button');
-            btnEliminar.textContent = '-';
-            btnEliminar.classList.add('btn-sub-carrito');
+            btnEliminar.textContent = '🗑';
+            btnEliminar.classList.add('button-small');
+            btnEliminar.style.fontSize = 'larger';
+            btnEliminar.style.background = 'red';
 
             btnEliminar.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -110,6 +115,7 @@ class ControlCarrito{
             divProducto.appendChild(nombreProducto);
             divProducto.appendChild(cantidadProducto);
             divProducto.appendChild(precioProducto);
+            divProducto.appendChild(precioTotal);
             divProducto.appendChild(btnAgregar);
             divProducto.appendChild(btnRemover);
             divProducto.appendChild(btnEliminar);

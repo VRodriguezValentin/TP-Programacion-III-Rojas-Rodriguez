@@ -19,18 +19,23 @@ document.addEventListener("DOMContentLoaded", () => {
       new ControlLogin(modelo, vistaLogin);
    }
 
-   if (path.includes("home.html")) {
+   else if (path.includes("home.html")) {
       const vistaPrincipal = new VistaPrincipal();
       new ControlPrincipal(modelo, vistaPrincipal);
    }
 
-   if (path.includes("carrito.html")) {
+   else if (path.includes("carrito.html")) {
       const vistaCarrito = new VistaCarrito();
       new ControlCarrito(modelo, vistaCarrito);
    }
 
-   if (path.includes("ticket.html")) {
+   else if (path.includes("ticket.html")) {
       const vistaTicket = new VistaTicket();
       new ControlTicket(modelo, vistaTicket);
+   }
+
+   else {
+      const vistaLogin = new VistaLogin();
+      new ControlLogin(modelo, vistaLogin);
    }
 });

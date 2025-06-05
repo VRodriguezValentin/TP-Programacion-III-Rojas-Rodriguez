@@ -10,7 +10,7 @@ class VistaTicket{
         }
 
         this.ticket = {
-            containerTicket: this.$("containerTicket"),
+            containerTicket: this.$("containerTicket"), //cambiar por cuerpoTicket
             finTicket:       this.$("finTicket"),
             total:           this.$("totalTicket"),
             btnSalir:        this.$("btnSalir")

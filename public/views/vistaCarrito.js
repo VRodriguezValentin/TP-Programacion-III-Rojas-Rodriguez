@@ -11,8 +11,8 @@ class VistaCarrito{
         }
 
         this.carrito = {
-            containerCarrito: this.$("containerCarrito"),
             carritoVacio:     this.$("carrito-vacio"),
+            productosCarrito: this.$("productos-carrito"),
             finCarrito:       this.$("fin-carrito"),
             total:            this.$("totalCarrito"),
             btnCancelar:      this.$("btnCancelar"),
