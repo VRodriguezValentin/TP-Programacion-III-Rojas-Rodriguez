@@ -1,7 +1,6 @@
 const express = require('express');
 const cors = require('cors');
-// Importa la función de conexión a la base de datos
-const conectDbProductos = require('../config/db'); // Ajusta la ruta según la ubicación de tu archivo
+const { executeQuery } = require('../config/db');
 
 const app = express();
 const port = 3000;
@@ -12,73 +11,69 @@ app.use(cors());
 const api = {
     // Obtener todos los productos http://localhost:3000/api/productos
     getProducts: app.get('/api/productos', async (req, res) => {
-        const db = await conectDbProductos();
         try {
-            const [rows] = await db.execute('SELECT * FROM productos');
+            const sql = 'SELECT * FROM productos';
+            const rows = await executeQuery(sql);
             res.status(200).send(rows);
-
         } catch (error) {
             res.status(500).send({ error: 'Error al obtener productos', detalles: error.message });
-
-        } finally {
-            if (db) await db.end(); // Asegúrate de cerrar la conexión si se abrió
         }
     }),
 
     // Obtener producto por ID http://localhost:3000/api/productos/1
     getProductById: app.get('/api/productos/:id', async (req, res) => {
-        const db = await conectDbProductos();
         const id = req.params.id;
         try {
-            const [rows] = await db.execute('SELECT * FROM productos WHERE id = ?', [id]);
-            if (rows.length === 0) {
+            const sql = 'SELECT * FROM productos WHERE id = ?';
+            const [row] = await executeQuery(sql, [id]); 
+            
+            if (!row) {
                 res.status(404).send({ error: 'Producto no encontrado' });
             } else {
-                res.status(200).send(rows[0]);
+                res.status(200).send(row);
             }
         } catch (error) {
             res.status(500).send({ error: 'Error al obtener producto', detalles: error.message });
-        } finally {
-            if (db) await db.end();
         }
     }),
 
     // Insertar producto http://localhost:3000/api/productos
     postProduct: app.post('/api/productos', async (req, res) => {
-        const db = await conectDbProductos();
         const datos = req.body;
+        let sql;
+        let params;
         try {
-            let resultado;
             if (datos.modelo === null || datos.modelo === undefined) {
-                const qry = 'INSERT INTO productos (marca, precio, imagen, activo, tipo, compatibilidad) VALUES (?, ?, ?, ?, ?, ?)';
-                resultado = await db.execute(qry, [datos.marca, datos.precio, datos.imagen, datos.activo, datos.tipo, datos.compatibilidad]);
+                sql = 'INSERT INTO productos (marca, precio, imagen, activo, tipo, compatibilidad) VALUES (?, ?, ?, ?, ?, ?)';
+                params = [datos.marca, datos.precio, datos.imagen, datos.activo, datos.tipo, datos.compatibilidad];
             } else {
-                const qry = 'INSERT INTO productos (marca, precio, imagen, activo, modelo, color, almacenamiento, ram) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
-                resultado = await db.execute(qry, [datos.marca, datos.precio, datos.imagen, datos.activo, datos.modelo, datos.color, datos.almacenamiento, datos.ram]);
+                sql = 'INSERT INTO productos (marca, precio, imagen, activo, modelo, color, almacenamiento, ram) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
+                params = [datos.marca, datos.precio, datos.imagen, datos.activo, datos.modelo, datos.color, datos.almacenamiento, datos.ram];
             }
+
+            const resultado = await executeQuery(sql, params); 
             res.status(200).send({ status: "Registro insertado correctamente.", resultado });
 
         } catch (error) {
             res.status(500).send({ error: 'Error al insertar producto', detalles: error.message });
-
-        } finally {
-            if (db) await db.end();
         }
     }),
 
     // Actualizar producto http://localhost:3000/api/productos
     putProduct: app.put('/api/productos', async (req, res) => {
-        const db = await conectDbProductos();
         const datos = req.body;
+        let sql;
+        let params;
         try {
-            let resultado;
             if (datos.modelo === null || datos.modelo === undefined) {
-                const qry = 'UPDATE productos SET marca = ?, precio = ?, imagen = ?, activo = ?, tipo = ?, compatibilidad = ? WHERE id = ?';
-                resultado = await db.execute(qry, [datos.marca, datos.precio, datos.imagen, datos.activo, datos.tipo, datos.compatibilidad, datos.id]);
+                sql = 'UPDATE productos SET marca = ?, precio = ?, imagen = ?, activo = ?, tipo = ?, compatibilidad = ? WHERE id = ?';
+                params = [datos.marca, datos.precio, datos.imagen, datos.activo, datos.tipo, datos.compatibilidad, datos.id];
             } else {
-                const qry = 'UPDATE productos SET marca = ?, precio = ?, imagen = ?, activo = ?, modelo = ?, color = ?, almacenamiento = ?, ram = ? WHERE id = ?';
-                resultado = await db.execute(qry, [datos.marca, datos.precio, datos.imagen, datos.activo, datos.modelo, datos.color, datos.almacenamiento, datos.ram, datos.id]);
+                sql = 'UPDATE productos SET marca = ?, precio = ?, imagen = ?, activo = ?, modelo = ?, color = ?, almacenamiento = ?, ram = ? WHERE id = ?';
+                params = [datos.marca, datos.precio, datos.imagen, datos.activo, datos.modelo, datos.color, datos.almacenamiento, datos.ram, datos.id];
             }
+
+            const resultado = await executeQuery(sql, params);
             res.status(200).send({ status: "Registro actualizado correctamente.", resultado });
 
         } catch (error) {
@@ -91,19 +86,14 @@ const api = {
 
     // Eliminar producto http://localhost:3000/api/productos
     deleteProduct: app.delete('/api/productos', async (req, res) => {
-        const db = await conectDbProductos();
         const datos = req.body;
         try {
-            const qry = 'DELETE FROM productos WHERE id = ?';
-            const resultado = await db.execute(qry, [datos.id]);
+            const sql = 'DELETE FROM productos WHERE id = ?';
+            const resultado = await executeQuery(sql, [datos.id]);
             res.status(200).send({ status: "Registro eliminado correctamente.", resultado });
-
         } catch (error) {
             res.status(500).send({ error: 'Error al eliminar producto', detalles: error.message });
-
-        } finally {
-            if (db) await db.end();
-        }
+        } 
     })
 }
 

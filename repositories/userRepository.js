@@ -1,4 +1,4 @@
-const db = require('../config/db');
+const { executeQuery } = require('../config/db');
 
 class UserRepository {
     async create(userData) {
@@ -6,7 +6,7 @@ class UserRepository {
         const params = [userData.username, userData.email, userData.password];
 
         try {
-            const result = await db.execute(sql, params);
+            const result = await executeQuery(sql, params);
             res.status(200).send({ status: "Registro insertado correctamente.", result });
         } catch (error) {
             res.status(500).send({ error: 'Error al crear usuario', detalles: error.message });
@@ -17,7 +17,7 @@ class UserRepository {
         const sql = `SELECT * FROM usuarios`;
 
         try {
-            const result = await db.execute(sql);
+            const result = await executeQuery(sql);
             res.status(200).send(result);
         } catch (error) {
             res.status(500).send({ error: 'Error al obtener usuarios', detalles: error.message });
@@ -28,7 +28,7 @@ class UserRepository {
         const sql = `SELECT * FROM usuarios WHERE id = ?`;
 
         try {
-            const result = await db.execute(sql, [id]);
+            const result = await executeQuery(sql, [id]);
             res.status(200).send(result);
         } catch (error) {
             res.status(500).send({ error: 'Usuario no encontrado', detalles: error.message });
@@ -39,7 +39,7 @@ class UserRepository {
         const sql = 'UPDATE usuarios SET username = ?, email = ?, password = ? WHERE id = ?';
 
         try {
-            const result = await db.execute(sql, newData.username, newData.email, newData.password, [id]);
+            const result = await executeQuery(sql, newData.username, newData.email, newData.password, [id]);
             res.status(200).send({ status: "Registro modificado correctamente.", result });
         } catch (error) {
             res.status(500).send({ error: 'Error al actualizar usuario', detalles: error.message });
@@ -50,7 +50,7 @@ class UserRepository {
         const sql = `DELETE FROM users WHERE id = ?`;
 
         try {
-            const result = await db.executeQuery(sql, [id]);
+            const result = await executeQuery(sql, [id]);
             res.status(200).send({ status: "Registro eliminado correctamente.", result });
         } catch (error) {
             res.status(500).send({ error: 'Error al eliminar el usuario', detalles: error.message });

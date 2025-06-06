@@ -2,11 +2,11 @@
 const express = require('express');
 const router = express.Router();
 const conectDbProductos = require('../config/db');
-const adminController = require('../controller/adminController');
+const userController = require('../controller/userController');
 
 // router.post('/', async(req, res) => {
 //     const db = await conectDbProductos();
-//     const datos = adminController.createUser();
+//     const datos = userController.createUser();
 // });
 
 module.exports = router;

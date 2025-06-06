@@ -4,12 +4,6 @@ exports.createUser = async (req, res) => {
     //express.urlencoded(), los datos estarán en req.body
     const userData = req.body;
 
-    console.log('Datos recibidos del formulario:');
-    console.log('Username:', username);
-    console.log('Email:', email);
-    console.log('Password:', password);
-    console.log('Password2:', password2);
-
     if (!username || !email || !!password) {
         return res.status(400).json({ message: 'Todos los campos son obligatorios.' });
     }
