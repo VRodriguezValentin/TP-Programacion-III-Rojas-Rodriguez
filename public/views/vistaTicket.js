@@ -10,10 +10,13 @@ class VistaTicket{
         }
 
         this.ticket = {
-            containerTicket: this.$("containerTicket"), //cambiar por cuerpoTicket
-            finTicket:       this.$("finTicket"),
-            total:           this.$("totalTicket"),
-            btnSalir:        this.$("btnSalir")
+            cabeceraTicket: this.$("cabeceraTicket"),
+            nombreUsuario : this.$("nombreUsuario"),
+            fechaOperacion: this.$("fechaOperacion"),
+            detalleTicket:  this.$("detalleTicket"),
+            finTicket:      this.$("finTicket"),
+            total:          this.$("totalTicket"),
+            btnSalir:       this.$("btnSalir")
         }
 
     }

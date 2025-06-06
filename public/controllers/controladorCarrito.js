@@ -39,6 +39,12 @@ class ControlCarrito{
         return Array.from(mapa.values());
     }
 
+    calcularTotal(productosCarrito){
+        return productosCarrito.reduce((total, producto) => {
+            return total + producto.precio;
+        }, 0);
+    }
+
     mostrarProductosCarrito(productosCarrito){
         const contenedorProductos = this.VistaCarrito.carrito.productosCarrito;
         contenedorProductos.innerHTML = '';
@@ -124,12 +130,6 @@ class ControlCarrito{
         });
     }
 
-    calcularTotal(productosCarrito){
-        return productosCarrito.reduce((total, producto) => {
-            return total + producto.precio;
-        }, 0);
-    }
-
     registrarControlador(){
 
         this.VistaCarrito.navbar.logo.addEventListener("click", (e) =>{
@@ -141,7 +141,7 @@ class ControlCarrito{
         })
 
         this.VistaCarrito.carrito.btnCancelar.addEventListener("click", (e) =>{
-            /* Vacia el array del carrito */
+            localStorage.removeItem('productosCarrito');
             window.location.href='./home.html';
         })
 
