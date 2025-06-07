@@ -62,6 +62,7 @@ class ControlLogin{
         nombreCliente.style.border = "";
         this.mostrarMensaje("");
 
+        localStorage.removeItem('nombreCliente');
         localStorage.setItem('nombreCliente', nombreCliente.value);
         return true;
     }
