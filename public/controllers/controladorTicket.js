@@ -49,9 +49,9 @@ class ControlTicket{
         let detalleHTML = '';
         productosAgrupados.forEach(producto => {
 
-            if (producto instanceof Celular) {
+            if (producto.modelo) {
                 detalleHTML += `<p>${producto.marca + ' ' + producto.modelo} X ${producto.cantidad}\t$${(producto.precio * producto.cantidad).toFixed(2)}</p>`;
-            } else if (producto instanceof Accesorio) {
+            } else {
                 detalleHTML += `<p>${producto.tipo + ' ' + producto.marca} X ${producto.cantidad}\t$${(producto.precio * producto.cantidad).toFixed(2)}</p>`;
             }
         });
@@ -68,17 +68,17 @@ class ControlTicket{
     registrarControlador(){
 
         this.VistaTicket.navbar.logo.addEventListener("click", (e) =>{
-            localStorage.removeItem('productosCarrito');
             window.location.href='./home.html';
         })
 
         this.VistaTicket.navbar.carrito.addEventListener("click", (e) => {
-            localStorage.removeItem('productosCarrito');
             window.location.href='./carrito.html';
         })
 
         this.VistaTicket.ticket.btnSalir.addEventListener("click", (e) =>{
-            localStorage.removeItem('productosCarrito');
+
+            localStorage.removeItem('productosCarrito'); //DESPUES HAY QUE HACERLO QUE CUANDO TERMINA DE CARGAR EL TICKET, QUE LIMPIE EL LOCAL STORAGE
+
             window.location.href='./index.html';
         })
 
