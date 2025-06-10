@@ -13,4 +13,14 @@ const homeController = {
     }
 };
 
+// <h1>Listado de productos</h1>
+// <ul>
+//     <% products.forEach(p=> { %>
+//         <li>
+//             <%=p%>
+//         </li>
+//         <% }) %>
+// </ul>
+
+
 module.exports = homeController;

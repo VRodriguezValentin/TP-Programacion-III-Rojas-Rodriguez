@@ -25,7 +25,7 @@ const api = {
         const id = req.params.id;
         try {
             const sql = 'SELECT * FROM productos WHERE id = ?';
-            const [row] = await executeQuery(sql, [id]); 
+            const [row] = await executeQuery(sql, [id]);
             
             if (!row) {
                 res.status(404).send({ error: 'Producto no encontrado' });
@@ -78,9 +78,6 @@ const api = {
 
         } catch (error) {
             res.status(500).send({ error: 'Error al actualizar producto', detalles: error.message });
-
-        } finally {
-            if (db) await db.end();
         }
     }),
 

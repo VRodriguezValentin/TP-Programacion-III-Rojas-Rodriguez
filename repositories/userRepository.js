@@ -1,26 +1,15 @@
 const { executeQuery } = require('../config/db');
 
 class UserRepository {
-    async create(userData) {
-        const sql = `INSERT INTO usuarios (username, email, pass) VALUES (?, ?, ?)`;
-        const params = [userData.username, userData.email, userData.password];
-
-        try {
-            const result = await executeQuery(sql, params);
-            res.status(200).send({ status: "Registro insertado correctamente.", result });
-        } catch (error) {
-            res.status(500).send({ error: 'Error al crear usuario', detalles: error.message });
-        }
-    }
-
     async findAll() {
         const sql = `SELECT * FROM usuarios`;
 
         try {
             const result = await executeQuery(sql);
-            res.status(200).send(result);
+            return result;
         } catch (error) {
-            res.status(500).send({ error: 'Error al obtener usuarios', detalles: error.message });
+            console.error('Error en UserRepository.findAll:', error.message);
+            throw new Error('No se pudieron encontrar los usuarios. Intente de nuevo más tarde.');
         }
     }
 
@@ -29,9 +18,23 @@ class UserRepository {
 
         try {
             const result = await executeQuery(sql, [id]);
-            res.status(200).send(result);
+            return result;
         } catch (error) {
-            res.status(500).send({ error: 'Usuario no encontrado', detalles: error.message });
+            console.error('Error en UserRepository.findById:', error.message);
+            throw new Error('No se pudo encontrar el usuario. Intente de nuevo más tarde.');
+        }
+    }
+
+    async create(userData) {
+        const sql = `INSERT INTO usuarios (username, email, pass) VALUES (?, ?, ?)`;
+        const params = [userData.username, userData.email, userData.password];
+
+        try {
+            const result = await executeQuery(sql, params);
+            return result;
+        } catch (error) {
+            console.error('Error en UserRepository.create:', error.message);
+            throw new Error('No se pudo crear el usuario. Intente de nuevo más tarde.');
         }
     }
 
@@ -40,9 +43,10 @@ class UserRepository {
 
         try {
             const result = await executeQuery(sql, newData.username, newData.email, newData.password, [id]);
-            res.status(200).send({ status: "Registro modificado correctamente.", result });
+            return result;
         } catch (error) {
-            res.status(500).send({ error: 'Error al actualizar usuario', detalles: error.message });
+            console.error('Error en UserRepository.update:', error.message);
+            throw new Error('No se pudo modificar el usuario. Intente de nuevo más tarde.');
         }
     }
 
@@ -51,9 +55,10 @@ class UserRepository {
 
         try {
             const result = await executeQuery(sql, [id]);
-            res.status(200).send({ status: "Registro eliminado correctamente.", result });
+            return result;
         } catch (error) {
-            res.status(500).send({ error: 'Error al eliminar el usuario', detalles: error.message });
+            console.error('Error en UserRepository.delete:', error.message);
+            throw new Error('No se pudo eliminar el usuario. Intente de nuevo más tarde.');
         }
     }
 }

@@ -1,10 +1,10 @@
 const mysql = require('mysql2/promise');
 
 const dbConfig = {
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME,
+    host: process.env.DB_HOST || 'localhost',
+    user: process.env.DB_USER || 'root',
+    password: process.env.DB_PASSWORD || 'root',
+    database: process.env.DB_NAME || 'pocket_store',
     waitForConnections: true,
     connectionLimit: 10,
     queueLimit: 0
@@ -16,7 +16,7 @@ async function executeQuery(sql, params) {
     let connection;
     try {
         connection = await pool.getConnection();
-        const [rows] = await connection.execute(sql, params); 
+        const [rows] = await connection.execute(sql, params);
         return rows;
     } catch (error) {
         console.error('Error al ejecutar consulta SQL:', error.message);
