@@ -65,6 +65,46 @@ class ControlTicket{
         /* Agregar llamado a metodo que haga POST a la base de datos a la tabla ventas*/
     }
 
+    generarPdf() {
+        // Corrige la ruta del CSS y de la imagen del logo
+        const cabecera = this.VistaTicket.ticket.cabeceraTicket.outerHTML
+            .replace('./img/PocketStore.png', 'http://localhost:3000/img/PocketStore.png');
+        const detalle = this.VistaTicket.ticket.detalleTicket.outerHTML;
+        const html = `
+            <html>
+                <head>
+                    <meta charset="utf-8">
+                    <link rel="stylesheet" href="http://localhost:3000/styles.css">
+                </head>
+                <body>
+                    ${cabecera}
+                    ${detalle}
+                </body>
+            </html>
+        `;
+
+        fetch('/api/generar-ticket-pdf', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ html })
+        })
+        .then(response => response.blob())
+        .then(blob => {
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'ticket_pocketstore.pdf';
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+            window.URL.revokeObjectURL(url);
+        })
+        .catch(err => {
+            alert('No se pudo generar el PDF');
+            console.error(err);
+        });
+    }
+
     registrarControlador(){
 
         this.VistaTicket.navbar.logo.addEventListener("click", (e) =>{
@@ -80,6 +120,11 @@ class ControlTicket{
             localStorage.removeItem('productosCarrito'); //DESPUES HAY QUE HACERLO QUE CUANDO TERMINA DE CARGAR EL TICKET, QUE LIMPIE EL LOCAL STORAGE
 
             window.location.href='./index.html';
+        })
+
+        this.VistaTicket.ticket.btnPdf.addEventListener("click", (e) =>{
+            console.log("Generar PDF");
+            this.generarPdf();
         })
 
         const nombreCliente = localStorage.getItem('nombreCliente');

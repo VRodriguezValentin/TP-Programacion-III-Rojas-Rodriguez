@@ -16,6 +16,7 @@ class VistaTicket{
             detalleTicket:  this.$("detalleTicket"),
             finTicket:      this.$("finTicket"),
             total:          this.$("totalTicket"),
+            btnPdf:         this.$("btnPdf"),
             btnSalir:       this.$("btnSalir")
         }
 

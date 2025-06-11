@@ -5,8 +5,9 @@ const app = express();
 const port = 3000;
 
 const renderRoutes = require('./routes/renderRoutes');
-const apiRoutes = require('./routes/apiRoutes');
-const userRoutes = require('./routes/userRoutes');
+const apiRoutes    = require('./routes/apiRoutes');
+const userRoutes   = require('./routes/userRoutes');
+const ticketRoutes = require('./routes/ticketRoutes');
 
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/view');
@@ -18,6 +19,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', renderRoutes);
 app.use('/', apiRoutes);
 app.use('/', userRoutes);
+app.use('/', ticketRoutes);
 
 
 app.get('/', (req, res) => {

@@ -202,8 +202,7 @@ body {
 .button-small,
 .btn-carrito,
 .btn-cancelar,
-.btn-finalizar,
-.btn-salir {
+.btn-finalizar {
     width: auto;
     padding: 10px 20px;
     background: #007BFF; /* Azul eléctrico */
