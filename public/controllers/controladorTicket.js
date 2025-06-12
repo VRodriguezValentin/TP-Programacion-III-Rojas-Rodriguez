@@ -41,8 +41,10 @@ class ControlTicket{
 
     mostrarTicket(productosCarrito){
         const fechaOperacion = new Date().toLocaleString();
-        this.VistaTicket.ticket.nombreUsuario.textContent = localStorage.getItem('nombreCliente') || 'Desconocido';
         this.VistaTicket.ticket.fechaOperacion.textContent = fechaOperacion;
+
+        const nombreUsuario = localStorage.getItem('nombreCliente') || 'Desconocido';
+        this.VistaTicket.ticket.nombreUsuario.textContent = nombreUsuario;
 
         const productosAgrupados = this.agruparProductos(productosCarrito);
 
@@ -54,6 +56,13 @@ class ControlTicket{
             } else {
                 detalleHTML += `<p>${producto.tipo + ' ' + producto.marca} X ${producto.cantidad}\t$${(producto.precio * producto.cantidad).toFixed(2)}</p>`;
             }
+
+            const detalleProducto = {
+                id_producto: producto.id,
+                cantidad: producto.cantidad,
+                precio_unitario: producto.precio
+            };
+            
         });
         
         const detalleTicket = this.VistaTicket.ticket.detalleTicket;
@@ -62,17 +71,43 @@ class ControlTicket{
         const total = this.calcularTotal(productosCarrito)
         this.VistaTicket.ticket.total.innerHTML = `<p>Total a Pagar: $${total.toFixed(2)}</p>`;
 
-        /* Agregar llamado a metodo que haga POST a la base de datos a la tabla ventas*/
+        this.registrarVenta(nombreUsuario, total);
+    }
+
+    registrarVenta(nombreUsuario, total) {
+        const venta = {
+            nombreUsuario: nombreUsuario,
+            total: total
+        };
+
+        fetch('/api/ventas', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(venta)
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('El servidor respondió con un error: ' + response.status);
+            }
+            return response.json();
+        })
+        .then(data => {
+            const idVenta = data.venta.insertId;
+            console.log('ID de la venta:', idVenta);
+
+            localStorage.removeItem('productosCarrito');
+        })
+        .catch(error => {
+            console.error('Error al registrar la venta:', error);
+        });
     }
 
     generarPdf() {
-        // Corrige la ruta del CSS y de la imagen del logo
         const cabecera = this.VistaTicket.ticket.cabeceraTicket.outerHTML
             .replace('./img/PocketStore.png', 'http://localhost:3000/img/PocketStore.png');
         const detalle = this.VistaTicket.ticket.detalleTicket.outerHTML;
         const total = this.VistaTicket.ticket.total.outerHTML;
 
-        // Usa la misma estructura que en ticket.html
         const html = `
             <html>
                 <head>
@@ -122,9 +157,6 @@ class ControlTicket{
         })
 
         this.VistaTicket.ticket.btnSalir.addEventListener("click", (e) =>{
-
-            localStorage.removeItem('productosCarrito'); //DESPUES HAY QUE HACERLO QUE CUANDO TERMINA DE CARGAR EL TICKET, QUE LIMPIE EL LOCAL STORAGE
-
             window.location.href='./index.html';
         })
 

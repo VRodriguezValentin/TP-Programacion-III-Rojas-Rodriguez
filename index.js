@@ -7,7 +7,8 @@ const port = 3000;
 const renderRoutes = require('./routes/renderRoutes');
 const userRoutes   = require('./routes/userRoutes');
 const ticketRoutes = require('./routes/ticketRoutes');
-const productRoutes = require('./routes/productRoutes')
+const productRoutes = require('./routes/productRoutes');
+const ventasRoutes = require('./routes/ventasRoutes');
 
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/view');
@@ -20,6 +21,7 @@ app.use('/', renderRoutes);
 app.use('/', userRoutes);
 app.use('/', ticketRoutes);
 app.use('/', productRoutes);
+app.use('/', ventasRoutes);
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
