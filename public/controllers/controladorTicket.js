@@ -70,6 +70,9 @@ class ControlTicket{
         const cabecera = this.VistaTicket.ticket.cabeceraTicket.outerHTML
             .replace('./img/PocketStore.png', 'http://localhost:3000/img/PocketStore.png');
         const detalle = this.VistaTicket.ticket.detalleTicket.outerHTML;
+        const total = this.VistaTicket.ticket.total.outerHTML;
+
+        // Usa la misma estructura que en ticket.html
         const html = `
             <html>
                 <head>
@@ -79,6 +82,9 @@ class ControlTicket{
                 <body>
                     ${cabecera}
                     ${detalle}
+                    <div id="finTicket">
+                        ${total}
+                    </div>
                 </body>
             </html>
         `;

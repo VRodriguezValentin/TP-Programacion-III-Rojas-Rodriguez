@@ -5,10 +5,8 @@ const app = express();
 const port = 3000;
 
 const renderRoutes = require('./routes/renderRoutes');
-const apiRoutes    = require('./routes/apiRoutes');
 const userRoutes   = require('./routes/userRoutes');
 const ticketRoutes = require('./routes/ticketRoutes');
-const userRoutes = require('./routes/userRoutes');
 const productRoutes = require('./routes/productRoutes')
 
 app.set('view engine', 'ejs');
