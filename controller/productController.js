@@ -37,7 +37,7 @@ exports.controllerUpdate = async (req, res) => {
     // VALIDACIONES BASICAS
 
     try {
-        const newProduct = await productService.update(productData);
+        const newProduct = await productService.updateProduct(productData);
         res.status(201).json({ message: 'Producto modificado exitosamente', product: newProduct });
     } catch (error) {
         res.status(400).json({ message: error.message });

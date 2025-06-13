@@ -27,6 +27,7 @@ class ProductRepository {
 
     async create(productData) {
         let sql;
+        let params;
 
         try {
             if (productData.modelo === null || productData.modelo === undefined) {

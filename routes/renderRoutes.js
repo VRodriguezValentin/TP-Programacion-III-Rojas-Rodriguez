@@ -5,6 +5,6 @@ const viewController = require('../controller/viewController');
 router.get('/login', viewController.getLoginPage);
 router.get('/createAccount', viewController.getCreatePage);
 router.get('/gestion', viewController.getGestionPage);
-router.get('/admin', viewController.getAdminPage);
+router.get('/admin', viewController.getProductsPage);
 
 module.exports = router;
