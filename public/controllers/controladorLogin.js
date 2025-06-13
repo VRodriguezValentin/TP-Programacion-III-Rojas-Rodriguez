@@ -22,12 +22,21 @@ class ControlLogin{
         });
 
         this.VistaLogin.loginCliente.btnTema.addEventListener("click", (e) => {
-            if (document.body.classList.contains("bright")) {
+            e.preventDefault();
+
+            if (localStorage.getItem("tema") === "oscuro") {
                 document.body.classList.remove("bright");
-            } else {
+            } else if (localStorage.getItem("tema") === "claro") {
                 document.body.classList.add("bright");
             }
-            console.log("Cambio de tema");
+
+            if (document.body.classList.contains("bright")) {
+                document.body.classList.remove("bright");
+                localStorage.setItem("tema", "oscuro");
+            } else {
+                document.body.classList.add("bright");
+                localStorage.setItem("tema", "claro");
+            }
         });
     }
 

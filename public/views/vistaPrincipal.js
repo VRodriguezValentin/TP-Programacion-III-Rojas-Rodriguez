@@ -1,7 +1,7 @@
 class VistaPrincipal{
     navbar;
     panelIzquierdo;
-    panelDerecho;
+    btnTema;
     constructor(){
         this.navbar = {
             nav:     this.$("navbar"),
@@ -14,6 +14,8 @@ class VistaPrincipal{
             imgCelular: this.$("imgCelular"),
             imgAccesorio: this.$("imgAccesorio")
         }
+
+        this.btnTema = this.$("btnTema");
     }
     $(id){
         return document.getElementById(id);
