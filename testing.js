@@ -1,15 +1,11 @@
-const express = require('express') 
-const path = require('path');
+const jwt = require('jsonwebtoken');
+require('dotenv').config();
 
-const app = express();
-const port = 3000;
+const payload = {user:newAdmin.username, email:newAdmin.email}
 
-const adminController = require('./controller/adminController');
+this.generateJWT(payload);
 
-const datos = adminController.createUser();
-
-console.log(datos)
-
-app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
-});
+async function generateJWT(payload) {
+    const token = jwt.sign(payload, process.env.TOKEN_PASS, { expiresIn: '300s', algorithm: 'HS256' });
+    return token;
+}

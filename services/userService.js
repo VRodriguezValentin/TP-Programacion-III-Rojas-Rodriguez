@@ -1,3 +1,5 @@
+const bcrypt = require('bcrypt');
+
 const userRepository = require('../repositories/userRepository');
 const Admin = require('../model/Admin');
 
@@ -28,23 +30,56 @@ class UserService {
             throw new Error('Faltan datos obligatorios para crear el usuario (username, email, password).');
         }
 
-        if (userData.username.length < 3) {
+        if (this.validateUsername(userData.username) && this.validatePassword(userData.password)) {
+            const salt = await bcrypt.genSalt(10);
+            const hash = await bcrypt.hash(userData.password, salt);
+
+            const newAdmin = new Admin(userData.username, userData.email, hash);
+            
+            const user = await userRepository.create(newAdmin);
+
+            return user;
+        }
+    }
+
+    async validateUsername(username) {
+        const regex = /^[a-zA-Z0-9_]+$/;
+        const usernameLength = username.length;
+
+        if (usernameLength < 3) {
             throw new Error('El nombre de usuario debe tener mas de 3 caracteres.');
         }
-        if (userData.username.length > 15) {
+        if (usernameLength > 15) {
             throw new Error('El nombre de usuario no puede ser tan largo (max. 15 caracteres).');
         }
 
-        const users = await userRepository.create(userData);
-        return users;
+        if(usernameLength !== username.trim().length) {
+            throw new Error('No deben ingresarse espacios en blanco.');
+        }
 
-        // implementar bcrypt para hashear contraseñas
-        // continuar validaciones
+        if(!regex.test(username)) {
+            throw new Error('No deben ingresarse caracteres especiales.');
+        }
+
+        return true;
     }
 
-    // async authenticateUser(email, password) { ... }
-    // async resetPassword(email) { ... }
-    // async assignRoleToUser(userId, roleId) { ... }
+    async validatePassword(password) {
+        const passwordLength = password.length;
+
+        if (passwordLength < 6) {
+            throw new Error('La contraseña debe tener mas de 6 caracteres.');
+        }
+        if (passwordLength > 25) {
+            throw new Error('La contraseña no puede ser tan largo (max. 25 caracteres).');
+        }
+
+        if(passwordLength !== password.trim().length) {
+            throw new Error('No deben ingresarse espacios en blanco.');
+        }
+
+        return true;
+    }
 }
 
 module.exports = new UserService();
