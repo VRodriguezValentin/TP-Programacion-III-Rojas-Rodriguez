@@ -158,14 +158,14 @@ class ControlPrincipal{
             this.VistaPrincipal.navbar.titulo.textContent = 'Bienvenido Cliente!';
         }
 
+        if (localStorage.getItem("tema") === "oscuro") {
+            document.body.classList.remove("bright");
+        } else if (localStorage.getItem("tema") === "claro") {
+            document.body.classList.add("bright");
+        }
+
         this.VistaPrincipal.btnTema.addEventListener("click", (e) => {
             e.preventDefault();
-
-            if (localStorage.getItem("tema") === "oscuro") {
-                document.body.classList.remove("bright");
-            } else if (localStorage.getItem("tema") === "claro") {
-                document.body.classList.add("bright");
-            }
 
             if (document.body.classList.contains("bright")) {
                 document.body.classList.remove("bright");
