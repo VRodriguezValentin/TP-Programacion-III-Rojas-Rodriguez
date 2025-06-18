@@ -1,20 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
+<%- include('partials/header'); -%>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PocketStore - Dashboard</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-
-<body>
-    <nav class="navbar">
-        <img src="./img/PocketStore.png" alt="Logo de PocketStore" class="logoNav">
-        <h3>Dashboard</h3>
-        <i style="font-weight: 100;">Gabriel Rojas - Valentin Rodriguez</i>
-        <a href="/">Logout</a>
-    </nav>
+<%- include('partials/navbar', { seccionActual: seccionActual }); -%>
 
     <div class="container-principal">
         <div id="panel-izquierdo">
@@ -44,6 +30,5 @@
     <div>
         <button class="floating-icon" onclick="window.location.href='/gestion'">&plus;</button>
     </div>
-</body>
 
-</html>
+<%- include('partials/footer'); -%>

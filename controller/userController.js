@@ -22,15 +22,36 @@ exports.controllerCreate = async (req, res) => {
     const userData = req.body;
 
     if (!userData.username || !userData.email || !userData.password || !userData.password2) {
-        res.status(400).json({ message: 'Todos los campos son obligatorios.' });
+        return res.render('createAccount', {
+            errorMessage: 'Todos los campos son obligatorios.',
+            oldData: userData
+        });
+    }
+
+    if (userData.password !== userData.password2) {
+        return res.render('createAccount', {
+            errorMessage: 'Las contraseñas no coinciden.',
+            oldData: userData
+        });
     }
 
     try {
-        if(userData.password === userData.password2) {
-            const newUser = await userService.createUser(userData);
-            res.status(201).json({ message: 'Usuario creado exitosamente', user: newUser });
-        }
+        const newUser = await userService.createUser(userData);
+        res.render('login', {sessionMessage: 'Usuario creado con exito!'});
     } catch (error) {
         res.status(400).json({ message: error.message });
     }
+}
+
+exports.loginSuccess = async (req, res) => {
+    const loginData = req.body;
+
+    try {
+        const valLogin = await userService.validateLogin(loginData);
+        res.render('login', {sessionMessage:null, loginSuccess:true, oldData:{}});
+    } catch (error) {
+        res.render('login', {sessionMessage: error, loginSuccess:null, oldData: loginData});
+    }
+
+    //Agregar logica de token y cookies :D
 }

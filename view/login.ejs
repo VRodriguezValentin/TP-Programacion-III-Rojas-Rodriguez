@@ -1,40 +1,69 @@
-<!DOCTYPE html>
-<html>
+<%- include('partials/header'); -%>
 
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>PocketStore - Login</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="styles.css">
-</head>
+<% if (sessionMessage) { %>
+    <div>
+        <%= sessionMessage %>
+    </div>
+    <% } %>
 
-<body>
-    <div class="containerLogin">
-
-        <img src="./img/PocketStore.png" alt="Logo de PocketStore" class="logoLog">
-        
-        <form method="POST" action="/dashboard">
-            <div id="divLogin" class="caja">
-
-                <label for="inputNombre">Nombre de usuario:</label>
-                <input id="inputNombre" type="text" placeholder="Ingrese su nombre de usuario" required>
-
-                <label for="inputContrasena">Contraseña:</label>
-                <input id="inputContrasena" type="password" placeholder="Ingrese su contraseña" required>
-
-                <div class="botonera-login">
-                    <button id="btnLogin" type="submit" class="button">Iniciar Sesion</button>
-                    <a href="/createAccount" class="button">Crear cuenta</a>
-                </div>
+<% if (loginSuccess) { %>
+    <div class="container-loader">
+        <div style="display: flex; justify-content: center; align-items: center;">
+            <h2>Iniciando sesion</h2>
+        </div>
+        <div class="loader">
+            <div class="circle">
+                <div class="dot"></div>
+                <div class="outline"></div>
             </div>
-        </form>
-
-
+            <div class="circle">
+                <div class="dot"></div>
+                <div class="outline"></div>
+            </div>
+            <div class="circle">
+                <div class="dot"></div>
+                <div class="outline"></div>
+            </div>
+            <div class="circle">
+                <div class="dot"></div>
+                <div class="outline"></div>
+            </div>
+        </div>
     </div>
 
-    <script type="module" src="/main.js"></script>
-</body>
+    <script>
+        setTimeout(function() {
+            window.location.href = '/dashboard';
+        }, 2000);
+    </script>
+<% } %>
 
-</html>
+<% if (!loginSuccess) { %>
+<div class="containerLogin">
+
+    <img src="./img/PocketStore.png" alt="Logo de PocketStore" class="logoLog">
+
+    <form method="POST" action="/loginInfo">
+        <div id="divLogin" class="caja">
+
+            <label for="username">Nombre de usuario:</label>
+            <input id="username" name="username" type="text"
+                placeholder="Ingrese su nombre de usuario"
+                value="<%= typeof oldData !== 'undefined' && oldData.username ? oldData.username : '' %>"
+                required>
+
+            <label for="password">Contraseña:</label>
+            <input id="password" name="password" type="password" placeholder="Ingrese su contraseña"
+                required>
+
+            <div class="botonera-login">
+                <button id="btnLogin" type="submit" class="button">Iniciar Sesion</button>
+                <a href="/createAccount" class="button">Crear cuenta</a>
+            </div>
+        </div>
+    </form>
+<% } %>
+
+</div>
+
+<%- include('partials/header'); -%>

@@ -1,16 +1,11 @@
-<!DOCTYPE html>
-<html>
+<%- include('partials/header'); -%>
 
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>PocketStore - Crear cuenta</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="styles.css">
-</head>
+    <% if (errorMessage) { %>
+        <div style="color: red; margin-bottom: 15px;">
+            <%= errorMessage %>
+        </div>
+    <% } %>
 
-<body>
     <div class="containerLogin">
 
         <img src="./img/PocketStore.png" alt="Logo de PocketStore" class="logoLog">
@@ -18,10 +13,10 @@
         <form method="POST" action="/newUser">
             <div id="divLogin" class="caja">
                 <label for="inputNombre">Nombre de usuario:</label>
-                <input id="inputNombre" name="username" type="text" placeholder="Ingrese su nombre de usuario" required>
+                <input id="inputNombre" name="username" type="text" placeholder="Ingrese su nombre de usuario" value="<%= typeof oldData !== 'undefined' && oldData.username ? oldData.username : '' %>" required>
 
                 <label for="inputEmail">Correo electronico:</label>
-                <input id="inputEmail" name="email" type="email" placeholder="example@...com" required>
+                <input id="inputEmail" name="email" type="email" placeholder="example@...com" value="<%= typeof oldData !== 'undefined' && oldData.email ? oldData.email : '' %>" required>
 
                 <label for="inputContrasena">Contraseña:</label>
                 <input id="inputContrasena" name="password" type="password" placeholder="Ingrese su contraseña" required>
@@ -37,7 +32,4 @@
         </form>
     </div>
 
-    <script type="module" src="/main.js"></script>
-</body>
-
-</html>
+<%- include('partials/footer'); -%>
