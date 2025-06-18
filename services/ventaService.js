@@ -12,7 +12,6 @@ class VentaService {
     }
 
     async createVenta(ventaData) {
-        // VALIDACIONES - LOGICA DE NEGOCIO
         try {
             const ventas = await ventaRepository.create(ventaData);
             return ventas;

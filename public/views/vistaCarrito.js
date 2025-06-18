@@ -1,7 +1,7 @@
 class VistaCarrito{
     navbar;
-    productos;
     carrito;
+    btnTema;
     constructor(){
         this.navbar = {
             nav:     this.$("navbar"),
@@ -18,7 +18,9 @@ class VistaCarrito{
             btnCancelar:      this.$("btnCancelar"),
             btnFinalizar:     this.$("btnFinalizar")
             }
-        }
+        
+        this.btnTema = this.$("btnTema");
+    }
 
     $(id){
         return document.getElementById(id);

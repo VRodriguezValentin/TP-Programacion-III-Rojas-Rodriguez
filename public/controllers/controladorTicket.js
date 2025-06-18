@@ -165,6 +165,24 @@ class ControlTicket{
             this.generarPdf();
         })
 
+        if (localStorage.getItem("tema") === "oscuro") {
+            document.body.classList.remove("bright");
+        } else if (localStorage.getItem("tema") === "claro") {
+            document.body.classList.add("bright");
+        }
+
+        this.VistaTicket.btnTema.addEventListener("click", (e) => {
+            e.preventDefault();
+
+            if (document.body.classList.contains("bright")) {
+                document.body.classList.remove("bright");
+                localStorage.setItem("tema", "oscuro");
+            } else {
+                document.body.classList.add("bright");
+                localStorage.setItem("tema", "claro");
+            }
+        });
+
         const nombreCliente = localStorage.getItem('nombreCliente');
         if (nombreCliente) {
             this.VistaTicket.navbar.titulo.textContent = `Gracias por tu Compra ${nombreCliente}!`;

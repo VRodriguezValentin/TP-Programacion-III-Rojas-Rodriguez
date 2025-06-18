@@ -12,7 +12,9 @@ exports.findAll = async (req, res) => {
 exports.controllerCreate = async (req, res) => {
     const ventaData = req.body;
 
-    // VALIDACIONES BASICAS
+    if (!ventaData.nombreUsuario || !ventaData.total) {
+        res.status(400).json({ message: 'El cliente y el monto son obligatorios.' });
+    }
 
     try {
         const newVenta = await ventaService.createVenta(ventaData);

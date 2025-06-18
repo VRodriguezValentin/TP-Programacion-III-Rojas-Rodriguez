@@ -68,7 +68,6 @@ body {
     justify-content: space-evenly;
     background-color: #242526; /* Navbar oscuro */
     align-items: center;
-    box-shadow: 0 0 30px rgba(0,0,0,0.7);
 }
 
 .logoNav {
@@ -406,21 +405,21 @@ body.bright {
 
     color: black;
 }
-/*body.bright .navbar,*/
-body.bright .containerLogin{
+body.bright .navbar,
+body.bright .containerLogin,
+body.bright #panel-izquierdo{
     background-color: #82898c;
     color: black;
-    box-shadow: 0 0 20px rgba(0,0,0,0.7);
 }
-/*body.bright .containerCarrito,
+body.bright .containerCarrito,
 body.bright .containerTicket,
 body.bright #panel-izquierdo
-body.bright #panel-derecho,*/
+body.bright #panel-derecho,
 body.bright .caja {
     background-color: #BAC4C8;
     color: black;
 }
-/*body.bright .button,
+body.bright .button,
 body.bright .button-small,
 body.bright .btn-carrito,
 body.bright .btn-cancelar,
@@ -437,7 +436,7 @@ body.bright .btn-finalizar:hover,
 body.bright .btn-salir:hover {
     background: #F6FDFF;
     color: #82898C;
-}*/
+}
 
 .container {
     width: 100%;

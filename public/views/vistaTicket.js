@@ -1,6 +1,7 @@
 class VistaTicket{
     navbar;
     ticket;
+    btnTema;
     constructor(){
         this.navbar = {
             nav:     this.$("navbar"),
@@ -20,6 +21,7 @@ class VistaTicket{
             btnSalir:       this.$("btnSalir")
         }
 
+        this.btnTema = this.$("btnTema");
     }
     $(id){
         return document.getElementById(id);
