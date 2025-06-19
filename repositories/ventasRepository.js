@@ -21,6 +21,17 @@ class VentaRepository {
             sql = 'INSERT INTO ventas (usuario, total) VALUES (?, ?)';
             params = [ventaData.nombreUsuario, ventaData.total];
             const result = await executeQuery(sql, params);
+            
+            sql = 'INSERT INTO detalle_venta (id_venta, id_producto, cantidad, precio_unitario) VALUES (?, ?, ?, ?)';
+            const productos = ventaData.productos;
+            if (!Array.isArray(productos) || productos.length === 0) {
+                throw new Error('No hay productos para la venta.');
+            }
+            for (const producto of productos) {
+                const detalleParams = [result.insertId, producto.id_producto, producto.cantidad, producto.precio_unitario];
+                await executeQuery(sql, detalleParams);
+            }
+            console.log('Venta creada exitosamente:', result);
             return result;
         } catch (error) {
             console.error('Error en VentaRepository.create:', error.message);

@@ -13,10 +13,14 @@ class ControlCarrito{
         const productosCarrito = JSON.parse(localStorage.getItem('productosCarrito')) || [];
         const carritoVacio = this.VistaCarrito.carrito.carritoVacio;
         const carritoFin = this.VistaCarrito.carrito.finCarrito;
+        const contenedorProductos = this.VistaCarrito.carrito.productosCarrito;
 
         if (productosCarrito.length === 0) {
             carritoVacio.style.display = 'flex';
             carritoFin.style.display = 'none';
+            if  (contenedorProductos) {
+                contenedorProductos.innerHTML = '';
+            }
         } else {
             carritoVacio.style.display = 'none';
             carritoFin.style.display = 'flex';

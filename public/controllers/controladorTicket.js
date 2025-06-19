@@ -49,6 +49,7 @@ class ControlTicket{
         const productosAgrupados = this.agruparProductos(productosCarrito);
 
         let detalleHTML = '';
+        let arrayDetalle = [];
         productosAgrupados.forEach(producto => {
 
             if (producto.modelo) {
@@ -57,12 +58,13 @@ class ControlTicket{
                 detalleHTML += `<p>${producto.tipo + ' ' + producto.marca} X ${producto.cantidad}\t$${(producto.precio * producto.cantidad).toFixed(2)}</p>`;
             }
 
-            const detalleProducto = {
+            var detalleProducto = {
                 id_producto: producto.id,
                 cantidad: producto.cantidad,
                 precio_unitario: producto.precio
             };
-            
+
+            arrayDetalle.push(detalleProducto);
         });
         
         const detalleTicket = this.VistaTicket.ticket.detalleTicket;
@@ -71,13 +73,14 @@ class ControlTicket{
         const total = this.calcularTotal(productosCarrito)
         this.VistaTicket.ticket.total.innerHTML = `<p>Total a Pagar: $${total.toFixed(2)}</p>`;
 
-        this.registrarVenta(nombreUsuario, total);
+        this.registrarVenta(nombreUsuario, total, arrayDetalle);
     }
 
-    registrarVenta(nombreUsuario, total) {
+    registrarVenta(nombreUsuario, total, productos) {
         const venta = {
             nombreUsuario: nombreUsuario,
-            total: total
+            total: total,
+            productos: productos
         };
 
         fetch('/api/ventas', {
