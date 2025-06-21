@@ -61,10 +61,28 @@ class ControlLogin{
             this.mostrarMensaje("Ingrese un nombre valido.");
             return false;
 
-        } else if (nombreCliente.value.length > 50){
+        } else if (nombreCliente.value.length > 15){
             
             nombreCliente.style.border = "2px solid red";
-            this.mostrarMensaje("El nombre no puede exceder los 50 caracteres.");
+            this.mostrarMensaje("El nombre no puede exceder los 15 caracteres.");
+            return false;
+        } else if (nombreCliente.value.length < 3){
+            
+            nombreCliente.style.border = "2px solid red";
+            this.mostrarMensaje("El nombre no puede ser menor a 3 caracteres.");
+            return false;
+        } else if (nombreCliente.value.length != nombreCliente.value.trim().length) {
+            
+            nombreCliente.style.border = "2px solid red";
+            this.mostrarMensaje("El nombre no puede tener espacios en blanco.");
+            return false;
+        }
+    
+        const regex = /^[a-zA-Z0-9_]+$/;
+
+        if (!regex.test(nombreCliente.value)) {
+            nombreCliente.style.border = "2px solid red";
+            this.mostrarMensaje("El nombre solo puede contener letras, números y guiones bajos.");
             return false;
         }
 

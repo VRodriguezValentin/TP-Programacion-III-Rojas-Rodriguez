@@ -40,7 +40,10 @@ class ControlPrincipal{
 
     createProductos(data) {
         var productos = this.Modelo.Productos;
-        productos = data.map(
+
+        var productosActivos = data.filter(x => x.activo);
+
+        productos = productosActivos.map(
             (x)=>{
                 if(x.modelo){
                     return new Celular(x.id, x.marca, x.precio, x.imagen, x.activo , x.modelo, x.color, x.almacenamiento, x.ram);
