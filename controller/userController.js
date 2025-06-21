@@ -1,4 +1,7 @@
+require('dotenv').config();
+
 const userService = require('../services/userService');
+const jwt = require('jsonwebtoken');
 
 exports.findAll = async (req, res) => {
     try {
@@ -37,9 +40,12 @@ exports.controllerCreate = async (req, res) => {
 
     try {
         const newUser = await userService.createUser(userData);
-        res.render('login', {sessionMessage: 'Usuario creado con exito!'});
+        res.render('login', {sessionMessage: 'Usuario creado con exito!', loginSuccess:null, oldData:{}});
     } catch (error) {
-        res.status(400).json({ message: error.message });
+        return res.render('createAccount', {
+            errorMessage: error.message,
+            oldData: userData
+        });
     }
 }
 
@@ -48,10 +54,18 @@ exports.loginSuccess = async (req, res) => {
 
     try {
         const valLogin = await userService.validateLogin(loginData);
-        res.render('login', {sessionMessage:null, loginSuccess:true, oldData:{}});
-    } catch (error) {
-        res.render('login', {sessionMessage: error, loginSuccess:null, oldData: loginData});
-    }
 
-    //Agregar logica de token y cookies :D
+        const token = jwt.sign(
+            {id: valLogin.id, username: valLogin.username},
+            process.env.TOKEN_PASS,
+            { expiresIn: '1h' }
+        );
+
+        res
+            .cookie('access_token', token, {httpOnly: true})
+            .render('login', {sessionMessage:null, loginSuccess:true, oldData:{}});
+
+    } catch (error) {
+        res.render('login', {sessionMessage: error.message, loginSuccess:null, oldData: loginData});
+    }
 }

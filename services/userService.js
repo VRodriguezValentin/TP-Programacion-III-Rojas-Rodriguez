@@ -110,24 +110,23 @@ class UserService {
 
     async validateLogin(loginData) {
         const usersArray = await this.getAllUsers();
-        let userFinded;
 
-        usersArray.forEach((u) => {
-            if (u.username === loginData.username) {
-                userFinded = u;
-            }
-        });
+        const userFinded = usersArray.find(u => u.username === loginData.username);
 
-        if (userFinded === undefined) {
-            throw new Error('Usuario no encontrado.');
+        if (!userFinded) {
+            throw new Error('Usuario o contraseña incorrectos.');
+        }
+
+        if (!userFinded.pass || typeof userFinded.pass !== 'string') {
+            throw new Error('Error en los datos del usuario: contraseña no válida.');
         }
 
         const compare = await bcrypt.compare(loginData.password, userFinded.pass);
 
         if (compare) {
-            return loginData;
+            return userFinded;
         } else {
-            throw new Error('Contraseña incorrecta.');
+            throw new Error('Usuario o contraseña incorrectos.');
         }
     }
 }
