@@ -19,7 +19,7 @@ exports.getCreatePage = (req, res) => {
 }
 
 exports.getGestionPage = (req, res) => {
-    res.render('gestion', {seccionActual: 'Gestion'});
+    res.render('gestion', {seccionActual: 'Gestion', name:'mostrando'});
 }
 
 exports.getProductsPage = async (req, res) => {
@@ -28,7 +28,7 @@ exports.getProductsPage = async (req, res) => {
 
         res.render('dashboard', {
             username: req.user.username, 
-            userId:req.user.id, 
+            userId: req.user.id, 
             seccionActual: 'Dashboard', 
             products: products
         });
@@ -38,11 +38,3 @@ exports.getProductsPage = async (req, res) => {
         res.status(500).render('error', { message: 'No se pudieron cargar los productos en este momento.' });
     }
 }
-
-// exports.putDashboard = async (req, res) => {
-//     const info = req.body;
-
-//     console.log(info);
-
-//     res.status(200).render('dashboard');
-// }   

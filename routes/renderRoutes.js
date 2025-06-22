@@ -8,6 +8,4 @@ router.get('/createAccount', viewController.getCreatePage);
 router.get('/gestion', tokenMiddleware, viewController.getGestionPage);
 router.get('/dashboard', tokenMiddleware, viewController.getProductsPage);
 
-// router.put('/dashboard', tokenMiddleware, viewController.putDashboard);
-
 module.exports = router;

@@ -43,6 +43,17 @@ class ProductService {
         }
     }
 
+    async updateStatus(id, newStatus) {
+        // VALIDACIONES - LOGICA DE NEGOCIO
+        try {
+            const products = await productRepository.updateStatusBd(id, newStatus);
+            return products;
+        } catch (error) {
+            console.error('Error en ProductService.updateStatus:', error.message);
+            throw new Error('No se pudo modificar el producto. Intente de nuevo más tarde.');
+        }
+    }
+
     async deleteProduct(productData) {
         // VALIDACIONES - LOGICA DE NEGOCIO
         try {

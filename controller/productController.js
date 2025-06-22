@@ -43,3 +43,41 @@ exports.controllerUpdate = async (req, res) => {
         res.status(400).json({ message: error.message });
     }
 }
+
+exports.enableProduct = async (req, res) => {
+    const productId = req.params.id;
+
+    try {
+        const product = await productService.updateStatus(productId, true);
+        console.log(`Producto ${productId} habilitado.`);
+        res.redirect('/dashboard');
+    } catch (error) {
+        console.error(`Error al habilitar el producto ${productId}:`, error);
+        res.status(500).send('Error al habilitar el producto.');
+    }
+}
+
+exports.disableProduct = async (req, res) => {
+    const productId = req.params.id;
+
+    try {
+        const product = await productService.updateStatus(productId, false);
+        console.log(`Producto ${productId} habilitado.`);
+        res.redirect('/dashboard');
+    } catch (error) {
+        console.error(`Error al deshabilitar el producto ${productId}:`, error);
+        res.status(500).send('Error al deshabilitar el producto.');
+    }
+}
+
+exports.getEditProductPage = async (req, res) => {
+    const productId = req.params.id;
+
+    //Generar toda la logica en gestion para poder cargar todos los datos del producto con el id solicitado.
+
+    try {
+        res.render('gestion', {seccionActual: 'Gestion', name:productId});
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+}

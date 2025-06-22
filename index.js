@@ -1,6 +1,7 @@
 const express = require('express') 
 const path = require('path');
 const cookieParser = require('cookie-parser');
+const methodOverride = require('method-override');
 
 const app = express();
 const port = 3000;
@@ -15,6 +16,7 @@ app.set('view engine', 'ejs');
 app.set('views', __dirname + '/view');
 
 app.use(express.json());
+app.use(methodOverride('_method'));
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));

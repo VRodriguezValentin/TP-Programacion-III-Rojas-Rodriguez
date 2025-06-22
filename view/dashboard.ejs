@@ -11,21 +11,29 @@
 
         <div id="panel-derecho-celulares-gestion">
             <% products.forEach(p=> { %>
-                <% if (p.activo) { %>
-                    <div class='card-gestion-active'>
-                <% } %>
-                <% if (!p.activo) { %>
-                    <div class='card-gestion-disable'>
-                <% } %>
+                <div class='<%= p.activo ? "card-gestion-active" : "card-gestion-disable" %>'>
                     <img src="<%= p.imagen %>" style="max-width: 200px; max-height: 200px;">
                     <p> <%=p.marca%> </p>
                     <p> <%=p.precio%> </p>
-                    <p> <%=p.marca%> </p>
+                    <p> <%=p.id%> </p>
+                    <p> <%=p.activo%> </p>
 
                     <div class="btn-caja">
-                        <button id="btn-habilitar" data-index="<%=p.id%>" class="btnActDes button">Habilitar</button>
-                        <button id="btn-deshabilitar" data-index="<%=p.id%>" class="btnActDes button">Deshabilitar</button>
-                        <a href="/gestion" id="btn-modificar" data-index="<%=p.id%>" class="button">Modificar</a>
+                        <% if (!p.activo) { %>
+                            <form action="/products/enable/<%= p.id %>?_method=PUT" method="POST">
+                                <button type="submit" class="btnActDes button">Habilitar</button>
+                            </form>
+                        <% } %>
+
+                        <% if (p.activo) { %>
+                            <form action="/products/disable/<%= p.id %>?_method=PUT" method="POST">
+                                <button type="submit" class="btnActDes button">Deshabilitar</button>
+                            </form>
+                        <% } %>
+
+                        <form action="/gestion/<%= p.id %>" method="GET">
+                            <button type="submit" class="btnMod button">Modificar</button>
+                        </form>
                     </div>
                 </div>
             <% }) %>
@@ -35,35 +43,5 @@
     <div>
         <button class="floating-icon" onclick="window.location.href='/gestion'">&plus;</button>
     </div>
-
-    <script>
-        const productsArray = <%- JSON.stringify(products) %>;
-        const panelDerecho = document.getElementById('panel-derecho-celulares-gestion');
-
-        panelDerecho.addEventListener('click', (e) => {
-            const target = e.target;
-
-            if (target.id === 'btn-habilitar') {
-                const idClick = target.getAttribute("data-index") - 1;
-                productsArray[idClick].activo = true;
-            }
-            else if (target.id === 'btn-deshabilitar') {
-                const idClick = target.getAttribute("data-index") - 1;
-                productsArray[idClick].activo = false;
-            }
-        });
-
-        
-
-        // fetch('/dashboard', {method: 'PUT', headers:{ "Content-Type": "application/json" }, body: JSON.stringify(productsArray)})
-        //     .then(response => {
-        //         if(response.ok) {
-        //             console.log(response);
-        //         }
-        //     })
-        //     .catch(err => {
-        //         console.log({ a: err.message });
-        //     })
-    </script>
 
 <%- include('partials/footer'); -%>

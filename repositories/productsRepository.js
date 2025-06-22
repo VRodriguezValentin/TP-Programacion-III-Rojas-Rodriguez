@@ -65,6 +65,18 @@ class ProductRepository {
         }
     }
 
+    async updateStatusBd(id, newStatus) {
+        const sql = 'UPDATE productos SET activo = ? WHERE id = ?'
+
+        try {
+            const result = await executeQuery(sql, [newStatus, id]);
+            return result;
+        } catch (error) {
+            console.error('Error en ProductRepository.updateStatusBd:', error.message);
+            throw new Error('No se pudo modificar el producto. Intente de nuevo más tarde.');
+        }
+    }
+
     async delete(productData) {
         const sql = 'DELETE FROM productos WHERE id = ?';
 
