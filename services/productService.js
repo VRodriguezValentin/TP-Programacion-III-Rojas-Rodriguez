@@ -34,6 +34,7 @@ class ProductService {
 
     async updateProduct(productData) {
         // VALIDACIONES - LOGICA DE NEGOCIO
+
         try {
             const products = await productRepository.update(productData);
             return products;

@@ -73,10 +73,26 @@ exports.disableProduct = async (req, res) => {
 exports.getEditProductPage = async (req, res) => {
     const productId = req.params.id;
 
-    //Generar toda la logica en gestion para poder cargar todos los datos del producto con el id solicitado.
+    try {
+        const productFinded = await productService.getProductByID(productId);
+        res.render('gestion', {seccionActual: 'Gestion', mode: 'M', product: productFinded[0]});
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+}
+
+exports.editProduct = async (req, res) => {
+    const product = req.body;
+
+    if (product.flag == 1) {
+        product.modelo = null;
+    }
+    
+    product.imagen = '/nadaporahora';
 
     try {
-        res.render('gestion', {seccionActual: 'Gestion', name:productId});
+        const productFinded = await productService.updateProduct(product);
+        res.redirect('/dashboard');
     } catch (error) {
         res.status(500).json({ message: error.message });
     }

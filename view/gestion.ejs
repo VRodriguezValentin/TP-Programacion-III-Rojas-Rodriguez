@@ -2,79 +2,125 @@
 
 <%- include('partials/navbar'); -%>
 
-<%- name %>
-
     <div class="container-gestion">
         <div class="box-gestion">
-            <form action="">
+            <% if (mode === 'C') {%>
+                <form method="POST" action="/products/create">
+            <%}%>
+
+            <% if (mode === 'M') {%>
+                <form method="POST" action="/products/edit?_method=PUT">
+            <%}%>
+
                 <div class="form-row">
                     <label for="imagetxt">Importar imagen: </label>
-                    <input type="file" id="imagetxt">
+                    <input name="imagen" type="file" id="imagetxt" value="<%= typeof product !== 'undefined' && product.imagen ? product.imagen : '' %>">
                 </div>
                 
                 <div class="form-row">
-                    <label for="idtxt">ID: </label>
-                    <input type="text" id="idtxt" disabled>
+                    <input name="id" type="hidden" id="idtxt" value="<%= typeof product !== 'undefined' && product.id ? product.id : '' %>">
                 </div>
 
                 <div class="form-row">
                     <label for="marcatxt">Marca: </label>
-                    <input type="text" id="marcatxt">
+                    <input name="marca" type="text" id="marcatxt" value="<%= typeof product !== 'undefined' && product.marca ? product.marca : '' %>">
                 </div>
 
                 <div class="form-row">
                     <label for="preciotxt">Precio: </label>
-                    <input type="number" id="preciotxt">
+                    <input name="precio" type="number" id="preciotxt" value="<%= typeof product !== 'undefined' && product.precio ? product.precio : '' %>">
                 </div>
 
                 <div class="form-row">
                     <label for="selectType">Categoria: </label>
                     <select id="selectType">
                         <option value="0" disabled selected>Seleccionar</option>
-                        <option value="1">Celular</option>
-                        <option value="2">Accesorio</option>
+                        <option value="1" <%= product.ram !== null ? 'selected' : '' %> >Celular</option>
+                        <option value="2" <%= product.tipo !== null ? 'selected' : '' %> >Accesorio</option>
                     </select>
                 </div>
 
-                <div class="sel-celular">
+                <div id="bloqueC" class="sel-celular">
                     <div class="form-row">
                         <label for="modelotxt">Modelo: </label>
-                        <input type="text" id="modelotxt">
+                        <input name="modelo" type="text" id="modelotxt" value="<%= typeof product !== 'undefined' && product.modelo ? product.modelo : '' %>">
                     </div>
                     <div class="form-row">
                         <label for="colortxt">Color: </label>
-                        <input type="text" id="colortxt">
+                        <input name="color" type="text" id="colortxt" value="<%= typeof product !== 'undefined' && product.color ? product.color : '' %>">
                     </div>
 
                     <div class="form-row">
                         <label for="almacenamientotxt">Almacenamiento: </label>
-                        <input type="number" id="almacenamientotxt">
+                        <input name="almacenamiento" type="number" id="almacenamientotxt" value="<%= typeof product !== 'undefined' && product.almacenamiento ? product.almacenamiento : '' %>">
                     </div>
 
                     <div class="form-row">
                         <label for="ramtxt">RAM: </label>
-                        <input type="number" id="ramtxt">
+                        <input name="ram" type="number" id="ramtxt" value="<%= typeof product !== 'undefined' && product.ram ? product.ram : '' %>">
                     </div>
                 </div>
 
-                <div class="sel-accesorio">
+                <div id="bloqueA" class="sel-accesorio">
                     <div class="form-row">
                         <label for="tipotxt">Tipo: </label>
-                        <input type="text" id="tipotxt">
+                        <input name="tipo" type="text" id="tipotxt" value="<%= typeof product !== 'undefined' && product.tipo ? product.tipo : '' %>">
                     </div>
 
                     <div class="form-row">
                         <label for="compatibilidadtxt">Compatibilidad: </label>
-                        <input type="text" id="compatibilidadtxt">
+                        <input name="compatibilidad" type="text" id="compatibilidadtxt" value="<%= typeof product !== 'undefined' && product.compatibilidad ? product.compatibilidad : '' %>">
                     </div>
                 </div>
 
+                <input name="flag" id="flag" type="hidden" value="1">
+                <input name="activo" id="activo" type="hidden" value="<%= typeof product !== 'undefined' && product.activo ? product.activo : true %>">
+
                 <div class="botonera-login">
                     <a href="/dashboard" id="btnGestionCancelar" class="button">Cancelar</a>
-                    <button id="btnGestionAceptar" class="button">Aceptar</button>
+                    <button id="btnGestionAceptar" class="button" type="submit">Aceptar</button>
                 </div>
             </form>
         </div>
     </div>
+
+    <script>
+        const select = document.getElementById('selectType');
+        const celulares = document.getElementById('bloqueC');
+        const accesorios = document.getElementById('bloqueA');
+        const flag = document.getElementById('flag'); // Si no se envia la flag, es un accesorio
+
+        document.addEventListener('DOMContentLoaded', (e) => {
+            if (select.value === '1') {
+                celulares.style.display = 'block';
+                accesorios.style.display = 'none';
+
+                flag.disabled = true;
+            } else if (select.value === '2') {
+                celulares.style.display = 'none';
+                accesorios.style.display = 'block';
+
+                flag.disabled = false;
+            } else {
+                celulares.style.display = 'none';
+                accesorios.style.display = 'none';
+            }
+        });
+
+        select.addEventListener('change', (e) => {
+            if (select.value === '1') {
+                celulares.style.display = 'block';
+                accesorios.style.display = 'none';
+
+                flag.disabled = true;
+            } else if (select.value === '2') {
+                celulares.style.display = 'none';
+                accesorios.style.display = 'block';
+
+                flag.disabled = false;
+            }
+        });
+
+    </script>
 
 <%- include('partials/footer'); -%>

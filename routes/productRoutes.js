@@ -11,6 +11,7 @@ router.put('/api/productos', productController.controllerUpdate);
 
 router.put('/products/enable/:id', productController.enableProduct);
 router.put('/products/disable/:id', productController.disableProduct);
+router.put('/products/edit', productController.editProduct);
 
 router.get('/gestion/:id', productController.getEditProductPage);
 
