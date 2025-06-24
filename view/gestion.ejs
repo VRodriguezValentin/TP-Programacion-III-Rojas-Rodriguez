@@ -3,6 +3,12 @@
 <%- include('partials/navbar'); -%>
 
     <div class="container-gestion">
+
+        <div>
+            producto
+            <% console.log(product) %>
+        </div>
+
         <div class="box-gestion">
             <% if (mode === 'C') {%>
                 <form method="POST" action="/products/create">
@@ -35,7 +41,7 @@
                     <label for="selectType">Categoria: </label>
                     <select id="selectType">
                         <option value="0" disabled selected>Seleccionar</option>
-                        <option value="1" <%= product.ram !== null ? 'selected' : '' %> >Celular</option>
+                        <option value="1" <%= product.modelo !== null ? 'selected' : '' %> >Celular</option>
                         <option value="2" <%= product.tipo !== null ? 'selected' : '' %> >Accesorio</option>
                     </select>
                 </div>

@@ -26,17 +26,10 @@ class ProductRepository {
     }
 
     async create(productData) {
-        let sql;
-        let params;
+        const sql = 'INSERT INTO productos (marca, precio, imagen, activo, modelo, color, almacenamiento, ram, tipo, compatibilidad) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+        const params = [productData.marca, productData.precio, productData.imagen, productData.activo, productData.modelo, productData.color, productData.almacenamiento, productData.ram, productData.tipo, productData.compatibilidad];
 
         try {
-            if (productData.modelo === null || productData.modelo === undefined) {
-                sql = 'INSERT INTO productos (marca, precio, imagen, activo, tipo, compatibilidad) VALUES (?, ?, ?, ?, ?, ?)';
-                params = [productData.marca, productData.precio, productData.imagen, productData.activo, productData.tipo, productData.compatibilidad];
-            } else {
-                sql = 'INSERT INTO productos (marca, precio, imagen, activo, modelo, color, almacenamiento, ram) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
-                params = [productData.marca, productData.precio, productData.imagen, productData.activo, productData.modelo, productData.color, productData.almacenamiento, productData.ram];
-            }
             const result = await executeQuery(sql, params);
             return result;
         } catch (error) {
@@ -46,18 +39,11 @@ class ProductRepository {
     }
 
     async update(productData) {
-        let sql;
-        let params;
+        const sql = 'UPDATE productos SET (marca, precio, imagen, activo, modelo, color, almacenamiento, ram, tipo, compatibilidad) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?) WHERE id = ?';
+        const params = [productData.marca, productData.precio, productData.imagen, productData.activo, productData.modelo, productData.color, productData.almacenamiento, productData.ram, productData.tipo, productData.compatibilidad, productData.id];
 
         try {
-            if (productData.modelo === null || productData.modelo === undefined) {
-                sql = 'UPDATE productos SET marca = ?, precio = ?, imagen = ?, activo = ?, tipo = ?, compatibilidad = ? WHERE id = ?';
-                params = [productData.marca, productData.precio, productData.imagen, productData.activo, productData.tipo, productData.compatibilidad, productData.id];
-            } else {
-                sql = 'UPDATE productos SET marca = ?, precio = ?, imagen = ?, activo = ?, modelo = ?, color = ?, almacenamiento = ?, ram = ? WHERE id = ?';
-                params = [productData.marca, productData.precio, productData.imagen, productData.activo, productData.modelo, productData.color, productData.almacenamiento, productData.ram, productData.id];
-            }
-            const result = await executeQuery(sql, params); 
+            const result = await executeQuery(sql, params);
             return result;
         } catch (error) {
             console.error('Error en ProductRepository.update:', error.message);

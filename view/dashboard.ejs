@@ -4,36 +4,41 @@
 
     <div class="container-principal">
         <div id="panel-izquierdo">
-            <img src="./img/celu.png" alt="Celular" class="celular">
-            <img src="./img/celu.png" alt="Celular" class="celular">
-            </ul>
+            <div id="cel-icon" class="sidebar-item">
+                <i class="fas fa-mobile-alt sidebar-icon"></i> <span class="sidebar-text">Celulares</span>
+            </div>
+            <div id="acc-icon" class="sidebar-item">
+                <i class="fas fa-headphones-alt sidebar-icon"></i> <span class="sidebar-text">Accesorios</span>
+            </div>
         </div>
 
-        <div id="panel-derecho-celulares-gestion">
+        <div id="panel-derecho-dashboard">
             <% products.forEach(p=> { %>
-                <div class='<%= p.activo ? "card-gestion-active" : "card-gestion-disable" %>'>
-                    <img src="<%= p.imagen %>" style="max-width: 200px; max-height: 200px;">
-                    <p> <%=p.marca%> </p>
-                    <p> <%=p.precio%> </p>
-                    <p> <%=p.id%> </p>
-                    <p> <%=p.activo%> </p>
+                <div class='<%= p.modelo ? "panel-celulares" : "panel-accesorios" %>'>
+                    <div class='<%= p.activo ? "card-gestion-active" : "card-gestion-disable" %>'>
+                        <img src="<%= p.imagen %>" style="max-width: 200px; max-height: 200px;">
+                        <p> <%=p.marca%> </p>
+                        <p> <%=p.precio%> </p>
+                        <p> <%=p.id%> </p>
+                        <p> <%=p.activo%> </p>
 
-                    <div class="btn-caja">
-                        <% if (!p.activo) { %>
-                            <form action="/products/enable/<%= p.id %>?_method=PUT" method="POST">
-                                <button type="submit" class="btnActDes button">Habilitar</button>
+                        <div class="btn-caja">
+                            <% if (!p.activo) { %>
+                                <form action="/products/enable/<%= p.id %>?_method=PUT" method="POST">
+                                    <button type="submit" class="btnActDes button">Habilitar</button>
+                                </form>
+                            <% } %>
+
+                            <% if (p.activo) { %>
+                                <form action="/products/disable/<%= p.id %>?_method=PUT" method="POST">
+                                    <button type="submit" class="btnActDes button">Deshabilitar</button>
+                                </form>
+                            <% } %>
+
+                            <form action="/gestion/<%= p.id %>" method="GET">
+                                <button type="submit" class="btnMod button">Modificar</button>
                             </form>
-                        <% } %>
-
-                        <% if (p.activo) { %>
-                            <form action="/products/disable/<%= p.id %>?_method=PUT" method="POST">
-                                <button type="submit" class="btnActDes button">Deshabilitar</button>
-                            </form>
-                        <% } %>
-
-                        <form action="/gestion/<%= p.id %>" method="GET">
-                            <button type="submit" class="btnMod button">Modificar</button>
-                        </form>
+                        </div>
                     </div>
                 </div>
             <% }) %>
@@ -43,5 +48,40 @@
     <div>
         <button class="floating-icon" onclick="window.location.href='/gestion'">&plus;</button>
     </div>
+
+    <script>
+        const iconCel = document.getElementById('cel-icon');
+        const iconAcc = document.getElementById('acc-icon');
+
+        const accesorios = document.querySelectorAll('.panel-accesorios');
+        const celulares = document.querySelectorAll('.panel-celulares');
+
+        document.addEventListener('DOMContentLoaded', () => {
+            accesorios.forEach(a => {
+                a.style.display = 'none';
+            });
+        });
+
+        iconCel.addEventListener('click', (e) => {
+            accesorios.forEach(a => {
+                a.style.display = 'none';
+            });
+
+            celulares.forEach(c => {
+                c.style.display = 'block';
+            });
+        });
+
+        iconAcc.addEventListener('click', (e) => {
+            celulares.forEach(c => {
+                c.style.display = 'none';
+            });
+
+            accesorios.forEach(a => {
+                a.style.display = 'block';
+            });
+        });
+
+    </script>
 
 <%- include('partials/footer'); -%>

@@ -1,6 +1,19 @@
 <nav class="navbar">
-    <img src="/img/PocketStore.png" alt="Logo de PocketStore" class="logoNav" onclick="location.href='/dashboard'">
-    <h3><%= seccionActual %></h3>
-    <i style="font-weight: 100;">Gabriel Rojas - Valentin Rodriguez</i>
-    <a href="/login">Logout</a>
+    <div class="navbar-logo-container">
+        <img src="/img/PocketStore.png" alt="Logo de PocketStore" class="logoNav" onclick="location.href='/dashboard'">
+    </div>
+
+    <div class="navbar-spacer-left"></div>
+
+    <h3 class="current-section"><%= seccionActual %></h3>
+
+    <div class="navbar-spacer-middle"></div>
+
+    <span class="user-info">Gabriel Rojas - Valentin Rodriguez</span>
+    
+    <div class="navbar-spacer-right"></div>
+
+    <a href="/login" class="logout-button">
+        <i class="fas fa-sign-out-alt"></i> Logout
+    </a>
 </nav>

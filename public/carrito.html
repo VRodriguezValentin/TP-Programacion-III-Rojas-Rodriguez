@@ -11,10 +11,24 @@
     </head>
     <body>
         <nav class="navbar">
-            <img id="logoNav" src="./img/PocketStore.png" alt="Logo de PocketStore" class="logoNav">
-            <h3 id="tituloNav">Carrito de Cliente!</h3>
-            <i style="font-weight: 100;">Gabriel Rojas - Valentin Rodriguez</i>
-            <img id="carritoNav" src="./img/carrito.png" alt="Logo de carrito" class="carrito">
+            <div class="navbar-logo-container">
+                <img id="logoNav" src="./img/PocketStore.png" alt="Logo de PocketStore" class="logoNav" onclick="location.href='/home.html'">
+            </div>
+
+            <div class="navbar-spacer-left"></div>
+
+            <h3 id="tituloNav" class="current-section">Bienvenido Cliente!</h3> 
+
+            <div class="navbar-spacer-middle"></div>
+
+            <span id="userInfo" class="user-info">Gabriel Rojas - Valentin Rodriguez</span>
+            
+            <div class="navbar-spacer-right"></div>
+
+            <a href="/carrito.html" class="cart-button">
+                <i class="fas fa-shopping-cart"></i> 
+                <span class="cart-count">0</span> 
+            </a>
         </nav>
 
         <div class="containerCarrito">

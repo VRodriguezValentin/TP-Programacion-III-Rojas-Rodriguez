@@ -84,14 +84,24 @@ exports.getEditProductPage = async (req, res) => {
 exports.editProduct = async (req, res) => {
     const product = req.body;
 
-    if (product.flag == 1) {
+    if (product.flag === 1) {
         product.modelo = null;
+        product.color = null;
+        product.almacenamiento = null;
+        product.ram = null;
+    } else {
+        product.tipo = null;
+        product.compatibilidad = null;
     }
     
     product.imagen = '/nadaporahora';
 
+    console.log(product);
+    
+
     try {
         const productFinded = await productService.updateProduct(product);
+        console.log(productFinded);
         res.redirect('/dashboard');
     } catch (error) {
         res.status(500).json({ message: error.message });
