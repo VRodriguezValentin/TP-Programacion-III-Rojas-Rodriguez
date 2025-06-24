@@ -7,16 +7,16 @@ class ControlPrincipal{
     constructor(p_modelo, p_vista){
         this.Modelo = p_modelo;
         this.VistaPrincipal = p_vista;
-        this.obtenerProductos()
+        this.obtenerProductos('celular', 0)
         this.registrarControlador();
     }
 
 
-    obtenerProductos() {
+    obtenerProductos(tipo, offset, callback) {
         const spinner = document.getElementById('spinner-container');
         spinner.style.display = 'flex';
 
-        fetch('/api/productos')
+        fetch(`/api/productos/${tipo}/${offset}`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Error en la solicitud: ' + response.status);
@@ -24,10 +24,9 @@ class ControlPrincipal{
                 return response.json();
             })
             .then(data => {
-                console.log(data);
                 const productos = this.createProductos(data);
-                console.log(productos);
                 this.dibujarProductos(productos);
+                if (callback) callback(productos.length);
             })
             .catch(error => {
                 console.error('Error en la peticion', error);
@@ -73,7 +72,6 @@ class ControlPrincipal{
             const img = document.createElement('img');
             img.src = prod.imagen;
             prod instanceof Celular ? img.alt = 'Imagen de Celular' : img.alt = 'Imagen de Accesorio'
-            img.classList.add('img-producto');
 
             const name = document.createElement('h3') 
             prod instanceof Celular ? name.textContent = prod.marca + ' ' + prod.modelo : name.textContent = prod.tipo + ' ' + prod.marca
@@ -104,13 +102,21 @@ class ControlPrincipal{
                 e.preventDefault();
 
                 const productosCarrito = JSON.parse(localStorage.getItem('productosCarrito')) || [];
-
                 productosCarrito.push(prod);
                 localStorage.setItem('productosCarrito', JSON.stringify(productosCarrito));
 
-                console.log(productosCarrito);
+                const carritoSpan = this.VistaPrincipal.navbar.carritoSpan;
+                localStorage.getItem('productosCarrito') ? carritoSpan.textContent = JSON.parse(localStorage.getItem('productosCarrito')).length : carritoSpan.textContent = 0;
 
-                alert('El producto ha sido guardado.');
+                btnCarrito.disabled = true;
+                btnCarrito.style.backgroundColor = '#28a745';
+                btnCarrito.innerHTML = '✔';
+
+                setTimeout(() => {
+                    btnCarrito.disabled = false;
+                    btnCarrito.style.backgroundColor = '';
+                    btnCarrito.textContent = 'Agregar al carrito';
+                }, 1200);
             });
 
             div.appendChild(img);
@@ -131,27 +137,8 @@ class ControlPrincipal{
 
     registrarControlador(){
 
-        this.VistaPrincipal.navbar.logo.addEventListener("click", (e) =>{
-            window.location.href='./home.html';
-        })
-
-        this.VistaPrincipal.navbar.carrito.addEventListener("click", (e) => {
-            window.location.href='./carrito.html';
-        })
-
-        this.VistaPrincipal.panelIzquierdo.imgCelular.addEventListener("click", (e) =>{
-
-            document.getElementById("panel-derecho-celulares").style.display = "grid";
-            document.getElementById("panel-derecho-accesorios").style.display = "none";
-
-        })
-
-        this.VistaPrincipal.panelIzquierdo.imgAccesorio.addEventListener("click", (e) =>{
-
-            document.getElementById("panel-derecho-celulares").style.display = "none";
-            document.getElementById("panel-derecho-accesorios").style.display = "grid";
-
-        })
+        const carritoSpan = this.VistaPrincipal.navbar.carritoSpan;
+        localStorage.getItem('productosCarrito') ? carritoSpan.textContent = JSON.parse(localStorage.getItem('productosCarrito')).length : carritoSpan.textContent = 0;
 
         const nombreCliente = localStorage.getItem('nombreCliente');
         if (nombreCliente) {
@@ -160,6 +147,86 @@ class ControlPrincipal{
         else {
             this.VistaPrincipal.navbar.titulo.textContent = 'Bienvenido Cliente!';
         }
+
+        this.VistaPrincipal.navbar.logo.addEventListener("click", (e) =>{
+            window.location.href='./home.html';
+        })
+
+        // Cambiar a celulares
+        this.VistaPrincipal.panelIzquierdo.celulares.addEventListener("click", (e) => {
+            this.VistaPrincipal.panelDerecho.celulares.style.display = "grid";
+            this.VistaPrincipal.panelDerecho.accesorios.style.display = "none";
+            this.VistaPrincipal.panelDerecho.btnCelulares.style.display = "flex";
+            this.VistaPrincipal.panelDerecho.btnAccesorios.style.display = "none";
+            localStorage.setItem('offsetCelulares', 0);
+            this.obtenerProductos('celular', 0);
+        });
+
+        // Cambiar a accesorios
+        this.VistaPrincipal.panelIzquierdo.accesorios.addEventListener("click", (e) => {
+            this.VistaPrincipal.panelDerecho.celulares.style.display = "none";
+            this.VistaPrincipal.panelDerecho.accesorios.style.display = "grid";
+            this.VistaPrincipal.panelDerecho.btnCelulares.style.display = "none";
+            this.VistaPrincipal.panelDerecho.btnAccesorios.style.display = "flex";
+            localStorage.setItem('offsetAccesorios', 0);
+            this.obtenerProductos('accesorio', 0);
+        });
+
+        // Siguiente celulares
+        this.VistaPrincipal.panelDerecho.sigCelulares.addEventListener("click", (e) => {
+            e.preventDefault();
+
+            let offset = parseInt(localStorage.getItem('offsetCelulares')) || 0;
+            offset += 4;
+            this.obtenerProductos('celular', offset, (cantidad) => {
+                if (cantidad > 0) {
+                    localStorage.setItem('offsetCelulares', offset);
+                } else {
+                    offset -= 4;
+                    localStorage.setItem('offsetCelulares', offset);
+                    alert('No hay más productos para mostrar.');
+                    this.obtenerProductos('celular', offset);
+                }
+            });
+        });
+
+        // Anterior celulares
+        this.VistaPrincipal.panelDerecho.antCelulares.addEventListener("click", (e) => {
+            e.preventDefault();
+
+            let offset = parseInt(localStorage.getItem('offsetCelulares')) || 0;
+            offset = Math.max(0, offset - 4);
+            localStorage.setItem('offsetCelulares', offset);
+            this.obtenerProductos('celular', offset);
+        });
+
+        // Siguiente accesorios
+        this.VistaPrincipal.panelDerecho.sigAccesorios.addEventListener("click", (e) => {
+            e.preventDefault();
+
+            let offset = parseInt(localStorage.getItem('offsetAccesorios')) || 0;
+            offset += 4;
+            this.obtenerProductos('accesorio', offset, (cantidad) => {
+                if (cantidad > 0) {
+                    localStorage.setItem('offsetAccesorios', offset);
+                } else {
+                    offset -= 4;
+                    localStorage.setItem('offsetAccesorios', offset);
+                    alert('No hay más productos para mostrar.');
+                    this.obtenerProductos('accesorio', offset);
+                }
+            });
+        });
+
+        // Anterior accesorios
+        this.VistaPrincipal.panelDerecho.antAccesorios.addEventListener("click", (e) => {
+            e.preventDefault();
+
+            let offset = parseInt(localStorage.getItem('offsetAccesorios')) || 0;
+            offset = Math.max(0, offset - 4);
+            localStorage.setItem('offsetAccesorios', offset);
+            this.obtenerProductos('accesorio', offset);
+        });
 
         if (localStorage.getItem("tema") === "oscuro") {
             document.body.classList.remove("bright");
@@ -178,6 +245,8 @@ class ControlPrincipal{
                 localStorage.setItem("tema", "claro");
             }
         });
+
+
     }
 
 }

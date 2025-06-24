@@ -13,6 +13,18 @@ class ProductRepository {
         }
     }
 
+    async findAllWithPagination(tipo, offset) {
+        const sql = `SELECT * FROM productos WHERE activo = true AND tipo_producto = ? LIMIT 4 OFFSET ?`;
+
+        try {
+            const result = await executeQuery(sql, [tipo, offset]);
+            return result;
+        } catch (error) {
+            console.error('Error en ProductRepository.findAll:', error.message);
+            throw new Error('No se pudieron encontrar los productos. Intente de nuevo más tarde.');
+        }
+    }
+
     async findById(id) {
         const sql = `SELECT * FROM productos WHERE id = ?`;
 

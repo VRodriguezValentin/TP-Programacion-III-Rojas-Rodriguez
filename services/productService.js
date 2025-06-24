@@ -11,6 +11,16 @@ class ProductService {
         }
     }
 
+    async getAllProductsWithPagination(tipo, offset) {
+        try {
+            const products = await productRepository.findAllWithPagination(tipo, offset);
+            return products;
+        } catch (error) {
+            console.error('Error en ProductService.getAllProductsWithPagination:', error.message);
+            throw new Error('No se pudo obtener el producto. Intente de nuevo más tarde.');
+        }
+    }
+
     async getProductByID(id) {
         try {
             const products = await productRepository.findById(id);
@@ -22,7 +32,15 @@ class ProductService {
     }
 
     async createProduct(productData) {
-        // VALIDACIONES - LOGICA DE NEGOCIO
+
+        if (productData.marca.length < 1 || productData.marca.length > 50 ||
+            productData.precio < 0 || productData.precio > 1000000 ||
+            productData.imagen.length < 1 || productData.imagen.length > 200 ||
+            typeof productData.activo !== 'boolean' ||
+            !['celular', 'accesorio'].includes(productData.tipo_producto)) {
+            throw new Error('Datos del producto no válidos.');
+        }
+
         try {
             const products = await productRepository.create(productData);
             return products;
@@ -33,7 +51,14 @@ class ProductService {
     }
 
     async updateProduct(productData) {
-        // VALIDACIONES - LOGICA DE NEGOCIO
+        
+        if (productData.marca.length < 1 || productData.marca.length > 50 ||
+            productData.precio < 0 || productData.precio > 1000000 ||
+            productData.imagen.length < 1 || productData.imagen.length > 200 ||
+            typeof productData.activo !== 'boolean' ||
+            !['celular', 'accesorio'].includes(productData.tipo_producto)) {
+            throw new Error('Datos del producto no válidos.');
+        }
 
         try {
             const products = await productRepository.update(productData);

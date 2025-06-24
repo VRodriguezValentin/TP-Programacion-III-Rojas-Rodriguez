@@ -7,7 +7,7 @@ class VistaCarrito{
             nav:     this.$("navbar"),
             logo:    this.$("logoNav"),
             titulo:  this.$("tituloNav"),
-            carrito: this.$("carritoNav")
+            carritoSpan: this.$("carritoSpan")
         }
 
         this.carrito = {

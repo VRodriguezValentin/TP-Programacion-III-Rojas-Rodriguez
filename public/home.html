@@ -25,35 +25,62 @@
             
             <div class="navbar-spacer-right"></div>
 
-            <a href="/carrito.html" class="cart-button">
+            <a href="/carrito.html" class="cart-button" style="background-color: rgb(31, 31, 30); height: 30px; width: 30px;">
                 <i class="fas fa-shopping-cart"></i> 
-                <span class="cart-count">0</span> 
+                <span id="carritoSpan" class="cart-count">0</span> 
             </a>
         </nav>
 
         <div class="container-principal">
             <div id="panel-izquierdo">
-                <div class="sidebar-item">
+                <div id="celulares" class="sidebar-item">
                     <i class="fas fa-mobile-alt sidebar-icon"></i>
                     <span class="sidebar-text">Celulares</span>
                 </div>
-                <div class="sidebar-item">
+                <div id="accesorios" class="sidebar-item">
                     <i class="fas fa-headphones-alt sidebar-icon"></i>
                     <span class="sidebar-text">Accesorios</span>
                 </div>
             </div>
             
             <div id="panel-derecho-celulares">
-
-                <div id="spinner-container">
-                    <div class="spinner"></div>
-                </div>
-
             </div>
 
             <div id="panel-derecho-accesorios" style="display: none;">
             </div>
 
+        </div>
+
+        <!-- AGREGAR ESTILOS -->
+        <div id="btn-panel-derecho-celulares">
+            <button id="anteriores-celulares">
+                <!-- Botton para traer los anteriores 4 celulares -->
+                <i class="fas fa-minus"></i>
+                <span>Anterior Celular</span>
+            </button>
+            <button id="siguientes-celulares">
+                <!-- Botton para traer los siguientes 4 celulares -->
+                <i class="fas fa-plus"></i>
+                <span>Siguiente Celular</span>
+            </button>
+        </div>
+
+        <!-- AGREGAR ESTILOS -->
+        <div id="btn-panel-derecho-accesorios" style="display: none;">
+            <button id="anteriores-accesorios">
+                <!-- Botton para traer los anteriores 4 accesorios -->
+                <i class="fas fa-minus"></i>
+                <span>Anterior Accesorio</span>
+            </button>
+            <button id="siguientes-accesorios">
+                <!-- Botton para traer los siguientes 4 accesorios -->
+                <i class="fas fa-plus"></i>
+                <span>Siguiente Accesorio</span>
+            </button>
+        </div>
+
+        <div id="spinner-container">
+            <div class="spinner"></div>
         </div>
 
         <div>

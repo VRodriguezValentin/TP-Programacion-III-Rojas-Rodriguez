@@ -9,6 +9,15 @@ exports.findAll = async (req, res) => {
     }
 }
 
+exports.findAllWithPagination = async (req, res) => {
+    try {
+        const getProduct = await productService.getAllProductsWithPagination(req.params.tipo, req.params.offset);
+        res.status(200).send(getProduct);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+}
+
 exports.findById = async (req, res) => {
     try {
         const getProduct = await productService.getProductByID(req.params.id);
@@ -21,7 +30,9 @@ exports.findById = async (req, res) => {
 exports.controllerCreate = async (req, res) => {
     const productData = req.body;
 
-    // VALIDACIONES BASICAS
+    if (!productData.marca || !productData.precio || !productData.imagen || !productData.activo || !productData.tipo_producto) {
+        res.status(400).json({ message: 'Faltan introducir campos obligatorios.' });
+    }
 
     try {
         const newProduct = await productService.createProduct(productData);
@@ -34,7 +45,9 @@ exports.controllerCreate = async (req, res) => {
 exports.controllerUpdate = async (req, res) => {
     const productData = req.body;
 
-    // VALIDACIONES BASICAS
+    if (!productData.marca || !productData.precio || !productData.imagen || !productData.activo || !productData.tipo_producto) {
+        res.status(400).json({ message: 'Faltan introducir campos obligatorios.' });
+    }
 
     try {
         const newProduct = await productService.updateProduct(productData);

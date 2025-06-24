@@ -14,6 +14,9 @@ class ControlCarrito{
         const carritoVacio = this.VistaCarrito.carrito.carritoVacio;
         const carritoFin = this.VistaCarrito.carrito.finCarrito;
         const contenedorProductos = this.VistaCarrito.carrito.productosCarrito;
+        const carritoSpan = this.VistaCarrito.navbar.carritoSpan;
+        
+        localStorage.getItem('productosCarrito') ? carritoSpan.textContent = JSON.parse(localStorage.getItem('productosCarrito')).length : carritoSpan.textContent = 0;
 
         if (productosCarrito.length === 0) {
             carritoVacio.style.display = 'flex';
@@ -136,12 +139,11 @@ class ControlCarrito{
 
     registrarControlador(){
 
+        const carritoSpan = this.VistaCarrito.navbar.carritoSpan;
+        localStorage.getItem('productosCarrito') ? carritoSpan.textContent = JSON.parse(localStorage.getItem('productosCarrito')).length : carritoSpan.textContent = 0;
+
         this.VistaCarrito.navbar.logo.addEventListener("click", (e) =>{
             window.location.href='./home.html';
-        })
-
-        this.VistaCarrito.navbar.carrito.addEventListener("click", (e) => {
-            window.location.href='./carrito.html';
         })
 
         this.VistaCarrito.carrito.btnCancelar.addEventListener("click", (e) =>{

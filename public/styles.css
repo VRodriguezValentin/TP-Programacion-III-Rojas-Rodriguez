@@ -286,6 +286,15 @@ body {
     color: #E4E6EB;
 }
 
+#carrito-vacio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: #E4E6EB;
+}
+
 /* Pagina Principal */
 .container-principal {
     display: grid;
@@ -298,14 +307,6 @@ body {
 #panel-izquierdo {
     background-color: #242526;
     height: 100vw;
-}
-
-#panel-derecho {
-    height: 100%;
-    width: 90%;
-    padding: 30px;
-    display: flex;
-    justify-content: space-between;
 }
 
 .img-categoria {
@@ -321,9 +322,12 @@ body {
 
 #panel-derecho-celulares, #panel-derecho-accesorios {
     display: grid;
-    grid-template-columns: repeat(2, 400px); /* Dos columnas de 210px */
-    gap: 20px; /* Espacio entre los productos */
-    justify-content: center; /* Centra el grid en el contenedor */
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 100px;
+    grid-row-gap: 10px;
+    margin-top: 120px;
+    margin-left: 250px;
 }
 
 .producto {
@@ -345,6 +349,13 @@ body {
 .producto h3,
 .producto p {
     margin: 0;
+}
+
+.producto img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 20px;
 }
 
 .producto:hover {
@@ -440,10 +451,6 @@ body {
     color: #e0e0e0;
     font-size: 0.85em;
     text-align: center;
-}
-
-.container-principal {
-    margin-left: 80px;
 }
 
 /* Botones */

@@ -8,6 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="styles.css">
         <link rel="icon" href="./img/PocketStore.png" type="image/png">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
     </head>
     <body>
         <nav class="navbar">
@@ -25,15 +26,17 @@
             
             <div class="navbar-spacer-right"></div>
 
-            <a href="/carrito.html" class="cart-button">
+            <a href="/carrito.html" class="cart-button" style="background-color: rgb(31, 31, 30); height: 30px; width: 30px;">
                 <i class="fas fa-shopping-cart"></i> 
-                <span class="cart-count">0</span> 
+                <span id="carritoSpan" class="cart-count">0</span> 
             </a>
         </nav>
 
         <div class="containerCarrito">
             <div id="carrito-vacio">
-                <img src="" alt="Carrito Vacio" class="">
+                <img src="./img/empty_cart.png" alt="Carrito Vacio" class="">
+                <h2>Tu carrito está vacío</h2>
+                <p>Agrega productos para comenzar a comprar.</p>
             </div>
 
             <div id="productos-carrito"></div>
