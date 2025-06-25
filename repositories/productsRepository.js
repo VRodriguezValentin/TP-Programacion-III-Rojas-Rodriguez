@@ -1,4 +1,5 @@
 const { executeQuery } = require('../config/db');
+const { Product } = require('../config/sequelizedb');
 
 class ProductRepository {
     async findAll() {
@@ -37,22 +38,62 @@ class ProductRepository {
         }
     }
 
-    async create(productData) {
-        const sql = 'INSERT INTO productos (marca, precio, imagen, activo, modelo, color, almacenamiento, ram, tipo, compatibilidad) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
-        const params = [productData.marca, productData.precio, productData.imagen, productData.activo, productData.modelo, productData.color, productData.almacenamiento, productData.ram, productData.tipo, productData.compatibilidad];
+    // async create(productData) {
+    //     const sql = 'INSERT INTO productos (marca, precio, imagen, activo, modelo, color, almacenamiento, ram, tipo, compatibilidad) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+    //     const params = [productData.marca, productData.precio, productData.imagen, productData.activo, productData.modelo, productData.color, productData.almacenamiento, productData.ram, productData.tipo, productData.compatibilidad];
 
+    //     try {
+    //         const result = await executeQuery(sql, params);
+    //         return result;
+    //     } catch (error) {
+    //         console.error('Error en ProductRepository.create:', error.message);
+    //         throw new Error('No se pudo crear el producto. Intente de nuevo más tarde.');
+    //     }
+    // }
+
+    async createSeq(productData) {
         try {
-            const result = await executeQuery(sql, params);
+            const result = await Product.create({
+                marca:  productData.marca,
+                precio: productData.precio,
+                imagen: productData.imagen,
+                activo: true,
+                modelo: productData.modelo,
+                color:  productData.color,
+                almacenamiento: productData.almacenamiento,
+                ram:    productData.ram,
+                tipo:   productData.tipo,
+                compatibilidad: productData.compatibilidad,
+                tipo_producto:  productData.tipo_producto});
             return result;
         } catch (error) {
-            console.error('Error en ProductRepository.create:', error.message);
+            console.error('Error en ProductRepository.createSeq:', error.message);
             throw new Error('No se pudo crear el producto. Intente de nuevo más tarde.');
         }
     }
 
     async update(productData) {
-        const sql = 'UPDATE productos SET (marca, precio, imagen, activo, modelo, color, almacenamiento, ram, tipo, compatibilidad) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?) WHERE id = ?';
-        const params = [productData.marca, productData.precio, productData.imagen, productData.activo, productData.modelo, productData.color, productData.almacenamiento, productData.ram, productData.tipo, productData.compatibilidad, productData.id];
+        const sql = `
+        UPDATE productos SET marca = ?, precio = ?, imagen = ?, activo = ?, modelo = ?, color = ?, almacenamiento = ?, ram = ?, tipo = ?, compatibilidad = ?, tipo_producto = ?
+        WHERE id = ?`;
+        
+        const params = [
+            productData.marca,
+            productData.precio,
+            productData.imagen,
+            productData.activo,
+            productData.modelo,
+            productData.color,
+            productData.almacenamiento,
+            productData.ram,
+            productData.tipo,
+            productData.compatibilidad,
+            productData.tipo_producto,
+            productData.id
+        ];
+
+        console.log(productData);
+        
 
         try {
             const result = await executeQuery(sql, params);

@@ -2,91 +2,103 @@
 
 <%- include('partials/navbar'); -%>
 
+
     <div class="container-gestion">
-
-        <div>
-            producto
-            <% console.log(product) %>
-        </div>
-
         <div class="box-gestion">
             <% if (mode === 'C') {%>
-                <form method="POST" action="/products/create">
+                <form method="POST" action="/products/create" enctype="multipart/form-data">
             <%}%>
 
             <% if (mode === 'M') {%>
-                <form method="POST" action="/products/edit?_method=PUT">
+                <form method="POST" action="/products/edit?_method=PUT" enctype="multipart/form-data">
             <%}%>
 
-                <div class="form-row">
-                    <label for="imagetxt">Importar imagen: </label>
-                    <input name="imagen" type="file" id="imagetxt" value="<%= typeof product !== 'undefined' && product.imagen ? product.imagen : '' %>">
-                </div>
+            <% if (mode === 'M') {%>
+                <% if (typeof product !== 'undefined' && product.imagen) { %>
+                    <div>
+                        <label>Imagen Actual:</label><br>
+                        <img src="<%= product.imagen %>" alt="Imagen del producto" style="max-width: 200px; height: auto;">
+                        <p><%= product.imagen %></p> 
+                    </div>
+                    <input type="hidden" name="imagen_existente" value="<%= typeof product !== 'undefined' && product.imagen ? product.imagen : '' %>">
+                <% } %>
+            <%}%>
+
+            <div>
+                <label for="imagetxt">Subir Imagen:</label>
+                <input name="imagen" type="file" id="imagetxt">
+            </div>
                 
                 <div class="form-row">
-                    <input name="id" type="hidden" id="idtxt" value="<%= typeof product !== 'undefined' && product.id ? product.id : '' %>">
+                    <input name="id" type="hidden" id="idtxt" <% if (mode === 'M') {%> value="<%= typeof product !== 'undefined' && product.id ? product.id : '' %>" <% } %>>
                 </div>
 
                 <div class="form-row">
                     <label for="marcatxt">Marca: </label>
-                    <input name="marca" type="text" id="marcatxt" value="<%= typeof product !== 'undefined' && product.marca ? product.marca : '' %>">
+                    <input name="marca" type="text" id="marcatxt" <% if (mode === 'M') {%> value="<%= typeof product !== 'undefined' && product.marca ? product.marca : '' %>" <% } %>>
                 </div>
 
                 <div class="form-row">
                     <label for="preciotxt">Precio: </label>
-                    <input name="precio" type="number" id="preciotxt" value="<%= typeof product !== 'undefined' && product.precio ? product.precio : '' %>">
+                    <input name="precio" type="number" id="preciotxt" <% if (mode === 'M') {%> value="<%= typeof product !== 'undefined' && product.precio ? product.precio : '' %>"<% } %>>
                 </div>
 
                 <div class="form-row">
                     <label for="selectType">Categoria: </label>
                     <select id="selectType">
                         <option value="0" disabled selected>Seleccionar</option>
-                        <option value="1" <%= product.modelo !== null ? 'selected' : '' %> >Celular</option>
-                        <option value="2" <%= product.tipo !== null ? 'selected' : '' %> >Accesorio</option>
+                        <option value="1" <% if (mode === 'M') {%> <%= product.modelo !== null ? 'selected' : '' %> <% } %> >Celular</option>
+                        <option value="2" <% if (mode === 'M') {%> <%= product.tipo !== null ? 'selected' : '' %> <% } %> >Accesorio</option>
                     </select>
                 </div>
 
                 <div id="bloqueC" class="sel-celular">
                     <div class="form-row">
                         <label for="modelotxt">Modelo: </label>
-                        <input name="modelo" type="text" id="modelotxt" value="<%= typeof product !== 'undefined' && product.modelo ? product.modelo : '' %>">
+                        <input name="modelo" type="text" id="modelotxt" <% if (mode === 'M') {%> value="<%= typeof product !== 'undefined' && product.modelo ? product.modelo : '' %>"<% } %>>
                     </div>
                     <div class="form-row">
                         <label for="colortxt">Color: </label>
-                        <input name="color" type="text" id="colortxt" value="<%= typeof product !== 'undefined' && product.color ? product.color : '' %>">
+                        <input name="color" type="text" id="colortxt" <% if (mode === 'M') {%> value="<%= typeof product !== 'undefined' && product.color ? product.color : '' %>"<% } %>>
                     </div>
 
                     <div class="form-row">
                         <label for="almacenamientotxt">Almacenamiento: </label>
-                        <input name="almacenamiento" type="number" id="almacenamientotxt" value="<%= typeof product !== 'undefined' && product.almacenamiento ? product.almacenamiento : '' %>">
+                        <input name="almacenamiento" type="number" id="almacenamientotxt" <% if (mode === 'M') {%> value="<%= typeof product !== 'undefined' && product.almacenamiento ? product.almacenamiento : '' %>"<% } %>>
                     </div>
 
                     <div class="form-row">
                         <label for="ramtxt">RAM: </label>
-                        <input name="ram" type="number" id="ramtxt" value="<%= typeof product !== 'undefined' && product.ram ? product.ram : '' %>">
+                        <input name="ram" type="number" id="ramtxt" <% if (mode === 'M') {%> value="<%= typeof product !== 'undefined' && product.ram ? product.ram : '' %>"<% } %>>
                     </div>
                 </div>
 
                 <div id="bloqueA" class="sel-accesorio">
                     <div class="form-row">
                         <label for="tipotxt">Tipo: </label>
-                        <input name="tipo" type="text" id="tipotxt" value="<%= typeof product !== 'undefined' && product.tipo ? product.tipo : '' %>">
+                        <input name="tipo" type="text" id="tipotxt" <% if (mode === 'M') {%> value="<%= typeof product !== 'undefined' && product.tipo ? product.tipo : '' %>"<% } %>>
                     </div>
 
                     <div class="form-row">
                         <label for="compatibilidadtxt">Compatibilidad: </label>
-                        <input name="compatibilidad" type="text" id="compatibilidadtxt" value="<%= typeof product !== 'undefined' && product.compatibilidad ? product.compatibilidad : '' %>">
+                        <input name="compatibilidad" type="text" id="compatibilidadtxt" <% if (mode === 'M') {%> value="<%= typeof product !== 'undefined' && product.compatibilidad ? product.compatibilidad : '' %>"<% } %>>
                     </div>
                 </div>
 
                 <input name="flag" id="flag" type="hidden" value="1">
-                <input name="activo" id="activo" type="hidden" value="<%= typeof product !== 'undefined' && product.activo ? product.activo : true %>">
+                <input name="activo" id="activo" type="hidden" <% if (mode === 'M') {%> value="<%= typeof product !== 'undefined' && product.activo ? product.activo : true %>"<% } %>>
 
                 <div class="botonera-login">
                     <a href="/dashboard" id="btnGestionCancelar" class="button">Cancelar</a>
                     <button id="btnGestionAceptar" class="button" type="submit">Aceptar</button>
                 </div>
             </form>
+
+            <% if (errorMessage) { %>
+                <div style="color: red; margin-bottom: 15px;">
+                    <%= errorMessage %>
+                </div>
+            <% } %>
         </div>
     </div>
 

@@ -19,7 +19,7 @@ exports.getCreatePage = (req, res) => {
 }
 
 exports.getGestionPage = (req, res) => {
-    res.render('gestion', {seccionActual: 'Gestion', mode:'C', product: null});
+    res.render('gestion', {seccionActual: 'Gestion', errorMessage: null, mode:'C', product: null});
 }
 
 exports.getProductsPage = async (req, res) => {

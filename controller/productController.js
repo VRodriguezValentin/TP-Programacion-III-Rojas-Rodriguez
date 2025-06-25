@@ -27,33 +27,35 @@ exports.findById = async (req, res) => {
     }
 }
 
-exports.controllerCreate = async (req, res) => {
+// exports.controllerCreate = async (req, res) => {
+//     const productData = req.body;
+
+//     if (!productData.marca || !productData.precio || !productData.imagen || !productData.activo || !productData.tipo_producto) {
+//         res.status(400).json({ message: 'Faltan introducir campos obligatorios.' });
+//     }
+
+//     try {
+//         const newProduct = await productService.createProduct(productData);
+//         res.status(201).json({ message: 'Producto creado exitosamente', product: newProduct });
+//     } catch (error) {
+//         res.status(400).json({ message: error.message });
+//     }
+// }
+
+exports.controllerCreateSeq = async (req, res) => {
     const productData = req.body;
 
-    if (!productData.marca || !productData.precio || !productData.imagen || !productData.activo || !productData.tipo_producto) {
-        res.status(400).json({ message: 'Faltan introducir campos obligatorios.' });
+    productData.imagen = req.file.filename;
+
+    if (!productData.marca || !productData.precio || !productData.imagen) {
+        res.render('gestion', {seccionActual: 'Gestion', errorMessage: 'Completa todos los campos', mode: 'C', product: null});
     }
 
     try {
-        const newProduct = await productService.createProduct(productData);
+        const newProduct = await productService.createProductSeq(productData);
         res.status(201).json({ message: 'Producto creado exitosamente', product: newProduct });
     } catch (error) {
-        res.status(400).json({ message: error.message });
-    }
-}
-
-exports.controllerUpdate = async (req, res) => {
-    const productData = req.body;
-
-    if (!productData.marca || !productData.precio || !productData.imagen || !productData.activo || !productData.tipo_producto) {
-        res.status(400).json({ message: 'Faltan introducir campos obligatorios.' });
-    }
-
-    try {
-        const newProduct = await productService.updateProduct(productData);
-        res.status(201).json({ message: 'Producto modificado exitosamente', product: newProduct });
-    } catch (error) {
-        res.status(400).json({ message: error.message });
+        res.render('gestion', {seccionActual: 'Gestion', errorMessage: error.message, mode: 'C', product: null});
     }
 }
 
@@ -61,7 +63,7 @@ exports.enableProduct = async (req, res) => {
     const productId = req.params.id;
 
     try {
-        const product = await productService.updateStatus(productId, true);
+        await productService.updateStatus(productId, true);
         console.log(`Producto ${productId} habilitado.`);
         res.redirect('/dashboard');
     } catch (error) {
@@ -74,7 +76,7 @@ exports.disableProduct = async (req, res) => {
     const productId = req.params.id;
 
     try {
-        const product = await productService.updateStatus(productId, false);
+        await productService.updateStatus(productId, false);
         console.log(`Producto ${productId} habilitado.`);
         res.redirect('/dashboard');
     } catch (error) {
@@ -87,36 +89,38 @@ exports.getEditProductPage = async (req, res) => {
     const productId = req.params.id;
 
     try {
-        const productFinded = await productService.getProductByID(productId);
-        res.render('gestion', {seccionActual: 'Gestion', mode: 'M', product: productFinded[0]});
+        var productFinded = await productService.getProductByID(productId);
+        res.render('gestion', {seccionActual: 'Gestion', errorMessage: null, mode: 'M', product: productFinded[0]});
     } catch (error) {
-        res.status(500).json({ message: error.message });
+        res.render('gestion', {seccionActual: 'Gestion', errorMessage: error.message, mode: 'M', product: productFinded[0]});
     }
 }
 
 exports.editProduct = async (req, res) => {
     const product = req.body;
 
-    if (product.flag === 1) {
+    product.imagen = req.file.filename;
+
+    console.log(product);
+
+    if (product.flag == 1) {
         product.modelo = null;
         product.color = null;
         product.almacenamiento = null;
         product.ram = null;
+        product.tipo_producto = 'accesorio';
     } else {
         product.tipo = null;
         product.compatibilidad = null;
+        product.tipo_producto = 'celular';
     }
-    
-    product.imagen = '/nadaporahora';
 
     console.log(product);
-    
 
     try {
         const productFinded = await productService.updateProduct(product);
-        console.log(productFinded);
         res.redirect('/dashboard');
     } catch (error) {
-        res.status(500).json({ message: error.message });
+        res.render('gestion', {seccionActual: 'Gestion', errorMessage: error.message, mode: 'M', product: product});
     }
 }

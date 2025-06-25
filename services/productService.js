@@ -31,33 +31,63 @@ class ProductService {
         }
     }
 
-    async createProduct(productData) {
+    // async createProduct(productData) {
 
-        if (productData.marca.length < 1 || productData.marca.length > 50 ||
-            productData.precio < 0 || productData.precio > 1000000 ||
-            productData.imagen.length < 1 || productData.imagen.length > 200 ||
-            typeof productData.activo !== 'boolean' ||
-            !['celular', 'accesorio'].includes(productData.tipo_producto)) {
-            throw new Error('Datos del producto no válidos.');
+    //     if (productData.marca.length < 1 || productData.marca.length > 50 ||
+    //         productData.precio < 0 || productData.precio > 1000000 ||
+    //         productData.imagen.length < 1 || productData.imagen.length > 200 ||
+    //         typeof productData.activo !== 'boolean' ||
+    //         !['celular', 'accesorio'].includes(productData.tipo_producto)) {
+    //         throw new Error('Datos del producto no válidos.');
+    //     }
+
+    //     try {
+    //         const products = await productRepository.create(productData);
+    //         return products;
+    //     } catch (error) {
+    //         console.error('Error en ProductService.createProduct:', error.message);
+    //         throw new Error('No se pudo crear el producto. Intente de nuevo más tarde.');
+    //     }
+    // }
+
+    async createProductSeq(productData) {
+
+        if (productData.flag == 1) {
+            productData.modelo = null;
+            productData.color = null;
+            productData.almacenamiento = null;
+            productData.ram = null;
+            productData.tipo_producto = 'accesorio';
+        } else {
+            productData.tipo = null;
+            productData.compatibilidad = null;
+            productData.tipo_producto = 'celular';
         }
 
         try {
-            const products = await productRepository.create(productData);
+            await this.validateProduct(productData)
+        } catch (error) {
+            console.error('Error de validación en ProductService.createProductSeq:', validationError.message);
+            throw validationError;
+        }
+
+        try {
+            const products = await productRepository.createSeq(productData);
             return products;
         } catch (error) {
             console.error('Error en ProductService.createProduct:', error.message);
             throw new Error('No se pudo crear el producto. Intente de nuevo más tarde.');
         }
+
     }
 
     async updateProduct(productData) {
-        
-        if (productData.marca.length < 1 || productData.marca.length > 50 ||
-            productData.precio < 0 || productData.precio > 1000000 ||
-            productData.imagen.length < 1 || productData.imagen.length > 200 ||
-            typeof productData.activo !== 'boolean' ||
-            !['celular', 'accesorio'].includes(productData.tipo_producto)) {
-            throw new Error('Datos del producto no válidos.');
+
+        try {
+            await this.validateProduct(productData);
+        } catch (error) {
+            console.error('Error de validación en ProductService.updateProduct:', validationError.message);
+            throw validationError;
         }
 
         try {
@@ -70,7 +100,6 @@ class ProductService {
     }
 
     async updateStatus(id, newStatus) {
-        // VALIDACIONES - LOGICA DE NEGOCIO
         try {
             const products = await productRepository.updateStatusBd(id, newStatus);
             return products;
@@ -89,6 +118,42 @@ class ProductService {
             console.error('Error en ProductService.deleteProduct:', error.message);
             throw new Error('No se pudo eliminar el producto. Intente de nuevo más tarde.');
         }
+    }
+
+    async validateProduct(productData) {
+        if (productData.marca.length < 1 || productData.marca.length > 50) {
+            throw new Error('Marca invalida.');
+        }
+
+        if (productData.precio < 0) {
+            throw new Error('El precio no puede ser negativo.');
+        }
+
+        if (productData.tipo_producto === 'celular') {
+            if (productData.modelo.length < 1 || productData.modelo.length > 50) {
+                throw new Error('Ingrese un modelo valido.');
+            }
+            if (productData.color.length < 1 || productData.color.length > 50) {
+                throw new Error('Ingrese un color valido.');
+            }
+            if (productData.almacenamiento < 1) {
+                throw new Error('Ingrese un almacenamiento valido.');
+            }
+            if (productData.ram < 1) {
+                throw new Error('Ingrese una ram valida.');
+            }
+        }
+
+        if (productData.tipo_producto === 'accesorio') {
+            if (productData.tipo.length < 1 || productData.tipo.length > 50) {
+                throw new Error('Ingrese un tipo valido.');
+            }
+            if (productData.compatibilidad.length < 1 || productData.compatibilidad.length > 50) {
+                throw new Error('Ingrese una compatibilidad valida.');
+            }
+        }
+
+        return true;
     }
 }
 
