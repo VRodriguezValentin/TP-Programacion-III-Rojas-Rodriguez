@@ -13,7 +13,7 @@ class ControlTicket{
         const productosCarrito = JSON.parse(localStorage.getItem('productosCarrito')) || [];
 
         if (productosCarrito.length === 0) {
-            this.VistaTicket.ticket.cabeceraTicket.innerHTML = '<h1>Algo salio mal</h1>';
+            this.VistaTicket.ticket.cabeceraTicket.innerHTML = '<img src="./img/empty_cart.png" alt="Carrito Vacio" class=""> <h1 style="display: flex; justify-content: center; align-items: center;">Algo salio mal</h1>';
             this.VistaTicket.ticket.detalleTicket.innerHTML = '<p>No se encontraron productos para su compra, intentelo en otro momento.</p>';
             this.VistaTicket.ticket.finTicket.innerHTML = '<button class="button" onclick="window.location.href=\'./index.html\'">Salir</button>';
         } else {
@@ -71,7 +71,7 @@ class ControlTicket{
         detalleTicket.innerHTML = detalleHTML;
 
         const total = this.calcularTotal(productosCarrito)
-        this.VistaTicket.ticket.total.innerHTML = `<p>Total a Pagar: $${total.toFixed(2)}</p>`;
+        this.VistaTicket.ticket.total.innerHTML = `<p>Monto Total: $${total.toFixed(2)}</p>`;
 
         this.registrarVenta(nombreUsuario, total, arrayDetalle);
     }
@@ -119,7 +119,9 @@ class ControlTicket{
                 </head>
                 <body>
                     ${cabecera}
-                    ${detalle}
+                    <div style="text-align: center; margin: 20px;">
+                        ${detalle}
+                    </div>
                     <div id="finTicket">
                         ${total}
                     </div>
@@ -152,11 +154,11 @@ class ControlTicket{
     registrarControlador(){
 
         this.VistaTicket.navbar.logo.addEventListener("click", (e) =>{
-            window.location.href='./home.html';
+            alert("Su sesion ha expirado❗\nPor favor salga e introduzca su nombre nuevamente.");
         })
 
         this.VistaTicket.navbar.carrito.addEventListener("click", (e) => {
-            window.location.href='./carrito.html';
+            alert("Su sesion ha expirado❗\nPor favor salga e introduzca su nombre nuevamente.");
         })
 
         this.VistaTicket.ticket.btnSalir.addEventListener("click", (e) =>{

@@ -78,11 +78,11 @@ class ControlLogin{
             return false;
         }
     
-        const regex = /^[a-zA-Z0-9_]+$/;
+        const regex = /^[a-zA-Z_]+$/;
 
         if (!regex.test(nombreCliente.value)) {
             nombreCliente.style.border = "2px solid red";
-            this.mostrarMensaje("El nombre solo puede contener letras, números y guiones bajos.");
+            this.mostrarMensaje("El nombre solo puede contener letras y guiones bajos.");
             return false;
         }
 
