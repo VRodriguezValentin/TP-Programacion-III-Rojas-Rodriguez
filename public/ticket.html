@@ -12,7 +12,7 @@
     <body>
         <nav class="navbar">
             <div class="navbar-logo-container">
-                <img id="logoNav" src="./img/PocketStore.png" alt="Logo de PocketStore" class="logoNav" onclick="location.href='/home.html'">
+                <img id="logoNav" src="./img/PocketStore.png" alt="Logo de PocketStore" class="logoNav" style="cursor: default;">
             </div>
 
             <div class="navbar-spacer-left"></div>
@@ -25,7 +25,7 @@
             
             <div class="navbar-spacer-right"></div>
 
-            <a id="carritoNav" href="/carrito.html" class="cart-button" style="background-color: rgb(31, 31, 30); height: 30px; width: 30px;">
+            <a id="carritoNav" class="cart-button" style="background-color: rgb(31, 31, 30); height: 30px; width: 30px; cursor: default;">
                 <i class="fas fa-shopping-cart"></i> 
                 <span id="carritoSpan" class="cart-count">0</span> 
             </a>
@@ -34,10 +34,12 @@
         <div class="ticket">
             <div class="ticket2">
                 <div id="cabeceraTicket">
-                    <img src="./img/PocketStore.png" alt="Logo de PocketStore" class="logoTicket">
-                    <h2>Recibo de compra</h2>
-                    <i id="nombreUsuario">Nombre de Usuario</i>
-                    <p id="fechaOperacion">2025-11-20</p>
+                    <img src="./img/PocketStore.png" alt="Logo de PocketStore" class="logo-ticket">
+                    <h2 style="margin-top: -25px;">Recibo de compra</h2>
+                    <div id="cabeceraTicket-row">
+                        <i id="nombreUsuario">Nombre de Usuario</i>
+                        <i id="fechaOperacion">2025-11-20</i>
+                    </div>
                 </div>
 
                 <div id="detalleTicket">
@@ -45,8 +47,11 @@
 
                 <div id="finTicket">
                     <p id="totalTicket">total: $1000</p>
-                    <button id="btnPdf" type="submit" class="button">Descargar PDF</button>
-                    <button id="btnSalir" type="submit" class="button">Salir</button>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <button id="btnPdf" type="submit" class="button">Descargar PDF</button>
+                        <button id="btnSalir" type="submit" class="button">Salir</button>
+                    </div>
+                    
                 </div>
             </div>
         </div>

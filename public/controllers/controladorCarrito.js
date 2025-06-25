@@ -79,6 +79,8 @@ class ControlCarrito{
             const precioTotal = document.createElement('p');
             precioTotal.textContent = `Precio total: $${producto.precio * producto.cantidad}`;
 
+            const divBotones = document.createElement('div');
+
             const btnAgregar = document.createElement('button');
             btnAgregar.textContent = '➕';
             btnAgregar.classList.add('button-small');
@@ -129,9 +131,12 @@ class ControlCarrito{
             divProducto.appendChild(cantidadProducto);
             divProducto.appendChild(precioProducto);
             divProducto.appendChild(precioTotal);
-            divProducto.appendChild(btnAgregar);
-            divProducto.appendChild(btnRemover);
-            divProducto.appendChild(btnEliminar);
+
+            divBotones.appendChild(btnAgregar);
+            divBotones.appendChild(btnRemover);
+            divBotones.appendChild(btnEliminar);
+            
+            divProducto.appendChild(divBotones);
 
             contenedorProductos.appendChild(divProducto);
         });

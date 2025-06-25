@@ -137,6 +137,9 @@ class ControlPrincipal{
 
     registrarControlador(){
 
+        localStorage.setItem('offsetCelulares', 0);
+        localStorage.setItem('offsetAccesorios', 0);
+
         const carritoSpan = this.VistaPrincipal.navbar.carritoSpan;
         localStorage.getItem('productosCarrito') ? carritoSpan.textContent = JSON.parse(localStorage.getItem('productosCarrito')).length : carritoSpan.textContent = 0;
 
