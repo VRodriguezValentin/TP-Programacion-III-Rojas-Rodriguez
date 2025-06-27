@@ -27,33 +27,16 @@ exports.findById = async (req, res) => {
     }
 }
 
-// exports.controllerCreate = async (req, res) => {
-//     const productData = req.body;
-
-//     if (!productData.marca || !productData.precio || !productData.imagen || !productData.activo || !productData.tipo_producto) {
-//         res.status(400).json({ message: 'Faltan introducir campos obligatorios.' });
-//     }
-
-//     try {
-//         const newProduct = await productService.createProduct(productData);
-//         res.status(201).json({ message: 'Producto creado exitosamente', product: newProduct });
-//     } catch (error) {
-//         res.status(400).json({ message: error.message });
-//     }
-// }
-
 exports.controllerCreateSeq = async (req, res) => {
     const productData = req.body;
 
-    productData.imagen = req.file.filename;
-
-    if (!productData.marca || !productData.precio || !productData.imagen) {
-        res.render('gestion', {seccionActual: 'Gestion', errorMessage: 'Completa todos los campos', mode: 'C', product: null});
+    if (req.file !== undefined) {
+        productData.imagen = req.file.filename;
     }
 
     try {
-        const newProduct = await productService.createProductSeq(productData);
-        res.status(201).json({ message: 'Producto creado exitosamente', product: newProduct });
+        await productService.createProductSeq(productData);
+        res.redirect('/dashboard');
     } catch (error) {
         res.render('gestion', {seccionActual: 'Gestion', errorMessage: error.message, mode: 'C', product: null});
     }
@@ -99,9 +82,11 @@ exports.getEditProductPage = async (req, res) => {
 exports.editProduct = async (req, res) => {
     const product = req.body;
 
-    product.imagen = req.file.filename;
-
-    console.log(product);
+    if (req.file) {
+        product.imagen = req.file.filename;
+    } else {
+        product.imagen = product.imagen_existente;
+    }
 
     if (product.flag == 1) {
         product.modelo = null;

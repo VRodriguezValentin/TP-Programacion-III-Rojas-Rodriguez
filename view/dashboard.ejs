@@ -16,11 +16,10 @@
             <% products.forEach(p=> { %>
                 <div class='<%= p.modelo ? "panel-celulares" : "panel-accesorios" %>'>
                     <div class='<%= p.activo ? "card-gestion-active" : "card-gestion-disable" %>'>
-                        <img src="<%= p.imagen %>" style="max-width: 200px; max-height: 200px;">
-                        <p> <%=p.marca%> </p>
-                        <p> <%=p.precio%> </p>
-                        <p> <%=p.id%> </p>
-                        <p> <%=p.activo%> </p>
+                        <img src="/data/uploads/<%= p.imagen %>" style="max-width: 200px; max-height: 200px;">
+                        <p> Marca: <%=p.marca%> </p>
+                        <p> Modelo: <%=p.modelo%> </p>
+                        <p> Precio: $<%=p.precio%> </p>
 
                         <div class="btn-caja">
                             <% if (!p.activo) { %>

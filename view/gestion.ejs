@@ -17,8 +17,7 @@
                 <% if (typeof product !== 'undefined' && product.imagen) { %>
                     <div>
                         <label>Imagen Actual:</label><br>
-                        <img src="<%= product.imagen %>" alt="Imagen del producto" style="max-width: 200px; height: auto;">
-                        <p><%= product.imagen %></p> 
+                        <img src="/data/uploads/<%= product.imagen %>" alt="Imagen del producto" style="max-width: 200px; height: auto;">
                     </div>
                     <input type="hidden" name="imagen_existente" value="<%= typeof product !== 'undefined' && product.imagen ? product.imagen : '' %>">
                 <% } %>
@@ -47,8 +46,8 @@
                     <label for="selectType">Categoria: </label>
                     <select id="selectType">
                         <option value="0" disabled selected>Seleccionar</option>
-                        <option value="1" <% if (mode === 'M') {%> <%= product.modelo !== null ? 'selected' : '' %> <% } %> >Celular</option>
-                        <option value="2" <% if (mode === 'M') {%> <%= product.tipo !== null ? 'selected' : '' %> <% } %> >Accesorio</option>
+                        <option value="1" <% if (mode === 'M' && typeof product !== 'undefined') {%> <%= product.modelo !== null ? 'selected' : '' %> <% } %> >Celular</option>
+                        <option value="2" <% if (mode === 'M' && typeof product !== 'undefined') {%> <%= product.tipo !== null ? 'selected' : '' %> <% } %> >Accesorio</option>
                     </select>
                 </div>
 

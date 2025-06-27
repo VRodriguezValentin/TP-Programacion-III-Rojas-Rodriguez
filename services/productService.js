@@ -65,10 +65,10 @@ class ProductService {
         }
 
         try {
-            await this.validateProduct(productData)
+            await this.validateProduct(productData);
         } catch (error) {
-            console.error('Error de validación en ProductService.createProductSeq:', validationError.message);
-            throw validationError;
+            console.error('Error de validación en ProductService.createProductSeq:', error.message);
+            throw error;
         }
 
         try {
@@ -86,8 +86,8 @@ class ProductService {
         try {
             await this.validateProduct(productData);
         } catch (error) {
-            console.error('Error de validación en ProductService.updateProduct:', validationError.message);
-            throw validationError;
+            console.error('Error de validación en ProductService.updateProduct:', error.message);
+            throw error;
         }
 
         try {
@@ -127,6 +127,10 @@ class ProductService {
 
         if (productData.precio < 0) {
             throw new Error('El precio no puede ser negativo.');
+        }
+
+        if (productData.imagen === undefined) {
+            throw new Error('Debe ingresar una imagen para el producto.');
         }
 
         if (productData.tipo_producto === 'celular') {
