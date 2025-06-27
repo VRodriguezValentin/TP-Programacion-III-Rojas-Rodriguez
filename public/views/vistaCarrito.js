@@ -1,6 +1,7 @@
 class VistaCarrito{
     navbar;
     carrito;
+    modal;
     btnTema;
     constructor(){
         this.navbar = {
@@ -19,6 +20,12 @@ class VistaCarrito{
             btnFinalizar:     this.$("btnFinalizar")
             }
         
+        this.modal = {
+            modalDiv: this.$("modalConfirmacion"),
+            btnCancelarModal: this.$("btnCancelarModal"),
+            btnConfirmarModal: this.$("btnConfirmarModal")
+        }
+
         this.btnTema = this.$("btnTema");
     }
 

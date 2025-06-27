@@ -9,6 +9,15 @@ exports.findAll = async (req, res) => {
     }
 }
 
+exports.findDetById = async (req, res) => {
+    try {
+        const getventas = await ventaService.getDetalleVenta(req.params.id);
+        res.status(200).send(getventas);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+}
+
 exports.controllerCreate = async (req, res) => {
     const ventaData = req.body;
 

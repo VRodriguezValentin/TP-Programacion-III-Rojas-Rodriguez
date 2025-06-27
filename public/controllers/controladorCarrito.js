@@ -156,9 +156,22 @@ class ControlCarrito{
             window.location.href='./home.html';
         })
 
-        this.VistaCarrito.carrito.btnFinalizar.addEventListener("click", (e) =>{
-            window.location.href='./ticket.html';
-        })
+        this.VistaCarrito.carrito.btnFinalizar.addEventListener("click", (e) => {
+            e.preventDefault();
+            modal.style.display = "flex";
+        });
+
+        const modal = this.VistaCarrito.modal.modalDiv;
+
+        this.VistaCarrito.modal.btnCancelarModal.addEventListener("click", (e) => {
+            e.preventDefault();
+            modal.style.display = "none";
+        });
+
+        this.VistaCarrito.modal.btnConfirmarModal.addEventListener("click", (e) => {
+            e.preventDefault();
+            window.location.href = './ticket.html';
+        });
 
         if (localStorage.getItem("tema") === "oscuro") {
             document.body.classList.remove("bright");

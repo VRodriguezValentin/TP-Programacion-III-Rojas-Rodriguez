@@ -507,13 +507,34 @@ a.button {
     margin-inline: 20px;
 }
 
+.btn-login-top {
+    height: 50px;
+    position: fixed;
+    top: 24px;
+    right: 32px;
+    z-index: 1000;
+    padding: 10px 22px;
+    background: rgb(99, 98, 98);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 1em;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+    transition: background 0.2s;
+}
+.btn-login-top:hover {
+    background: #0056b3;
+}
+
 /* Formulario */
 #divCliente input, select, #divLogin input, select, .box-gestion input, select {
     padding: 10px;
     border-radius: 6px;
-    border: 1px solid #555; /* Gris oscuro */
-    background-color: #18191A; /* Fondo input oscuro */
-    color: #E4E6EB; /* Texto claro */
+    border: 1px solid #555;
+    background-color: #18191A; 
+    color: #E4E6EB;
     font-size: 14px;
     width: 80%;
     max-width: 400px;
@@ -948,4 +969,35 @@ background-size: var(--gap) var(--gap);
         outline-offset: 20px;
         opacity: 0;
     }
+}
+
+/* Modal de confirmación */
+.modal-confirmacion {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+}
+.modal-contenido {
+    background: #fff;
+    color: #222;
+    padding: 32px 24px;
+    border-radius: 16px;
+    box-shadow: 0 4px 32px rgba(0,0,0,0.18);
+    text-align: center;
+    min-width: 300px;
+}
+.modal-botones {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-top: 24px;
+}
+.modal-contenido .btn-cancelar,
+.modal-contenido .btn-finalizar {
+    min-width: 120px;
 }

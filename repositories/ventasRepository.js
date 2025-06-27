@@ -13,6 +13,18 @@ class VentaRepository {
         }
     }
 
+    async findDetById(id) {
+        const sql = `SELECT * FROM detalle_venta where id_venta = ? ORDER BY id_producto`;
+
+        try {
+            const result = await executeQuery(sql, [id]);
+            return result;
+        } catch (error) {
+            console.error('Error en VentaRepository.findDetById:', error.message);
+            throw new Error('No se pudo encontrar el detalle de la venta. Intente de nuevo más tarde.');
+        }
+    }
+
     async create(ventaData) {
         let sql;
         let params;
