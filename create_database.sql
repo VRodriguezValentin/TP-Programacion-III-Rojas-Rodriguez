@@ -47,10 +47,10 @@ CREATE TABLE IF NOT EXISTS detalle_venta (
 -- Insertar celulares
 INSERT INTO productos (marca, precio, imagen, activo, modelo, color, almacenamiento, ram, tipo, compatibilidad, tipo_producto)
 VALUES 
-('Samsung', 250000, ' ', true, 'Galaxy S21', 'Negro', 128, 8, NULL, NULL, 'celular'),
-('Apple', 350000, ' ', true, 'iPhone 13', 'Blanco', 540, 4, NULL, NULL, 'celular'),
-('Xiaomi', 180000, ' ', true, 'Redmi Note 11', 'Azul', 128, 6, NULL, NULL, 'celular'),
-('Motorola', 200000, ' ', true, 'Moto G82', 'Gris', 246, 6, NULL, NULL, 'celular');
+('Samsung', 1500000, 'imagen-1751072325395.avif', true, 'Galaxy S21', 'Blanco', 128, 8, NULL, NULL, 'celular'),
+('Apple', 2300000, 'imagen-1751072435232.png', true, 'iPhone 13', 'Negro', 540, 4, NULL, NULL, 'celular'),
+('Xiaomi', 890000, 'imagen-1751072531139.png', true, 'Redmi Note 11', 'Azul', 128, 6, NULL, NULL, 'celular'),
+('Motorola', 1100100, 'imagen-1751072701095.png', true, 'Moto G82', 'Negro', 246, 6, NULL, NULL, 'celular');
 
 -- Insertar accesorios
 INSERT INTO productos (marca, precio, imagen, activo, modelo, color, almacenamiento, ram, tipo, compatibilidad, tipo_producto)

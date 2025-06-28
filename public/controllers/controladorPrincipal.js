@@ -70,7 +70,7 @@ class ControlPrincipal{
             div.classList.add('producto');
 
             const img = document.createElement('img');
-            img.src = prod.imagen;
+            img.src = `/data/uploads/${prod.imagen}`;
             prod instanceof Celular ? img.alt = 'Imagen de Celular' : img.alt = 'Imagen de Accesorio'
 
             const name = document.createElement('h3') 
