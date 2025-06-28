@@ -528,6 +528,67 @@ a.button {
     background: #0056b3;
 }
 
+/* Contenedor para los botones de paginación */
+#btn-panel-derecho-celulares,
+#btn-panel-derecho-accesorios {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    pointer-events: none; /* Permite que los botones sean clickeables pero no el contenedor */
+    z-index: 10;
+    height: 0;
+}
+
+#btn-panel-derecho-celulares button,
+#btn-panel-derecho-accesorios button {
+    pointer-events: auto;
+    background: #2c2c2c;
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    padding: 14px 22px;
+    font-size: 1em;
+    font-weight: bold;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+    transition: background 0.2s, transform 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+#btn-panel-derecho-celulares button:hover,
+#btn-panel-derecho-accesorios button:hover {
+    background: #494949;
+    transform: scale(1.07);
+}
+
+#siguientes-celulares,
+#siguientes-accesorios {
+    margin-right: 65px;
+}
+
+#anteriores-celulares,
+#anteriores-accesorios {
+    margin-left: 135px;
+}
+
+#btn-panel-derecho-celulares {
+    left: 0;
+    right: 0;
+    margin-top: -5px;
+}
+
+#btn-panel-derecho-accesorios {
+    left: 0;
+    right: 0;
+    margin-top: -5px;
+}
+
 /* Formulario */
 #divCliente input, select, #divLogin input, select, .box-gestion input, select {
     padding: 10px;

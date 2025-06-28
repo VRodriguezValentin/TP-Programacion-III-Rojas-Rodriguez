@@ -50,7 +50,8 @@ VALUES
 ('Samsung', 1500000, 'imagen-1751072325395.avif', true, 'Galaxy S21', 'Blanco', 128, 8, NULL, NULL, 'celular'),
 ('Apple', 2300000, 'imagen-1751072435232.png', true, 'iPhone 13', 'Negro', 540, 4, NULL, NULL, 'celular'),
 ('Xiaomi', 890000, 'imagen-1751072531139.png', true, 'Redmi Note 11', 'Azul', 128, 6, NULL, NULL, 'celular'),
-('Motorola', 1100100, 'imagen-1751072701095.png', true, 'Moto G82', 'Negro', 246, 6, NULL, NULL, 'celular');
+('Motorola', 1100100, 'imagen-1751072701095.png', true, 'Moto G82', 'Negro', 246, 6, NULL, NULL, 'celular'),
+('Samsung', 950000, 'imagen-1751141756187.avif', true, 'Galaxy A15', 'Amarillo', 518, 8, NULL, NULL, 'celular');
 
 -- Insertar accesorios
 INSERT INTO productos (marca, precio, imagen, activo, modelo, color, almacenamiento, ram, tipo, compatibilidad, tipo_producto)
@@ -58,8 +59,9 @@ VALUES
 ('Samsung', 50000, 'imagen-1751073991553.png', true, NULL, NULL, NULL, NULL, 'Cargador', 'USB-C', 'accesorio'),
 ('Apple', 150000, 'imagen-1751074105178.png', true, NULL, NULL, NULL, NULL, 'Funda', 'iPhone 13', 'accesorio'),
 ('JBL', 350000, 'imagen-1751074411154.png', true, NULL, NULL, NULL, NULL, 'Auriculares', 'Bluetooth', 'accesorio'),
-('Huawei', 40000, 'imagen-1751074741276.png', true, NULL, NULL, NULL, NULL, 'Smartwatch', 'Android', 'accesorio');
+('Huawei', 40000, 'imagen-1751074741276.png', true, NULL, NULL, NULL, NULL, 'Smartwatch', 'Android', 'accesorio'),
+('Samsung', 125000, 'imagen-1751141821463.png', true, NULL, NULL, NULL, NULL, 'Funda', 'Galaxy A15', 'accesorio');
 
 -- Insertar usuario admin
 INSERT INTO usuarios (username, email, pass)
-VALUES ('admin', 'admin@pocketstore.com', 'admin123');
+VALUES ('admin', 'admin@pocketstore.com', '$2b$10$eWCVNOK9JclGT5XMG0Ohr.V8qk0TXfKTNC2.0kXIhOcuHQfdkTGEy'); -- Contraseña: admin123
