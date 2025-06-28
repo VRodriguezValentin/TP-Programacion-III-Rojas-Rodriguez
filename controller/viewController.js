@@ -7,7 +7,7 @@ exports.getLoginPage = (req, res) => {
         sessionMessage = decodeURIComponent(req.query.message);
     }
 
-    res.render('login', {
+    res.clearCookie('access_token').render('login', {
         sessionMessage: sessionMessage,
         loginSuccess: null,
         oldData: {}

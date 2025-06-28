@@ -1,10 +1,10 @@
 <%- include('partials/header'); -%>
 
 <% if (sessionMessage) { %>
-    <div>
+    <div style="display: flex; align-items: center; justify-content: center;">
         <%= sessionMessage %>
     </div>
-    <% } %>
+<% } %>
 
 <% if (loginSuccess) { %>
     <div class="container-loader">
@@ -46,10 +46,10 @@
     <form method="POST" action="/loginInfo">
         <div id="divLogin" class="caja">
 
-            <label for="username">Nombre de usuario:</label>
-            <input id="username" name="username" type="text"
-                placeholder="Ingrese su nombre de usuario"
-                value="<%= typeof oldData !== 'undefined' && oldData.username ? oldData.username : '' %>"
+            <label for="email">Email:</label>
+            <input id="email" name="email" type="text"
+                placeholder="Ingrese su email"
+                value="<%= typeof oldData !== 'undefined' && oldData.email ? oldData.email : '' %>"
                 required>
 
             <label for="password">Contraseña:</label>

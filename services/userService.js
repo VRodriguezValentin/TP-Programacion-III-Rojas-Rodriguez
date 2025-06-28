@@ -111,10 +111,10 @@ class UserService {
     async validateLogin(loginData) {
         const usersArray = await this.getAllUsers();
 
-        const userFinded = usersArray.find(u => u.username === loginData.username);
+        const userFinded = usersArray.find(u => u.email === loginData.email);
 
         if (!userFinded) {
-            throw new Error('Usuario o contraseña incorrectos.');
+            throw new Error('Email o contraseña incorrectos.');
         }
 
         if (!userFinded.pass || typeof userFinded.pass !== 'string') {
@@ -126,7 +126,7 @@ class UserService {
         if (compare) {
             return userFinded;
         } else {
-            throw new Error('Usuario o contraseña incorrectos.');
+            throw new Error('Email o contraseña incorrectos.');
         }
     }
 }
