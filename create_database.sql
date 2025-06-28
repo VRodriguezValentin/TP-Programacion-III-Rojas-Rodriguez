@@ -55,10 +55,10 @@ VALUES
 -- Insertar accesorios
 INSERT INTO productos (marca, precio, imagen, activo, modelo, color, almacenamiento, ram, tipo, compatibilidad, tipo_producto)
 VALUES 
-('Samsung', 15000, ' ', true, NULL, NULL, NULL, NULL, 'Cargador', 'USB-C', 'accesorio'),
-('Apple', 10000, ' ', true, NULL, NULL, NULL, NULL, 'Funda', 'iPhone 13', 'accesorio'),
-('JBL', 25000, ' ', true, NULL, NULL, NULL, NULL, 'Auriculares', 'Bluetooth', 'accesorio'),
-('Huawei', 50000, ' ', true, NULL, NULL, NULL, NULL, 'Smartwatch', 'Android/iOS', 'accesorio');
+('Samsung', 50000, 'imagen-1751073991553.png', true, NULL, NULL, NULL, NULL, 'Cargador', 'USB-C', 'accesorio'),
+('Apple', 150000, 'imagen-1751074105178.png', true, NULL, NULL, NULL, NULL, 'Funda', 'iPhone 13', 'accesorio'),
+('JBL', 350000, 'imagen-1751074411154.png', true, NULL, NULL, NULL, NULL, 'Auriculares', 'Bluetooth', 'accesorio'),
+('Huawei', 40000, 'imagen-1751074741276.png', true, NULL, NULL, NULL, NULL, 'Smartwatch', 'Android', 'accesorio');
 
 -- Insertar usuario admin
 INSERT INTO usuarios (username, email, pass)

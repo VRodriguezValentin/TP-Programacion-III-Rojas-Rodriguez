@@ -63,7 +63,7 @@ class ControlCarrito{
             divProducto.classList.add('producto-carrito');
 
             const imgProducto = document.createElement('img');
-            imgProducto.src = producto.imagen;
+            imgProducto.src = `/data/uploads/${producto.imagen}`;
             imgProducto.alt = producto.modelo ? 'Imagen de Celular' : 'Imagen de Accesorio';
             imgProducto.classList.add('img-carrito');
 
