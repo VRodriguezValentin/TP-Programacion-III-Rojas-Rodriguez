@@ -1,10 +1,13 @@
-// backend/routes/ticket.js
+//npx puppeteer browsers install chrome
 const express = require('express');
 const router = express.Router();
 const puppeteer = require('puppeteer');
 
 router.post('/api/generar-ticket-pdf', async (req, res) => {
     const { html } = req.body;
+    if (!html) {
+        return res.status(400).send('No se pudo obtener el HTML del PDF');
+    }
     try {
         const browser = await puppeteer.launch();
         const page = await browser.newPage();
@@ -18,6 +21,7 @@ router.post('/api/generar-ticket-pdf', async (req, res) => {
         });
         res.send(pdfBuffer);
     } catch (err) {
+        console.error('Error al generar el PDF:', err);
         res.status(500).send('Error al generar el PDF');
     }
 });
