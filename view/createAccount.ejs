@@ -1,10 +1,15 @@
 <%- include('partials/header'); -%>
 
-    <% if (errorMessage) { %>
-        <div style="color: red; margin-bottom: 15px;">
-            <%= errorMessage %>
+<% if (errorMessage) { %>
+    <div id="modalConfirmacion" class="modal-confirmacion" style="display:flex;">
+        <div class="modal-contenido">
+            <h2> <%= errorMessage %> </h2>
+            <div class="modal-botones">
+                <button id="btnConfirmarModal" class="btn-finalizar">Aceptar</button>
+            </div>
         </div>
-    <% } %>
+    </div>
+<% } %>
 
     <div class="containerLogin">
 
@@ -31,5 +36,15 @@
             </div>
         </form>
     </div>
+
+    <script>
+        const modal = document.getElementById('modalConfirmacion');
+        const btnConfirmarModal = document.getElementById('btnConfirmarModal');
+
+        btnConfirmarModal.addEventListener("click", (e) => {
+            e.preventDefault();
+            modal.style.display = "none";
+        });
+    </script>
 
 <%- include('partials/footer'); -%>

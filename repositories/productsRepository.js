@@ -38,19 +38,6 @@ class ProductRepository {
         }
     }
 
-    // async create(productData) {
-    //     const sql = 'INSERT INTO productos (marca, precio, imagen, activo, modelo, color, almacenamiento, ram, tipo, compatibilidad) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
-    //     const params = [productData.marca, productData.precio, productData.imagen, productData.activo, productData.modelo, productData.color, productData.almacenamiento, productData.ram, productData.tipo, productData.compatibilidad];
-
-    //     try {
-    //         const result = await executeQuery(sql, params);
-    //         return result;
-    //     } catch (error) {
-    //         console.error('Error en ProductRepository.create:', error.message);
-    //         throw new Error('No se pudo crear el producto. Intente de nuevo más tarde.');
-    //     }
-    // }
-
     async createSeq(productData) {
         try {
             const result = await Product.create({

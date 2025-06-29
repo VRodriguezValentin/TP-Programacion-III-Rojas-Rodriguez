@@ -288,6 +288,16 @@ body {
     color: #E4E6EB;
 }
 
+.total-a-pagar {
+    font-weight: 500; /* O '700' para negrita */
+    color: #a3a3a3; /* Un gris oscuro para buena legibilidad */
+    margin-top: 20px; /* Un poco de espacio arriba */
+    padding-bottom: 5px; /* Un pequeño padding abajo si fuera un borde */
+    border-bottom: 2px solid #eee; /* Una línea sutil debajo */
+    text-align: right; /* Si quieres alinearlo a la derecha en tu contenedor */
+    /* font-family: 'Roboto', sans-serif;  Si usas Google Fonts */
+}
+
 /* Pagina Principal */
 .container-principal {
     display: grid;
@@ -528,6 +538,27 @@ a.button {
     background: #0056b3;
 }
 
+.btn-dir-access {
+    height: 50px;
+    position: fixed;
+    bottom: 24px;
+    right: 32px;
+    z-index: 1000;
+    padding: 10px 22px;
+    background: rgb(99, 98, 98);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 1em;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+    transition: background 0.2s;
+}
+.btn-dir-access:hover {
+    background: #0056b3;
+}
+
 /* Contenedor para los botones de paginación */
 #btn-panel-derecho-celulares,
 #btn-panel-derecho-accesorios {
@@ -752,6 +783,12 @@ body.bright .producto p {
 
 /* Tema claro para .carrito */
 body.bright .carrito {
+    border: solid #222 2px !important;
+    background: #BAC4C8 !important;
+    color: #222 !important;
+}
+
+body.bright .producto-carrito {
     border: solid #222 2px !important;
     background: #BAC4C8 !important;
     color: #222 !important;

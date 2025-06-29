@@ -4,7 +4,6 @@ const userRepository = require('../repositories/userRepository');
 const Admin = require('../model/Admin');
 
 class UserService {
-    //get, create, update, delete
     async getAllUsers() {
         try {
             const users = await userRepository.findAll();

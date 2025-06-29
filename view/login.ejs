@@ -1,10 +1,25 @@
 <%- include('partials/header'); -%>
 
 <% if (sessionMessage) { %>
-    <div style="display: flex; align-items: center; justify-content: center;">
-        <%= sessionMessage %>
+    <div id="modalConfirmacion" class="modal-confirmacion" style="display:flex;">
+        <div class="modal-contenido">
+            <h2> <%= sessionMessage %> </h2>
+            <div class="modal-botones">
+                <button id="btnConfirmarModal" class="btn-finalizar">Aceptar</button>
+            </div>
+        </div>
     </div>
 <% } %>
+
+<script>
+    const modal = document.getElementById('modalConfirmacion');
+    const btnConfirmarModal = document.getElementById('btnConfirmarModal');
+
+    btnConfirmarModal.addEventListener("click", (e) => {
+        e.preventDefault();
+        modal.style.display = "none";
+    });
+</script>
 
 <% if (loginSuccess) { %>
     <div class="container-loader">
@@ -38,6 +53,14 @@
     </script>
 <% } %>
 
+<button class="btn-login-top" onclick="location.href='/'">
+    <i class="fa fa-user"></i>
+</button>
+
+<button id="accessRoot" class="btn-dir-access">
+    <i class="fa-regular fa-circle-user"></i>
+</button>
+
 <% if (!loginSuccess) { %>
 <div class="containerLogin">
 
@@ -46,24 +69,36 @@
     <form method="POST" action="/loginInfo">
         <div id="divLogin" class="caja">
 
-            <label for="email">Email:</label>
+            <label for="email">Email</label>
             <input id="email" name="email" type="text"
                 placeholder="Ingrese su email"
                 value="<%= typeof oldData !== 'undefined' && oldData.email ? oldData.email : '' %>"
                 required>
 
-            <label for="password">Contraseña:</label>
+            <label for="password">Contraseña</label>
             <input id="password" name="password" type="password" placeholder="Ingrese su contraseña"
                 required>
 
             <div class="botonera-login">
-                <button id="btnLogin" type="submit" class="button">Iniciar Sesion</button>
                 <a href="/createAccount" class="button">Crear cuenta</a>
+                <button id="btnLogin" type="submit" class="button">Iniciar Sesion</button>
             </div>
         </div>
     </form>
 <% } %>
-
 </div>
+
+<script>
+    const buttonRoot = document.getElementById('accessRoot');
+    const email = document.getElementById('email');
+    const password = document.getElementById('password');
+    
+    buttonRoot.addEventListener("click", (e) => {
+        console.log('ajjajajjaja');
+        
+        email.value = 'admin@pocketstore.com';
+        password.value = 'admin123';
+    });
+</script>
 
 <%- include('partials/header'); -%>
