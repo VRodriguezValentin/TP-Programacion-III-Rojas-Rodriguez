@@ -39,7 +39,8 @@
 
                 <div class="form-row">
                     <label for="preciotxt">Precio: </label>
-                    <input name="precio" type="number" id="preciotxt" <% if (mode === 'M') {%> value="<%= typeof product !== 'undefined' && product.precio ? product.precio : '' %>"<% } %>>
+                    <input name="precio" type="text" inputmode="decimal" pattern="^-?\d+(\.\d+)?$" title="Solo se permiten números, enteros o con coma decimal (ej: 123,45)" 
+                    id="preciotxt" <% if (mode === 'M') {%> value="<%= typeof product !== 'undefined' && product.precio ? product.precio : '' %>"<% } %>>
                 </div>
 
                 <div class="form-row">

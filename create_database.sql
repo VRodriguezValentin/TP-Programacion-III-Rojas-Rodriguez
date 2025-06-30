@@ -6,7 +6,7 @@ USE pocket_store;
 CREATE TABLE IF NOT EXISTS productos (
     id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
     marca VARCHAR(50) NOT NULL,
-    precio FLOAT NOT NULL,
+    precio DECIMAL(10, 2),
     imagen VARCHAR(2000) NOT NULL,
     activo BOOL DEFAULT TRUE,
     modelo VARCHAR(50) NULL,

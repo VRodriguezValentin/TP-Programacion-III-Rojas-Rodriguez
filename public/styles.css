@@ -116,15 +116,6 @@ body {
     padding: 0 20px;
 }
 
-.navbar-right {
-    display: flex;
-    align-items: center;
-    gap: 25px;
-    flex-shrink: 0;
-    flex-grow: 1;
-    justify-content: center;
-}
-
 .user-info {
     font-size: 0.95em;
     color: #b0b0b0;
@@ -289,48 +280,37 @@ body {
 }
 
 .total-a-pagar {
-    font-weight: 500; /* O '700' para negrita */
-    color: #a3a3a3; /* Un gris oscuro para buena legibilidad */
-    margin-top: 20px; /* Un poco de espacio arriba */
-    padding-bottom: 5px; /* Un pequeño padding abajo si fuera un borde */
-    border-bottom: 2px solid #eee; /* Una línea sutil debajo */
-    text-align: right; /* Si quieres alinearlo a la derecha en tu contenedor */
-    /* font-family: 'Roboto', sans-serif;  Si usas Google Fonts */
+    font-weight: 500;
+    color: #a3a3a3;
+    margin-top: 20px;
+    padding-bottom: 5px;
+    border-bottom: 2px solid #eee;
+    text-align: right;
 }
 
-/* Pagina Principal */
 .container-principal {
     display: grid;
-    grid-template-columns: 20% 80%;
+    grid-template-columns: 80px 1fr;
     grid-template-rows: 1fr;
-    grid-column-gap: 0px;
-    grid-row-gap: 0px;
+    gap: 0;
+    min-height: calc(100vh - 70px);
+    padding-top: 70px;
+    box-sizing: border-box;
 }
 
-#panel-izquierdo {
-    background-color: #242526;
-    height: 100vw;
-}
-
-.img-categoria {
-    margin: 50px;
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0,0,0,0.7);
-    cursor: pointer;
-}
-.img-categoria:hover {
-    transform: scale(1.05);
-    transition: all 0.3s ease;
-}
-
-#panel-derecho-celulares, #panel-derecho-accesorios {
+#panel-derecho-celulares,
+#panel-derecho-accesorios {
+    grid-column: 2 / 3;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: 1fr;
-    grid-column-gap: 100px;
-    grid-row-gap: 10px;
-    margin-top: 120px;
-    margin-left: 250px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-auto-rows: min-content;
+    gap: 50px;
+    margin-top: 50px;
+    padding: 20px 100px 50px 100px;
+    box-sizing: border-box;
+    justify-items: center;
+    align-items: start;
+    position: relative;
 }
 
 .producto {
@@ -340,15 +320,15 @@ body {
     align-items: center;
     padding: 10px;
     height: 550px;
-    width: 250px;
+    width: 280px;
     margin: 0;
-    margin-top: 50px;
     border-radius: 30px;
     background: #212121;
     box-shadow: 15px 15px 30px rgb(25, 25, 25),
                 -15px -15px 30px rgb(60, 60, 60);
     transition: box-shadow 0.2s, transform 0.2s;
 }
+
 
 .producto p {
     font-size: 0.9em;
@@ -381,18 +361,6 @@ body {
     box-shadow: 0 0 10px rgba(0,0,0,0.5);
 }
 
-#panel-derecho-dashboard {
-    margin-left: 40%;
-    margin-top: 30%;
-    height: 100%;
-    width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
-    gap: 20px;
-    padding: 30px;
-}
-
 .card-gestion-active, .card-gestion-disable {
     width: 300px;
     height: 500px;
@@ -416,27 +384,21 @@ body {
 /* Left side-bar */
 
 #panel-izquierdo {
-    width: 80px; /* Mantenemos el ancho de la sidebar */
-    background-color: #2c2c2c; /* Fondo oscuro */
-    
-    /* CAMBIOS CLAVE AQUÍ: */
-    height: 300px; /* Altura fija, ajusta este valor según tu preferencia. */
-                        /* También podrías usar un porcentaje, ej: height: 40%; */
-    position: fixed; /* Mantiene la sidebar fija en la pantalla */
-    left: 0; /* Pega la sidebar al margen izquierdo */
-    top: 50%; /* Mueve el borde superior al 50% de la altura de la ventana */
-    transform: translateY(-50%); /* Compensa la mitad de su propia altura para centrarla verticalmente */
-    
-    border-radius: 0 15px 15px 0; /* Bordes redondeados solo a la derecha (superior e inferior) */
-                                /* Si quieres los 4 lados, usa 15px; */
-    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5); /* Sombra hacia la derecha */
-    padding: 20px 0; /* Relleno interno para los contenidos */
-    
+    width: 80px;
+    background-color: #2c2c2c;
+    height: 300px;
+    position: fixed;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    border-radius: 0 15px 15px 0;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
+    padding: 20px 0;
     display: flex;
     flex-direction: column;
-    align-items: center; /* Centra horizontalmente los ítems */
-    justify-content: center; /* ¡IMPORTANTE! Centra los ítems verticalmente dentro de esta altura limitada */
-    z-index: 999; /* Asegura que esté por encima del contenido principal */
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
 }
 
 
@@ -562,16 +524,20 @@ a.button {
 /* Contenedor para los botones de paginación */
 #btn-panel-derecho-celulares,
 #btn-panel-derecho-accesorios {
-    position: absolute;
+    position: absolute; /* Para que floten sobre el contenido */
     top: 50%;
     left: 0;
-    width: 100%;
+    right: 0;
+    width: 100%; /* Ocupa todo el ancho disponible para posicionar los botones */
     display: flex;
     justify-content: space-between;
     align-items: center;
-    pointer-events: none; /* Permite que los botones sean clickeables pero no el contenedor */
-    z-index: 10;
-    height: 0;
+    pointer-events: none; 
+    
+    z-index: 10; /* Un z-index que las coloque encima de las cards si las cards tienen z-index 1 o 5, por ejemplo.
+                    Pero debe ser MENOR que el z-index de la sidebar (999). */
+    transform: translateY(-50%);
+    /* height: 0; <-- Si esto te ocultaba los botones, asegúrate de que no esté o tenga un valor adecuado */
 }
 
 #btn-panel-derecho-celulares button,
@@ -598,15 +564,38 @@ a.button {
     transform: scale(1.07);
 }
 
-#siguientes-celulares,
-#siguientes-accesorios {
-    margin-right: 65px;
+#siguientes-celulares, #siguientes-accesorios,
+#anteriores-celulares, #anteriores-accesorios {
+    /* ... (Todos los estilos de tamaño, color, border-radius, background, etc. que ya tenías para tus botones) ... */
+    width: 50px; 
+    height: 50px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border: none;
+    font-size: 1.5em;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    transition: background-color 0.3s ease;
+
+    /* ¡EL CAMBIO CRÍTICO! Esto hace que los botones individuales sean clickeables */
+    pointer-events: auto; 
 }
 
-#anteriores-celulares,
-#anteriores-accesorios {
-    margin-left: 135px;
+#siguientes-celulares:hover, #siguientes-accesorios:hover,
+#anteriores-celulares:hover, #anteriores-accesorios:hover {
+    background-color: rgba(0, 0, 0, 0.7);
 }
+
+#siguientes-celulares { margin-right: 65px; }
+#anteriores-celulares { margin-left: 135px; } /* Ajusta este si es necesario */
+
+/* Y para los accesorios, si los tienes separados */
+#siguientes-accesorios { margin-right: 65px; }
+#anteriores-accesorios { margin-left: 135px; }
 
 #btn-panel-derecho-celulares {
     left: 0;
@@ -635,10 +624,10 @@ a.button {
 
 .floating-icon {
     position: fixed;
-    bottom: 20px;
-    right: 40px;
-    width: 50px;
-    height: 50px;
+    bottom: 30px;
+    right: 50px;
+    width: 60px;
+    height: 60px;
     background-color: black;
     color: #E4E6EB;
     border-radius: 50%;
@@ -1098,4 +1087,408 @@ background-size: var(--gap) var(--gap);
 .modal-contenido .btn-cancelar,
 .modal-contenido .btn-finalizar {
     min-width: 120px;
+}
+
+
+/* MEDIAS QUERI */
+@media (max-width: 1200px) {
+    .navbar {
+        padding: 10px 20px; /* Reducir padding horizontal */
+    }
+
+    .logoNav {
+        height: 120px; /* Logo un poco más pequeño */
+        width: 120px;
+        margin-left: 30px;
+        transform: scale(1.5); /* Escala ligeramente reducida */
+    }
+
+    .current-section {
+        font-size: 1.2em; /* Título más pequeño */
+        padding: 0 10px;
+        /* Forzamos el texto a no romperse si el espacio es crítico */
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .user-info {
+        font-size: 0.8em; /* Info de usuario más pequeña */
+        padding: 0 10px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    /* Reducir el crecimiento de los espaciadores para dar más espacio al contenido */
+    .navbar-spacer-left {
+        flex-grow: 0.2;
+    }
+    .navbar-spacer-middle {
+        flex-grow: 0.5;
+    }
+    .navbar-spacer-right {
+        flex-grow: 0.2;
+    }
+
+    /* Ajustar tamaño de iconos y padding de botones si es necesario */
+    .cart-button {
+        height: 28px;
+        width: 28px;
+    }
+    .cart-button .fas, .cart-button .fa-duotone {
+        font-size: 1.1em;
+    }
+    .cart-count {
+        font-size: 0.65em;
+        min-width: 16px;
+        height: 16px;
+    }
+
+    .container-principal {
+        grid-template-columns: 70px 1fr;
+        padding-top: 70px;
+    }
+
+    #panel-izquierdo {
+        width: 70px;
+        border-radius: 0 10px 10px 0;
+        padding: 15px 0;
+    }
+
+    .sidebar-icon {
+        font-size: 30px;
+    }
+
+    .sidebar-text {
+        font-size: 0.8em;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    #panel-derecho-celulares,
+    #panel-derecho-accesorios {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+        margin-top: 30px;
+        padding: 20px 70px 50px 70px;
+    }
+
+    .producto {
+        width: 250px;
+        height: 500px;
+    }
+
+    #btn-panel-derecho-celulares,
+    #btn-panel-derecho-accesorios {
+        left: 5px; /* Ajustar posición en este breakpoint */
+        right: 5px;
+    }
+
+    /* Ajustar flechas para pantallas más pequeñas si es necesario */
+    #siguientes-celulares, #siguientes-accesorios { margin-right: 40px; }
+    #anteriores-celulares, #anteriores-accesorios { margin-left: 80px; }
+}
+
+@media (max-width: 992px) {
+    .containerLogin {
+        width: 45%;
+        margin-top: 10vh;
+        padding: 25px;
+    }
+
+    .caja {
+        width: 35vw;
+        padding: 18px;
+    }
+
+    .navbar {
+        padding: 8px 15px;
+    }
+
+    .logoNav {
+        height: 80px;
+        width: 80px;
+        margin-left: 15px;
+        transform: scale(1.2);
+    }
+
+    .current-section {
+        font-size: 1em;
+        padding: 0 5px;
+    }
+
+    /* .user-info {
+        display: none;
+    } */
+
+    .navbar-spacer-left,
+    .navbar-spacer-middle,
+    .navbar-spacer-right {
+        flex-grow: 0;
+        width: 0;
+    }
+
+    .cart-button[href="/"] {
+        margin-right: 5px;
+        margin-left: 5px;
+    }
+
+    .container-principal {
+        grid-template-columns: 60px 1fr;
+    }
+
+    #panel-izquierdo {
+        width: 60px;
+        padding: 10px 0;
+    }
+
+    .sidebar-icon {
+        font-size: 28px;
+    }
+
+    .sidebar-text {
+        font-size: 0.75em;
+        display: none;
+    }
+
+    #panel-derecho-celulares,
+    #panel-derecho-accesorios {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 20px;
+        padding: 15px 30px;
+        margin-top: 20px;
+    }
+
+    .producto {
+        width: 220px;
+        height: 450px;
+    }
+
+    #siguientes-celulares, #siguientes-accesorios { margin-right: 20px; }
+    #anteriores-celulares, #anteriores-accesorios { margin-left: 40px; }
+}
+
+/* Para pantallas hasta 768px (tablets en portrait / móviles grandes) */
+@media (max-width: 768px) {
+    .containerLogin {
+        width: 65%;
+        margin: 5vh auto;
+        padding: 20px;
+    }
+
+    .caja {
+        width: 60vw;
+        padding: 15px;
+    }
+
+    .navbar {
+        padding: 5px 10px;
+        min-height: 45px;
+    }
+
+    .navbar-logo-container {
+        margin-left: 0;
+    }
+
+    .logoNav {
+        height: 40px;
+        width: 40px;
+        margin-left: 0;
+        transform: none;
+    }
+
+    .current-section {
+        font-size: 0.9em;
+        padding: 0 5px;
+        text-align: center;
+        flex-grow: 1;
+    }
+
+    .user-info {
+        font-size: xx-small;
+    }
+
+    .navbar-spacer-left,
+    .navbar-spacer-middle,
+    .navbar-spacer-right {
+        display: none;
+    }
+
+    .cart-button {
+        height: 25px;
+        width: 25px;
+        padding: 0;
+        margin-right: 3px;
+        margin-left: 3px;
+    }
+    .cart-button .fas, .cart-button .fa-duotone {
+        font-size: 0.9em;
+    }
+    .cart-count {
+        font-size: 0.6em;
+        min-width: 14px;
+        height: 14px;
+        padding: 1px 4px;
+        top: -3px;
+        right: -3px;
+    }
+
+    .cart-button:last-of-type {
+        margin-right: 0 !important;
+    }
+
+    .container-principal {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    #panel-izquierdo {
+        width: 50px; /* Ancho más pequeño para el móvil */
+        height: 200px; /* Si quieres que sea un poco más compacta verticalmente */
+        /* Asegúrate de que 'display: none;' NO esté aquí */
+        display: flex; /* Asegura que siempre esté visible */
+        padding: 10px 0; /* Padding más compacto */
+        /* Mantén su posición fixed y z-index alto */
+        position: fixed;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 999;
+        box-shadow: 1px 0 5px rgba(0, 0, 0, 0.3); /* Sombra más sutil */
+        border-radius: 0 10px 10px 0; /* Bordes un poco más pequeños */
+    }
+
+    #panel-izquierdo i {
+        font-size: 20px; /* Íconos un poco más pequeños en móvil */
+    }
+
+    #panel-derecho-celulares,
+    #panel-derecho-accesorios {
+        grid-column: 1 / -1;
+        grid-template-columns: 1fr;
+        grid-auto-rows: min-content;
+        gap: 20px;
+        padding: 0 20px;
+        margin-top: 10px;
+        justify-items: center;
+    }
+
+    .producto {
+        width: 100%;
+        max-width: 300px;
+        height: auto;
+        padding: 15px;
+        margin-top: 0;
+    }
+    .producto img {
+        height: 200px;
+    }
+    .producto p {
+        font-size: 0.8em;
+    }
+
+    .card-gestion-active, .card-gestion-disable {
+        width: 100%; /* La card ocupará el 100% del ancho de su contenedor */
+        max-width: 350px;
+        height: auto;
+        padding: 10px;
+        border-radius: 20px;
+    }
+
+    #btn-panel-derecho-celulares,
+    #btn-panel-derecho-accesorios {
+        position: relative;
+        top: auto;
+        left: auto;
+        right: auto;
+        width: 100%;
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+        transform: none;
+        pointer-events: auto;
+        padding: 0 20px;
+        box-sizing: border-box;
+    }
+    #siguientes-celulares, #siguientes-accesorios { margin-right: 15px; }
+    #anteriores-celulares, #anteriores-accesorios { margin-left: 15px; }
+
+    .floating-icon {
+        top: 120px;
+        right: 20px;
+        bottom: auto;
+        left: auto;
+        width: 35px;
+        height: 35px;
+        font-size: 26px;
+        z-index: 1001;
+    }
+}
+
+/* Para pantallas muy pequeñas (ej. móviles) */
+@media (max-width: 576px) {
+    .containerLogin {
+        width: 90%;
+        margin: 3vh auto;
+        padding: 15px;
+        box-shadow: none;
+        border-radius: 0;
+    }
+
+    .caja {
+        width: 85vw;
+        padding: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar {
+        padding: 5px;
+    }
+    .current-section {
+        font-size: 0.8em;
+    }
+    .cart-button {
+        height: 22px;
+        width: 22px;
+    }
+    .cart-button .fas, .cart-button .fa-duotone {
+        font-size: 0.8em;
+    }
+    .cart-count {
+        font-size: 0.55em;
+        min-width: 12px;
+        height: 12px;
+        padding: 0 3px;
+        top: -2px;
+        right: -2px;
+    }
+
+    #panel-izquierdo {
+        width: 40px; /* Sidebar más delgada */
+        height: 180px; /* Altura más compacta */
+    }
+    .container-principal {
+        grid-template-columns: 40px 1fr;
+    }
+
+    #panel-derecho-celulares,
+    #panel-derecho-accesorios {
+        padding: 0 10px;
+    }
+    .producto {
+        max-width: 280px;
+        padding: 10px;
+    }
+    .producto img {
+        height: 180px;
+    }
+    #btn-panel-derecho-celulares,
+    #btn-panel-derecho-accesorios {
+        padding: 0 10px;
+    }
 }
