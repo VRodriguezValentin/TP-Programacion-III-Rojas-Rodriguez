@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS usuarios (
 CREATE TABLE IF NOT EXISTS ventas (
     id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
     usuario VARCHAR(50) NOT NULL,
-    total FLOAT NOT NULL,
+    total DECIMAL(10, 2) NOT NULL,
     fecha_proceso DATETIME DEFAULT current_timestamp
 );
 
@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS detalle_venta (
     id_venta INT NOT NULL,
     id_producto INT NOT NULL,
     cantidad INT NOT NULL DEFAULT 1,
-    precio_unitario INT NOT NULL,
+    precio_unitario DECIMAL(10, 2) NOT NULL,
     FOREIGN KEY (id_venta) REFERENCES ventas(id) ON DELETE CASCADE,
     FOREIGN KEY (id_producto) REFERENCES productos(id) ON DELETE CASCADE
 );
