@@ -48,7 +48,7 @@ class ControlCarrito{
 
     calcularTotal(productosCarrito){
         return productosCarrito.reduce((total, producto) => {
-            return total + producto.precio;
+            return total + parseFloat(producto.precio);
         }, 0);
     }
 

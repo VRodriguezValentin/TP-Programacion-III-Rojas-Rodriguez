@@ -414,7 +414,7 @@ body {
 }
 
 .sidebar-item:last-child {
-    margin-bottom: 0; /* Elimina el margen inferior del último item para que no haya espacio extra abajo */
+    margin-bottom: 0;
 }
 
 .sidebar-item:hover {
@@ -524,20 +524,17 @@ a.button {
 /* Contenedor para los botones de paginación */
 #btn-panel-derecho-celulares,
 #btn-panel-derecho-accesorios {
-    position: absolute; /* Para que floten sobre el contenido */
+    position: absolute;
     top: 50%;
     left: 0;
     right: 0;
-    width: 100%; /* Ocupa todo el ancho disponible para posicionar los botones */
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     pointer-events: none; 
-    
-    z-index: 10; /* Un z-index que las coloque encima de las cards si las cards tienen z-index 1 o 5, por ejemplo.
-                    Pero debe ser MENOR que el z-index de la sidebar (999). */
+    z-index: 10;
     transform: translateY(-50%);
-    /* height: 0; <-- Si esto te ocultaba los botones, asegúrate de que no esté o tenga un valor adecuado */
 }
 
 #btn-panel-derecho-celulares button,
@@ -1093,20 +1090,19 @@ background-size: var(--gap) var(--gap);
 /* MEDIAS QUERI */
 @media (max-width: 1200px) {
     .navbar {
-        padding: 10px 20px; /* Reducir padding horizontal */
+        padding: 10px 20px;
     }
 
     .logoNav {
-        height: 120px; /* Logo un poco más pequeño */
+        height: 120px;
         width: 120px;
         margin-left: 30px;
-        transform: scale(1.5); /* Escala ligeramente reducida */
+        transform: scale(1.5);
     }
 
     .current-section {
-        font-size: 1.2em; /* Título más pequeño */
+        font-size: 1.2em;
         padding: 0 10px;
-        /* Forzamos el texto a no romperse si el espacio es crítico */
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -1347,19 +1343,17 @@ background-size: var(--gap) var(--gap);
     }
 
     #panel-izquierdo {
-        width: 50px; /* Ancho más pequeño para el móvil */
-        height: 200px; /* Si quieres que sea un poco más compacta verticalmente */
-        /* Asegúrate de que 'display: none;' NO esté aquí */
-        display: flex; /* Asegura que siempre esté visible */
-        padding: 10px 0; /* Padding más compacto */
-        /* Mantén su posición fixed y z-index alto */
+        width: 50px;
+        height: 200px;
+        display: flex;
+        padding: 10px 0;
         position: fixed;
         left: 0;
         top: 50%;
         transform: translateY(-50%);
         z-index: 999;
-        box-shadow: 1px 0 5px rgba(0, 0, 0, 0.3); /* Sombra más sutil */
-        border-radius: 0 10px 10px 0; /* Bordes un poco más pequeños */
+        box-shadow: 1px 0 5px rgba(0, 0, 0, 0.3);
+        border-radius: 0 10px 10px 0;
     }
 
     #panel-izquierdo i {
