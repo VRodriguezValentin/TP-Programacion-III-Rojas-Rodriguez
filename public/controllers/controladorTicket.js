@@ -35,7 +35,7 @@ class ControlTicket{
 
     calcularTotal(productosCarrito){
         return productosCarrito.reduce((total, producto) => {
-            return total + producto.precio;
+            return total + parseFloat(producto.precio);
         }, 0);
     }
 
@@ -53,15 +53,15 @@ class ControlTicket{
         productosAgrupados.forEach(producto => {
 
             if (producto.modelo) {
-                detalleHTML += `<p>${producto.marca + ' ' + producto.modelo} X ${producto.cantidad}\t$${(producto.precio * producto.cantidad).toFixed(2)}</p>`;
+                detalleHTML += `<p>${producto.marca + ' ' + producto.modelo} X ${producto.cantidad}\t$${(parseFloat(producto.precio) * producto.cantidad).toFixed(2)}</p>`;
             } else {
-                detalleHTML += `<p>${producto.tipo + ' ' + producto.marca} X ${producto.cantidad}\t$${(producto.precio * producto.cantidad).toFixed(2)}</p>`;
+                detalleHTML += `<p>${producto.tipo + ' ' + producto.marca} X ${producto.cantidad}\t$${(parseFloat(producto.precio) * producto.cantidad).toFixed(2)}</p>`;
             }
 
             var detalleProducto = {
                 id_producto: producto.id,
                 cantidad: producto.cantidad,
-                precio_unitario: producto.precio
+                precio_unitario: parseFloat(producto.precio)
             };
 
             arrayDetalle.push(detalleProducto);
